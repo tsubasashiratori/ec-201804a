@@ -23,7 +23,7 @@ public class User {
 	 */
 	private String password;
 	/**
-	 * zipコード
+	 * 郵便番号
 	 */
 	private String zipCode;
 	/**
