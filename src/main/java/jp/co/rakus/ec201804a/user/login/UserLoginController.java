@@ -51,6 +51,6 @@ public class UserLoginController {
 		
 		session.setAttribute("user", user);
 		
-		return "ItemList";
+		return "redirect:/ViewAllItemsAndSearchItem/findAllNotDeleted";
 	}
 }
