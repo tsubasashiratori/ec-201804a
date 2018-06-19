@@ -11,25 +11,26 @@ import org.springframework.test.context.junit4.SpringRunner;
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ViewAllItemsRepository;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class Ec201804aApplicationTests {
 
 	@Autowired
 	private ViewAllItemsRepository repository;
+
 	@Test
 	public void contextLoads() {
-		
 		try {
-			
-			List<Item> itemLists = repository.findByNameNotDeleted("携帯あ");
-			for (Item item : itemLists) {
-				System.out.println(item);
-			}
-		}catch (Throwable ex) {
-			ex.printStackTrace();
+		List<Item> itemList = repository.findAllNotDeleted();
+				for (Item item : itemList) {
+					
+					System.out.println(item);
+				}
+		
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 	}
 
 }

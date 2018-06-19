@@ -15,7 +15,7 @@ public class OrderItem {
 	 */
 	private Long itemId;
 	/**
-	 * 合計金額
+	 * 個数
 	 */
 	private Integer quantity;
 	/**
