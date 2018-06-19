@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>ユーザログイン</title>
 </head>
+<%@ include file="../common/userHeader.jsp" %>
 <body>
 	<div align="center">
 	<h2>ログイン</h2>
