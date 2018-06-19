@@ -7,19 +7,16 @@
 <body>
 	<header>
 		<div id="userHeader" align="right">
-			<p>
 			<c:choose>
 				<c:when test="${user==null}">
-					こんにちはゲストさん	
+					<p>こんにちはゲストさん</p>
+					<p><a href="${pageContext.request.contextPath}/user/">ログイン</a></p>
 				</c:when>
 				<c:otherwise>
-					こんにちは<c:out value="${user.name}"/>さん
+					<p>こんにちは<c:out value="${user.name}"/>さん</p>
+					<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
 				</c:otherwise>	
 			</c:choose>
-			</p>
-			<p>
-				<a href="${pageContext.request.contextPath}/user/">ログイン</a>
-			</p>
 			<p>
 				<a href="viewShoppingCart.html">カートの中身を見る</a>
 			</p>
