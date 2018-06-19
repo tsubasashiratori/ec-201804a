@@ -23,7 +23,7 @@ public class PaymentController {
 	 * 
 	 * */
 	
-	@RequestMapping(value = "/toMakePayment")
+	@RequestMapping(value = "/viewDetail")
 	public String viewPaymentDetail(String orderId, Model model) {
 		Order payment = orderRepository.findById(orderId);
 		if(payment == null) {
@@ -33,6 +33,7 @@ public class PaymentController {
 		return "/user/makePayment";
 	}
 	
+	@RequestMapping(value = "/toConfirm")
 	public String payment(String orderId) {
 		Order payment = orderRepository.findById(orderId);
 		
