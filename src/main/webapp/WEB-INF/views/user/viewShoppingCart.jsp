@@ -37,7 +37,7 @@
 			<c:forEach var="item" items="${itemList}">
 				<tr>
 					<td><img
-						src="${pageContext.request.contextPath}/img/item.imagepath"
+						src="${pageContext.request.contextPath}/img/${item.imagePath}"
 						width="150" height="125"></a></td>
 					<td><a
 						href="${pageContext.request.contextPath}/ViewDetail?id=${item.id}">
