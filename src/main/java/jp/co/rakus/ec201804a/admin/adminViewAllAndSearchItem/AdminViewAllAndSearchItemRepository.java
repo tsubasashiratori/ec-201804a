@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.admin.adminViewAllAndSearchItem.repository;
+package jp.co.rakus.ec201804a.admin.adminViewAllAndSearchItem;
 
 import java.util.List;
 
