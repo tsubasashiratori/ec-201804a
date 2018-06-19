@@ -32,12 +32,12 @@ public class UserLoginRepository {
 	 * @param mailAddress　メールアドレス
 	 * @return user　検索されたユーザ
 	 */
-	public User findByOneMailAddress(String mailAddress) {
+	public User findByOneMailAddress(String email) {
 		SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("mailAddress", mailAddress);
+				.addValue("email", email);
 		String sql = "SELECT id, name, email, password, zipCode, address, telephone "
 				+ "FROM users "
-				+ "WHERE mailAddress=:mailAddress "
+				+ "WHERE email=:email "
 				+ ";";
 		try {
 			User user = template.queryForObject(sql, param, USER_ROW_MAPPER);

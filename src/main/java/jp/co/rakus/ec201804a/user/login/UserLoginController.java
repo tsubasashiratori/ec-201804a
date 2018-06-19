@@ -36,13 +36,16 @@ public class UserLoginController {
 		
 		boolean error = false;
 		if(user==null) {
+			System.out.println("ユーザが存在しない");
 			return index();
 		}
-		if(form.getPassword().equals(user.getPassword())) {
+		System.out.println(user);
+		if(!form.getPassword().equals(user.getPassword())) {
 			error = true;
 		}
 		//errorがあればreturn
 		if(error) {
+			System.out.println("エラーがあります");
 			return index();
 		}
 		
