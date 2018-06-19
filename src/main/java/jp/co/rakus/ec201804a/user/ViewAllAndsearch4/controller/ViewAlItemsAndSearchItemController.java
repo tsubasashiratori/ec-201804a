@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
-import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ViewAllItemsRepository;
+import jp.co.rakus.ec201804a.user.viewAllAndsearch4.repository.ViewAllItemsRepository;
 
 @Controller
 @RequestMapping("/ViewAllItemsAndSearchItem")
