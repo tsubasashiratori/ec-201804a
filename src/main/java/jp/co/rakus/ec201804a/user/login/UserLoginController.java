@@ -32,7 +32,7 @@ public class UserLoginController {
 	
 	@RequestMapping(value = "/login")
 	public String login(UserLoginForm form, HttpSession session) {
-		User user = repository.findByOneMailAddress(form.getMailAddress());
+		User user = repository.findByOneMailAddress(form.getEmail());
 		
 		boolean error = false;
 		if(user==null) {
@@ -50,7 +50,6 @@ public class UserLoginController {
 		}
 		
 		session.setAttribute("user", user);
-		System.out.println(user);
 		
 		return "ItemList";
 	}

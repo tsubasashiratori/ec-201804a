@@ -12,7 +12,7 @@
 	<h2>ログイン</h2>
 	
 	<form:form modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/user/login">
-		メールアドレス：<form:input path="mailAddress"/><br>
+		メールアドレス：<form:input path="email"/><br>
 		パスワード：<form:input path="password"/><br>
 		<input type="submit" value="ログイン"><br>
 	</form:form>

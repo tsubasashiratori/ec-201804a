@@ -1,11 +1,6 @@
-package jp.co.rakus.ec201804a.user.login;
+package jp.co.rakus.ec201804a.admin.login;
 
-/**
- * 利用者ログインのフォームクラス.
- * 
- * @author yuta.kitazawa
- */
-public class UserLoginForm {
+public class AdminUserLoginForm {
 	private String email;
 	private String password;
 	public String getEmail() {
