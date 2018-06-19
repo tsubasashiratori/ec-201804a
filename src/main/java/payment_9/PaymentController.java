@@ -1,13 +1,12 @@
 package payment_9;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Order;
@@ -17,29 +16,35 @@ import jp.co.rakus.ec201804a.common.domain.Order;
 @RequestMapping(value = "/payment")
 public class PaymentController {
 	
-	/*
-	 * @AutoWired
-	 * private OrderRepository orderRepository;
-	 * 
-	 * */
+	
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	@RequestMapping(value = "/viewDetail")
 	public String viewPaymentDetail(String orderId, Model model) {
-		Order payment = orderRepository.findById(orderId);
+		long longOrderId = new Long(orderId);
+		
+		Order payment = orderRepository.findById(longOrderId);
+		
 		if(payment == null) {
 			model.addAttribute("nullError", "注文がありません");
 		}
+		
 		model.addAttribute("payment", payment);
 		return "/user/makePayment";
 	}
 	
 	@RequestMapping(value = "/toConfirm")
 	public String payment(String orderId) {
-		Order payment = orderRepository.findById(orderId);
+		long longOrderId = new Long(orderId);
+		Order payment = orderRepository.findById(longOrderId);
 		
 		payment.setStatus(0);
 		payment.setOrderNumber(dateAndSequence());
+		
 		orderRepository.save(payment);
+		
+		return "/user/confirmedPayment";
 	}
 	
 	public String dateAndSequence() {
