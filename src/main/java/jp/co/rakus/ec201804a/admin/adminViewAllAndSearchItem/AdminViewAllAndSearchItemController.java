@@ -19,15 +19,16 @@ public class AdminViewAllAndSearchItemController {
 	@RequestMapping("/adminFindAll")
 	public String adminItemFindAll(Model model) {
 		List<Item> itemList = adminRepository.adminItemFindAll();
+		itemList.forEach(System.out::println);
 		model.addAttribute("itemList", itemList);
 		
-		return "/admin/itemList.jsp";
+		return "/admin/itemList";
 	}
 	
 	@RequestMapping("/adminFindByName")
 	public String adminItemFindByName(Model model, String name) {
 		List<Item> itemList = adminRepository.adminItemFindByName(name);
 		model.addAttribute("itemList", itemList);
-		return "/admin/itemList.jsp";
+		return "/admin/itemList";
 	}
 }

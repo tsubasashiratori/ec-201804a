@@ -25,6 +25,7 @@ public class AdminViewAllAndSearchItemRepository {
 		item.setId(rs.getLong("id"));
 		item.setName(rs.getString("name"));
 		item.setPrice(rs.getInt("price"));
+		item.setImagePath(rs.getString("imagepath"));
 		item.setDescription(rs.getString("description"));
 		item.setDeleted(rs.getBoolean("deleted"));
 		return item;
@@ -39,9 +40,9 @@ public class AdminViewAllAndSearchItemRepository {
 	}
 
 	public List<Item> adminItemFindByName(String name) {
-		String sql = "SELECT id, name, description, price, deleted FROM " + TABLE_NAME + " WHERE name LIKE '%:name%'";
+		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME + " WHERE name LIKE :name";
 
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
 
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
 
