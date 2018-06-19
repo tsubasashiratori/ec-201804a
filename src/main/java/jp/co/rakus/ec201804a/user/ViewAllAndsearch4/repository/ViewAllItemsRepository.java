@@ -57,5 +57,16 @@ public class ViewAllItemsRepository {
 			return itemList;
 		}
 	}
+	
+	public Item findDetailByIdNotDeleted(long id) {
+		
+		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME + " where id = :id";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		
+		Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
+		
+		return item;
+	}
 
 }
