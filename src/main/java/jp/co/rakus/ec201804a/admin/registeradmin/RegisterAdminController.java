@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.AdminUser;
 import jp.co.rakus.ec201804a.common.repository.AdminUserRepository;
-import jp.co.rakus.ec201804a.user.registeruser.RegisterUserForm;
 
 @Controller
 @Transactional
@@ -48,7 +47,7 @@ public class RegisterAdminController {
 	 * @return 管理者ログイン画面
 	 */
 	@RequestMapping(value="/register")
-	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
+	public String registerUser(@Validated RegisterAdminForm form, BindingResult result) {
 		if(!form.getPassword().equals(form.getCheckPassword())) {
 			result.rejectValue("checkPassword","","確認用パスワードか一致していません");
 		}

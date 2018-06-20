@@ -26,7 +26,6 @@ public class RegisterAdminForm {
 	 */
 	@NotBlank(message = "パスワードを入力してください")
 	@Size(min=8,max=16,message="パスワードは{min}文字以上{max}文字以下です")
-	
 	private String password;
 	/**
 	 * 確認用パスワード

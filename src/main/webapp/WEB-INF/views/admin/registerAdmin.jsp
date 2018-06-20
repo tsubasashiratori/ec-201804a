@@ -15,7 +15,7 @@
 	<br>
 	<br>
 
-<form:errors path="AdminForm.*" />
+<form:errors path="AdminUserForm.*" />
 	<form:form modelAttribute="registerAdminForm" action="${pageContext.request.contextPath}/registAdmin/register" method="post">
 		<br>
 		<table border="">
