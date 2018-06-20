@@ -69,7 +69,7 @@ public class RegisterUserController {
 //		user.setTelephone(form.getTelephone());
 		System.out.println(user);
 		userRepository.registerUser(user);
-		return "redirect:user/loginUser";
+		return "redirect:/user/";
 	}
 
 }
