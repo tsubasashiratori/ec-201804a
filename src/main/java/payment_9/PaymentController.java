@@ -38,7 +38,6 @@ public class PaymentController {
 	public String payment(String orderId) {
 		long longOrderId = new Long(orderId);
 		Order payment = orderRepository.findById(longOrderId);
-		
 		payment.setStatus(0);
 		payment.setOrderNumber(dateAndSequence());
 		
