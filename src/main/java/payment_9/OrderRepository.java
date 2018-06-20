@@ -40,7 +40,9 @@ public class OrderRepository {
 	public void save(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		
-		String sql = "UPDATE orders SET order_number = '2018-06-19' , status = 0 WHERE id = 3;";
+		
+		
+		String sql = "UPDATE orders SET order_number = :order_number , status = :status , total_price = :total_price WHERE id = :id ;";
 		
 		namedParameterJdbcTemplate.update(sql, param);
 	}
