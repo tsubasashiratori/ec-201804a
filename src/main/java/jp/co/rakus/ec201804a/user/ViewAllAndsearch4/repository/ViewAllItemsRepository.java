@@ -1,6 +1,5 @@
 package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,30 +41,26 @@ public class ViewAllItemsRepository {
 	}
 
 	public List<Item> findByNameNotDeleted(String name) {
-
+		
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
 				+ " where deleted = false and name LIKE :name order by price";
 
-		if (name == "") {
-			List<Item> nullItemList = new ArrayList<>();
-			return nullItemList;
-
-		} else {
-			String nameFixed = "%" + name + "%";
-			SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameFixed);
+		
+			String nameLike = "%" + name + "%";
+			SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike);
 			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
 			return itemList;
-		}
+		
 	}
-	
+
 	public Item findDetailByIdNotDeleted(long id) {
-		
+
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME + " where id = :id";
-		
+
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-		
+
 		Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
-		
+
 		return item;
 	}
 

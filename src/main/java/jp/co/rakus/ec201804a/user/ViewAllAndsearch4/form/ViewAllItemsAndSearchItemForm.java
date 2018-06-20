@@ -1,7 +1,10 @@
 package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.form;
 
+import javax.validation.constraints.NotBlank;
+
 public class ViewAllItemsAndSearchItemForm {
 
+	@NotBlank(message = "該当する商品がありません")
 	private String name;
 
 	public String getName() {

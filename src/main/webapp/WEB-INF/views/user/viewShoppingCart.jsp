@@ -21,17 +21,18 @@
 			<input type="submit" value="全件表示">
 		</form>
 		<br>
-		<form
+		<form:form modelAttribute="viewAllItemsAndSearchItemForm"
 			action="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findByNameNotDeleted"
 			method="post">
-			<input type="text" name="name" /><input type="submit" value="検索する"
+			<form:errors path="name" element="div" cssStyle="color:red" /> 
+			<form:input path="name"/><input type="submit" value="検索する"
 				align="center"><br>
-		</form>
+		</form:form>
 		<br>
 		<table border="1" align="center">
 				<tr>
-					<th colspan="2">商品名</th>
-					<th>価格</th>
+					<th colspan="2" width="150">商品名</th>
+					<th width="150">価格</th>
 
 				</tr>
 			<c:forEach var="item" items="${itemList}">
