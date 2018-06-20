@@ -3,6 +3,7 @@ package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -41,27 +42,30 @@ public class ViewAllItemsRepository {
 	}
 
 	public List<Item> findByNameNotDeleted(String name) {
-		
+
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
 				+ " where deleted = false and name LIKE :name order by price";
 
-		
-			String nameLike = "%" + name + "%";
-			SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike);
-			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
-			return itemList;
-		
+		String nameLike = "%" + name + "%";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike);
+		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
+		return itemList;
+
 	}
 
 	public Item findDetailByIdNotDeleted(long id) {
 
-		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME + " where id = :id";
+		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
+				+ " where id = :id and deleted = false";
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 
-		Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
-
-		return item;
+		try {
+			Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
+			return item;
+		} catch (EmptyResultDataAccessException ex) {
+			return null;
+		}
 	}
 
 }

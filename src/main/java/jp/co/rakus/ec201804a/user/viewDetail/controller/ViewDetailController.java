@@ -21,6 +21,9 @@ public class ViewDetailController {
 	public String ViewDetail(@RequestParam ("id") String id, HttpServletRequest request) {
 		long idLong = Long.parseLong(id);
 		Item item = repository.findDetailByIdNotDeleted(idLong);
+		if(item == null) {
+			return "user/errorDirectWritingURL";
+		}
 		request.setAttribute("item", item);
 		return "/user/viewDetail";
 	}
