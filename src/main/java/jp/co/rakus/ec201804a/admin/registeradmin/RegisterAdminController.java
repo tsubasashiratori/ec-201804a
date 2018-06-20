@@ -61,7 +61,7 @@ public class RegisterAdminController {
 		System.out.println(adminUser);
 		adminUser.setPassword(passwordEncoder.encode(adminUser.getPassword()));
 		System.out.println(adminUser);
-		adminUserRepository.registerUser(adminUser);
+		adminUserRepository.registerAdmin(adminUser);
 		return "redirect:/admin/";
 	}
 

@@ -28,7 +28,6 @@
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="email" cssStyle="color:red"/></small></p>
-				<p id="mailId2" style="display: none; color: red;">アドレスが不正です</p>
 				メールアドレス</td>
 				<td><form:input path="email"/></td>
 

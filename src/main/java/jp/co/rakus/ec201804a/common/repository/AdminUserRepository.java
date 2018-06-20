@@ -22,7 +22,7 @@ public class AdminUserRepository {
 	 * 管理者情報を追加.
 	 * @param adminUser 管理者
 	 */
-	public void registerUser(AdminUser adminUser) {
+	public void registerAdmin(AdminUser adminUser) {
 		String sql = "INSERT INTO admin_users(name,email,password) values(:name,:email,:password)";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(adminUser);
 		jdbcTemplate.update(sql, param);
