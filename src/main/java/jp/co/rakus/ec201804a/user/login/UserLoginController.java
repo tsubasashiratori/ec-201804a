@@ -1,13 +1,12 @@
 package jp.co.rakus.ec201804a.user.login;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jp.co.rakus.ec201804a.common.domain.User;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -26,11 +25,13 @@ public class UserLoginController {
 	 * @return ログイン画面
 	 */
 	@RequestMapping(value = "/")
-	public String index() {
+	public String index(UserLoginForm form, BindingResult result
+			,Model model, @RequestParam(required = false) String error) {
+		System.err.println("login error:" + error);
 		return "/user/loginUser";
 	}
 	
-	@RequestMapping(value = "/login")
+/*	@RequestMapping(value = "/login")
 	public String login(UserLoginForm form, HttpSession session) {
 		User user = repository.findByOneMailAddress(form.getEmail());
 		
@@ -52,5 +53,5 @@ public class UserLoginController {
 		session.setAttribute("user", user);
 		
 		return "redirect:/ViewAllItemsAndSearchItem/findAllNotDeleted";
-	}
+	}*/
 }

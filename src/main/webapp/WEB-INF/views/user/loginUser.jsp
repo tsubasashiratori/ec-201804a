@@ -17,7 +17,7 @@
 		<input type="submit" value="ログイン"><br>
 	</form:form>
 	
-	<a href="ユーザ登録を行うコントローラ">新規登録はこちら</a>
+	<a href="${pageContext.request.contextPath}/regist/">新規登録はこちら</a>
 	</div>
 </body>
 </html>
