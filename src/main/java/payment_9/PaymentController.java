@@ -24,13 +24,13 @@ public class PaymentController {
 	public String viewPaymentDetail(String orderId, Model model) {
 		long longOrderId = new Long(orderId);
 		
-		Order payment = orderRepository.findById(longOrderId);
+		Order order = orderRepository.findById(longOrderId);
 		
-		if(payment == null) {
+		if(order == null) {
 			model.addAttribute("nullError", "注文がありません");
 		}
 		
-		model.addAttribute("payment", payment);
+		model.addAttribute("order", order);
 		return "/user/makePayment";
 	}
 	
