@@ -11,6 +11,7 @@ public class Ec201804aApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
-
 }
+

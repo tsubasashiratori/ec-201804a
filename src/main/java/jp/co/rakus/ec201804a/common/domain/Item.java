@@ -30,6 +30,7 @@ public class Item {
 	 * 削除したか
 	 */
 	private Boolean deleted;
+	
 	public Long getId() {
 		return id;
 	}
