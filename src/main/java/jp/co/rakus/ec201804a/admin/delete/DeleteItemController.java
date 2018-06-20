@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.rakus.ec201804a.common.domain.Item;
 
 @Controller
-@RequestMapping("/admin/DeleteItemController")
+@RequestMapping("/admin/DeleteItem")
 public class DeleteItemController {
 
 	@Autowired
