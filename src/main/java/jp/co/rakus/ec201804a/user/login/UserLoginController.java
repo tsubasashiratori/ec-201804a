@@ -4,16 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import jp.co.rakus.ec201804a.common.domain.User;
+
+/**
+ * 利用者がログインをするコントローラ.
+ * 
+ * @author yuta.kitazawa
+ */
 @Controller
+@SessionAttributes(types= {User.class})
 @RequestMapping(value = "/user")
 public class UserLoginController {
 	@Autowired
 	UserLoginRepository repository;
 	
+	/**
+	 * ログインフォームを初期化する
+	 * 
+	 * @return UserLoginForm
+	 */
 	@ModelAttribute
 	public UserLoginForm setUpForm() {
 		return new UserLoginForm();
@@ -28,6 +43,12 @@ public class UserLoginController {
 	public String index(UserLoginForm form, BindingResult result
 			,Model model, @RequestParam(required = false) String error) {
 		System.err.println("login error:" + error);
+		
+		if(error != null) {
+			System.err.println("user: login failed");
+			result.addError(new ObjectError("loginError", "メールアドレスまたはパスワードが違います"));
+		}
+
 		return "/user/loginUser";
 	}
 	
