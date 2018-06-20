@@ -11,27 +11,31 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
-
 import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.form.ViewAllItemsAndSearchItemForm;
-
-import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ViewAllItemsRepository;
+import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
 
 /**
+ * ４．商品一覧の表示と検索を行うコントローラー.
  * @author shunta.nakamura
  *
  */
 @Controller
-@RequestMapping("/ViewAllItemsAndSearchItem")
+@RequestMapping("/user/ViewAllItemsAndSearchItem")
 public class ViewAlItemsAndSearchItemController {
 
 	@Autowired
-	private ViewAllItemsRepository repository;
+	private ItemsRepository repository;
 
 	@ModelAttribute
 	public ViewAllItemsAndSearchItemForm setUpForm() {
 		return new ViewAllItemsAndSearchItemForm();
 	}
 
+	/**
+	 * 商品一覧を表示するメソッド.
+	 * @param model
+	 * @return 商品一覧にページを遷移する
+	 */
 	@RequestMapping("/findAllNotDeleted")
 	public String findAllNotDeleted(Model model) {
 
@@ -39,10 +43,17 @@ public class ViewAlItemsAndSearchItemController {
 
 		model.addAttribute("itemList", itemList);
 
-		return "/user/viewShoppingCart";
+		return "/user/viewShoppingList";
 
 	}
 
+	/**
+	 * 商品検索をするメソッド.
+	 * @param viewAllItemsAndSearchForm 商品検索をするフォーム
+	 * @param result エラー文を格納するバインディングリザルト
+	 * @param model モデル
+	 * @return 商品一覧画面へページを遷移する
+	 */
 	@RequestMapping("/findByNameNotDeleted")
 	public String findByNameNotDeleted(@Validated ViewAllItemsAndSearchItemForm viewAllItemsAndSearchForm, BindingResult result, Model model) {
 
@@ -57,11 +68,11 @@ public class ViewAlItemsAndSearchItemController {
 			System.out.println("test");
 		}
 		if(result.hasErrors()) {
-			return "/user/viewShoppingCart";
+			return "/user/viewShoppingList";
 		}
 		
 		model.addAttribute("itemList", itemList);
 
-		return "/user/viewShoppingCart";
+		return "/user/viewShoppingList";
 	}
 }

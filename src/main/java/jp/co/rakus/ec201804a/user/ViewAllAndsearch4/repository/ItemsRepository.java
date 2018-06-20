@@ -12,11 +12,17 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 
+/**
+ * Itemsテーブルに接続し、商品一覧を表示するリポジトリ
+ * @author shunta.nakamura
+ *
+ */
 @Repository
-public class ViewAllItemsRepository {
+public class ItemsRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
+	/** テーブル名 */
 	private static final String TABLE_NAME = "items";
 
 	private static final RowMapper<Item> ITEM_ROWMAPPER = (rs, i) -> {
@@ -31,6 +37,10 @@ public class ViewAllItemsRepository {
 		return item;
 	};
 
+	/**
+	 * 全件検索をするメソッド.
+	 * @return 全件の情報が入ったリストを返すか、もしくは空のリストを返す。
+	 */
 	public List<Item> findAllNotDeleted() {
 
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
@@ -41,6 +51,12 @@ public class ViewAllItemsRepository {
 		return itemList;
 	}
 
+	
+	/**
+	 * 名前から検索をするメソッド.
+	 * @param name 名前
+	 * @return 検索の対象となったオブジェクトのリストを返すか、もしくは、空のリストを返す
+	 */
 	public List<Item> findByNameNotDeleted(String name) {
 
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
@@ -53,6 +69,11 @@ public class ViewAllItemsRepository {
 
 	}
 
+	/**
+	 * 商品の詳細情報を検索するメソッド.
+	 * @param id
+	 * @return 対象となるオブジェクトかもしくは意図的にnullを返す
+	 */
 	public Item findDetailByIdNotDeleted(long id) {
 
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
