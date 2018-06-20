@@ -26,7 +26,7 @@
 						さん
 					</p>
 					<p>
-						<a href="${pageContext.request.contextPath}/logout">ログアウト</a>
+						<a href="${pageContext.request.contextPath}/user/logout">ログアウト</a>
 					</p>
 				</c:otherwise>
 			</c:choose>
@@ -37,7 +37,7 @@
 		<div id="linkHeader" align="left">
 			<h1 align="left">
 				<a
-					href="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findAllNotDeleted"><img
+					href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted"><img
 					src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 					height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
 			</h1>
