@@ -64,7 +64,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginPage("/user/")//ログイン画面のパス
 		.loginProcessingUrl("/user/login")//ログインボタンを押したときのパス
 		.failureUrl("/user/?error=true")//ログイン失敗画面のパス
-		.defaultSuccessUrl("/ViewAllItemsAndSearchItem/findAllNotDeleted", false)
+		.defaultSuccessUrl("/user/ViewAllItemsAndSearchItem/findAllNotDeleted", false)
 		// 第1引数:デフォルトでログイン成功時に遷移させるパス
         // 第2引数: true :認証後常に第1引数のパスに遷移 
         //         false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
@@ -75,7 +75,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		//ログアウトに関する設定
 		http.logout()
 		.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout**"))//ログアウトさせる際に遷移させるパス
-		.logoutSuccessUrl("/ViewAllItemsAndSearchItem/findAllNotDeleted")//ログアウト後に遷移させるパス
+		.logoutSuccessUrl("/user/ViewAllItemsAndSearchItem/findAllNotDeleted")//ログアウト後に遷移させるパス
 		.deleteCookies("JESESIONID")// ログアウト後、Cookieに保存されているセッションIDを削除
 		.invalidateHttpSession(true)// true:ログアウト後、セッションを無効にする false:セッションを無効にしない	
 		;
