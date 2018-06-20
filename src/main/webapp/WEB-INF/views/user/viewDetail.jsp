@@ -13,7 +13,7 @@
 
 <body>
 	<div align="center">
-	<h2>商品詳細</h2>
+	<h2 align="center">商品詳細</h2>
 	
 	<table border="1" align="center">
 		<tr>

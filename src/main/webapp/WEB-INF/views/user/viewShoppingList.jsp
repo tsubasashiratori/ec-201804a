@@ -18,13 +18,13 @@
 		<form
 			action="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findAllNotDeleted"
 			method="post">
-			<input type="submit" value="全件表示">
+			<input type="submit" value="全件表示" align="center">
 		</form>
 		<br>
 		<form:form modelAttribute="viewAllItemsAndSearchItemForm"
 			action="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findByNameNotDeleted"
 			method="post">
-			<form:errors path="name" element="div" cssStyle="color:red" /> 
+			<form:errors path="name" element="div" cssStyle="color:red" align="center"/> 
 			<form:input path="name"/><input type="submit" value="検索する"
 				align="center"><br>
 		</form:form>
