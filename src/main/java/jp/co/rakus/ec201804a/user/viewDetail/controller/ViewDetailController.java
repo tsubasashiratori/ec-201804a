@@ -16,7 +16,7 @@ import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
  *
  */
 @Controller
-@RequestMapping("/ViewDetail")
+@RequestMapping("/user/ViewDetail")
 public class ViewDetailController {
 
 	@Autowired

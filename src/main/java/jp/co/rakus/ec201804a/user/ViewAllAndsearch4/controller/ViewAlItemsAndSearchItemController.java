@@ -20,7 +20,7 @@ import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
  *
  */
 @Controller
-@RequestMapping("/ViewAllItemsAndSearchItem")
+@RequestMapping("/user/ViewAllItemsAndSearchItem")
 public class ViewAlItemsAndSearchItemController {
 
 	@Autowired

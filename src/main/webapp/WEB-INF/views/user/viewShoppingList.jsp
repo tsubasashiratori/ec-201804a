@@ -16,13 +16,13 @@
 		<h2>商品一覧</h2>
 
 		<form
-			action="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findAllNotDeleted"
+			action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted"
 			method="post">
 			<input type="submit" value="全件表示" align="center">
 		</form>
 		<br>
 		<form:form modelAttribute="viewAllItemsAndSearchItemForm"
-			action="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findByNameNotDeleted"
+			action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeleted"
 			method="post">
 			<form:errors path="name" element="div" cssStyle="color:red" align="center"/> 
 			<form:input path="name" align="center"/><input type="submit" value="検索する"
@@ -41,7 +41,7 @@
 						src="${pageContext.request.contextPath}/img/${item.imagePath}"
 						width="150" height="125"></a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/ViewDetail?id=${item.id}">
+						href="${pageContext.request.contextPath}/user/ViewDetail?id=${item.id}">
 							<c:out value="${item.name}"></c:out>
 					</a></td>
 					<td><fmt:formatNumber value="${item.price}" pattern="￥###,###" />

@@ -34,6 +34,6 @@
 		</tr>
 	</table>
 	<br>
-		<a href = "${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findAllNotDeleted">商品一覧に戻る</a>
+		<a href = "${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">商品一覧に戻る</a>
 </body>
 </html>
