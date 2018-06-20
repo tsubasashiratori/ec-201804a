@@ -2,6 +2,7 @@ package jp.co.rakus.ec201804a.user.registeruser;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -19,11 +20,13 @@ import jp.co.rakus.ec201804a.common.repository.UserRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value="/regist")
+@RequestMapping(value="/user")
 public class RegisterUserController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	/**
 	 * フォームの初期化
@@ -39,7 +42,7 @@ public class RegisterUserController {
 	 * 
 	 * @return 新規利用者登録画面
 	 */
-	@RequestMapping(value="/")
+	@RequestMapping(value="/form")
 	public String viewRegisterUser() {
 		return "user/registerUser";
 	}
@@ -51,7 +54,7 @@ public class RegisterUserController {
 	 * @param result リザルト
 	 * @return ログイン画面
 	 */
-	@RequestMapping(value="/registerUser")
+	@RequestMapping(value="/register")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
 		if(!form.getPassword().equals(form.getCheckPassword())) {
 			result.rejectValue("checkPassword","","確認用パスワードか一致していません");
@@ -67,6 +70,8 @@ public class RegisterUserController {
 //		user.setZipCode(form.getZipCode());
 //		user.setAddress(form.getAddress());
 //		user.setTelephone(form.getTelephone());
+		System.out.println(user);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		System.out.println(user);
 		userRepository.registerUser(user);
 		return "redirect:/user/";
