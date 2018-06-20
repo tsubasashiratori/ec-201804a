@@ -25,7 +25,7 @@
 			action="${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findByNameNotDeleted"
 			method="post">
 			<form:errors path="name" element="div" cssStyle="color:red" align="center"/> 
-			<form:input path="name"/><input type="submit" value="検索する"
+			<form:input path="name" align="center"/><input type="submit" value="検索する"
 				align="center"><br>
 		</form:form>
 		<br>
