@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>商品一覧＜管理者＞</title>
 </head>
+<%@ include file="../common/adminHeader.jsp"%>
 <body>
-
+<br>
 <form action="${pageContext.request.contextPath}/adminAllandSearch/adminFindByName" method="post">
 	<input type="text" name="name"><br>
 	<input type="submit" value="検索">
@@ -36,7 +37,7 @@
 			<tr>
 				<th>操作</th>
 				<td>
-					<button type="submit" value="edit">編集</button>
+					<button type="submit" name="" value="edit">編集</button>
 					<button type="submit" value="delete">削除</button>
 					
 				</td>

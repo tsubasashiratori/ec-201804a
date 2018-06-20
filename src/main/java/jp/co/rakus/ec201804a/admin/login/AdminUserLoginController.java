@@ -46,6 +46,6 @@ public class AdminUserLoginController {
 		
 		session.setAttribute("adminUser", adminUser);
 		
-		return "administerMenu";
+		return "admin/administerMenu";
 	}
 }
