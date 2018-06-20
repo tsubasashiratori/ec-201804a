@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user;
+package jp.co.rakus.ec201804a.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,15 +14,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- * 利用者ログイン認証用設定.
+ * 管理者ログイン認証用設定.
  * 
  * @author yuta.kitazawa
  */
 @Configuration
 @EnableWebSecurity
-@Order(2)
-public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
-	@Qualifier("UserDetailsServiceImp1")
+@Order(1)
+public class AdminUserSecurityConfig extends WebSecurityConfigurerAdapter{
+	@Qualifier("AdminUserDetailsServiceImp1")
 	@Autowired
 	private UserDetailsService userDetailsService;
 //	@Autowired
@@ -46,12 +46,12 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {		
 		//認可に関する設定
 		http
-		.antMatcher("/user/**")
+		.antMatcher("/admin/**")
 		.authorizeRequests()
 		.antMatchers(
-				"/user/"
-				,"/user/login"
-				,"/user/form"
+				"/admin/"
+				,"/admin/login"
+				,"/admin/form"
 				,"/regist/register"
 				).permitAll() //このパスは全てのユーザに許可
 //		.anyRequest().authenticated()//それ以外のパスは認証が必要
@@ -61,10 +61,10 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		//「/login」は不要になる
 		//例外がスローされると失敗とみなす
 		http.formLogin()
-		.loginPage("/user/")//ログイン画面のパス
-		.loginProcessingUrl("/user/login")//ログインボタンを押したときのパス
-		.failureUrl("/user/?error=true")//ログイン失敗画面のパス
-		.defaultSuccessUrl("/ViewAllItemsAndSearchItem/findAllNotDeleted", false)
+		.loginPage("/admin/")//ログイン画面のパス
+		.loginProcessingUrl("/admin/login")//ログインボタンを押したときのパス
+		.failureUrl("/admin/?error=true")//ログイン失敗画面のパス
+		.defaultSuccessUrl("/admin/", false)//TODO:後で変える
 		// 第1引数:デフォルトでログイン成功時に遷移させるパス
         // 第2引数: true :認証後常に第1引数のパスに遷移 
         //         false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
@@ -74,8 +74,8 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		//ログアウトに関する設定
 		http.logout()
-		.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout**"))//ログアウトさせる際に遷移させるパス
-		.logoutSuccessUrl("/ViewAllItemsAndSearchItem/findAllNotDeleted")//ログアウト後に遷移させるパス
+		.logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout**"))//ログアウトさせる際に遷移させるパス
+		.logoutSuccessUrl("/admin/")//ログアウト後に遷移させるパス
 		.deleteCookies("JESESIONID")// ログアウト後、Cookieに保存されているセッションIDを削除
 		.invalidateHttpSession(true)// true:ログアウト後、セッションを無効にする false:セッションを無効にしない	
 		;

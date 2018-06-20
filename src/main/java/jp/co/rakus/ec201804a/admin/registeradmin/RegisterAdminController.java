@@ -2,6 +2,7 @@ package jp.co.rakus.ec201804a.admin.registeradmin;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -14,11 +15,12 @@ import jp.co.rakus.ec201804a.common.repository.AdminUserRepository;
 
 @Controller
 @Transactional
-@RequestMapping(value="/registAdmin")
+@RequestMapping(value="/admin")
 public class RegisterAdminController {
-	
 	@Autowired
 	private AdminUserRepository adminUserRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	/**
 	 * フォームの初期化
@@ -34,7 +36,7 @@ public class RegisterAdminController {
 	 * 
 	 * @return 新規管理者登録画面
 	 */
-	@RequestMapping(value="/")
+	@RequestMapping(value="/form")
 	public String viewRegisterAdmin() {
 		return "admin/registerAdmin";
 	}
@@ -56,6 +58,8 @@ public class RegisterAdminController {
 		}
 		AdminUser adminUser = new AdminUser();
 		BeanUtils.copyProperties(form, adminUser);
+		System.out.println(adminUser);
+		adminUser.setPassword(passwordEncoder.encode(adminUser.getPassword()));
 		System.out.println(adminUser);
 		adminUserRepository.registerUser(adminUser);
 		return "redirect:/admin/";

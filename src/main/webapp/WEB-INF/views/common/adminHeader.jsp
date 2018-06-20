@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <head>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/adminHeader.css" />
@@ -7,6 +9,9 @@
 <body>
 	<header>
 		<div id="userHeader" align="right">
+			<sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
+				<sec:authentication var="adminUser" property="principal.user" />
+			</sec:authorize>
 			<c:choose>
 				<c:when test="${adminUser==null}">
 					<p>こんにちは管理者さん</p>	

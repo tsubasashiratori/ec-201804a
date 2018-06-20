@@ -1,6 +1,5 @@
 package jp.co.rakus.ec201804a.user.login;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +20,8 @@ import jp.co.rakus.ec201804a.common.domain.User;
 @SessionAttributes(types= {User.class})
 @RequestMapping(value = "/user")
 public class UserLoginController {
-	@Autowired
-	UserLoginRepository repository;
+//	@Autowired
+//	UserLoginRepository repository;
 	
 	/**
 	 * ログインフォームを初期化する

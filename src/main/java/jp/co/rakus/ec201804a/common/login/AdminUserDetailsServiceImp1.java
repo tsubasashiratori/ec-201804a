@@ -11,36 +11,36 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import jp.co.rakus.ec201804a.common.domain.User;
-import jp.co.rakus.ec201804a.user.login.UserLoginRepository;
+import jp.co.rakus.ec201804a.admin.login.AdminUserLoginRepository;
+import jp.co.rakus.ec201804a.common.domain.AdminUser;
 
 /**
- * ログイン後の利用者情報に権限を付与するサービスクラス.
+ * ログイン後の管理者情報に権限を付与するサービスクラス.
  * 
  * @author yuta.kitazawa
  */
-@Service("UserDetailsServiceImp1")
-public class UserDetailsServiceImp1 implements UserDetailsService{
+@Service("AdminUserDetailsServiceImp1")
+public class AdminUserDetailsServiceImp1 implements UserDetailsService{
 	/**
-	 * 利用者をfindByOneMailAddresするリポジトリ
+	 * 管理者をfindByOneMailAddresするリポジトリ
 	 */
 	@Autowired
-	private UserLoginRepository userRepository;
+	private AdminUserLoginRepository adminUserRepository;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userRepository.findByOneMailAddress(email);
-		System.out.println(user);
-		if(user == null) {
+		AdminUser adminUser = adminUserRepository.findByOneMailAddress(email);
+		System.out.println(adminUser);
+		if(adminUser == null) {
 			throw new UsernameNotFoundException("そのメールアドレスは登録されていません");
 		}
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		//ROLE_は必ず書く.
-		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+		authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		
-		return new LoginUser(user, authorityList);
+		return new LoginAdminUser(adminUser, authorityList);
 	}
 }

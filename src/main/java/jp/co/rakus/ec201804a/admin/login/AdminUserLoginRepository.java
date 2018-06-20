@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.rakus.ec201804a.common.domain.AdminUser;
 
 @Repository
-public class AdminUsenLoginRepository {
+public class AdminUserLoginRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
