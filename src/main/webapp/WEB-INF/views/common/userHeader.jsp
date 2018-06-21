@@ -31,7 +31,7 @@
 				</c:otherwise>
 			</c:choose>
 			<p>
-				<a href="viewShoppingCart.html">カートの中身を見る</a>
+				<a href="${pageContext.request.contextPath}/user/toViewShoppingCart">カートの中身を見る</a>
 			</p>
 		</div>
 		<div id="linkHeader" align="left">
