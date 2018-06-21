@@ -16,7 +16,7 @@ import jp.co.rakus.ec201804a.common.domain.Item;
  *
  */
 @Repository
-public class EditItemRepository {
+public class DeleteEditItemRepository {
 
 	private static final String TABLE_NAME = "items";
 	

@@ -1,14 +1,19 @@
 package jp.co.rakus.ec201804a.user.viewDetail.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
+import jp.co.rakus.ec201804a.user.shoppingcart.InsertShoppingCartForm;
 
 /**
  * 商品の詳細を表示するコントローラー.
@@ -21,6 +26,11 @@ public class ViewDetailController {
 
 	@Autowired
 	public ItemsRepository repository;
+	
+	@ModelAttribute
+	public InsertShoppingCartForm setUpInsert() {
+		return new InsertShoppingCartForm();
+	}
 
 	/** 
 	 * 商品の詳細を表示するメソッド.
@@ -32,6 +42,19 @@ public class ViewDetailController {
 	public String ViewDetail(@RequestParam ("id") String id, HttpServletRequest request) {
 		long idLong = Long.parseLong(id);
 		Item item = repository.findDetailByIdNotDeleted(idLong);
+		
+		Map<Integer, Integer> quantityMap = new LinkedHashMap<>();
+		quantityMap.put(1, 1);
+		quantityMap.put(2, 2);
+		quantityMap.put(3, 3);
+		quantityMap.put(4, 4);
+		quantityMap.put(5, 5);
+		quantityMap.put(6, 6);
+		quantityMap.put(7, 7);
+		quantityMap.put(8, 8);
+		quantityMap.put(9, 9);
+		request.setAttribute("quantityMap", quantityMap);
+		
 		if(item == null) {
 			return "user/errorDirectWritingURL";
 		}
