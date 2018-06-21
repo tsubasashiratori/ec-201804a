@@ -19,8 +19,12 @@ public class DeleteItemController {
 
 		Item item = repository.load(id);
 		
-		item.setDeleted(false);
-		
+		if(item.getDeleted() == true) {
+			item.setDeleted(false);
+		}
+		else {
+			item.setDeleted(true);
+		}
 		repository.save(item);
 
 		return "redirect:/admin/adminItemfindAll";
