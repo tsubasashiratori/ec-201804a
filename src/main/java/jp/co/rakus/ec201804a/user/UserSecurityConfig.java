@@ -52,7 +52,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				"/user/"
 				,"/user/login"
 				,"/user/form"
-				,"/regist/register"
+				,"/user/register"
 				).permitAll() //このパスは全てのユーザに許可
 //		.anyRequest().authenticated()//それ以外のパスは認証が必要
 		;

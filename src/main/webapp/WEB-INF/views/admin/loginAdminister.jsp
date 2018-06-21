@@ -11,11 +11,12 @@
 	<div align="center">
 		<h2>ログイン</h2>
 
+		<form:errors path="adminUserLoginForm.*" cssStyle="color:red" element="div"/>
 		<form:form modelAttribute="adminUserLoginForm"
 			action="${pageContext.request.contextPath}/admin/login">
 		メールアドレス：<form:input path="email" />
 			<br>
-		パスワード：<form:input path="password" />
+		パスワード：<form:password path="password" />
 			<br>
 			<input type="submit" value="ログイン">
 			<br>

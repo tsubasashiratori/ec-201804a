@@ -19,10 +19,7 @@ import jp.co.rakus.ec201804a.common.domain.User;
 @Controller
 @SessionAttributes(types= {User.class})
 @RequestMapping(value = "/user")
-public class UserLoginController {
-//	@Autowired
-//	UserLoginRepository repository;
-	
+public class UserLoginController {	
 	/**
 	 * ログインフォームを初期化する
 	 * 
@@ -45,33 +42,9 @@ public class UserLoginController {
 		
 		if(error != null) {
 			System.err.println("user: login failed");
-			result.addError(new ObjectError("loginError", "メールアドレスまたはパスワードが違います"));
+			result.addError(new ObjectError("loginError", "入力情報が不正です"));
 		}
 
 		return "/user/loginUser";
 	}
-	
-/*	@RequestMapping(value = "/login")
-	public String login(UserLoginForm form, HttpSession session) {
-		User user = repository.findByOneMailAddress(form.getEmail());
-		
-		boolean error = false;
-		if(user==null) {
-			System.out.println("ユーザが存在しない");
-			return index();
-		}
-		System.out.println(user);
-		if(!form.getPassword().equals(user.getPassword())) {
-			error = true;
-		}
-		//errorがあればreturn
-		if(error) {
-			System.out.println("エラーがあります");
-			return index();
-		}
-		
-		session.setAttribute("user", user);
-		
-		return "redirect:/ViewAllItemsAndSearchItem/findAllNotDeleted";
-	}*/
 }
