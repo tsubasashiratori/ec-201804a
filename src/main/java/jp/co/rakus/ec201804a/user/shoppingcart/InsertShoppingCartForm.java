@@ -5,6 +5,16 @@ public class InsertShoppingCartForm {
 	private String itemId;
 	/**個数*/
 	private String quantity;
+	/**注文ID*/
+	private String orderId;
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
 	public String getItemId() {
 		return itemId;
