@@ -1,8 +1,6 @@
 package jp.co.rakus.ec201804a.common.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import jp.co.rakus.ec201804a.user.payment9.IncludeTaxLogic;
 
 
 /**
@@ -37,10 +35,7 @@ public class OrderItem {
 	private Integer itemTotalPriceIncludeTax;
 	
 	private Integer itemTax;
-	
-	@Autowired
-	private IncludeTaxLogic taxLogic;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -76,20 +71,20 @@ public class OrderItem {
 		int itemPrice = getItem().getPrice();
 		int itemQuantity = getQuantity();
 		int itemTotalPriceExcludeTax = itemPrice * itemQuantity;
-		System.out.println(itemTotalPriceExcludeTax + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		System.out.println(itemTotalPriceExcludeTax + "getItemTotalPriceExcludeTaxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		//setTempTax(tempTax);
 		return itemTotalPriceExcludeTax;
-		
-		
 	}
 	
 	public Integer getItemTotalPriceIncludeTax() {
-		int itemTotalPriceIncludeTax = taxLogic.includeTax(getItemTotalPriceExcludeTax());
-		System.out.println(itemTotalPriceIncludeTax + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas");
+		int itemTotalPriceIncludeTax = (int)(getItemTotalPriceExcludeTax() * 1.08);
+		System.out.println(itemTotalPriceIncludeTax + "getItemTotalPriceIncludeTaxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas");
 		return itemTotalPriceIncludeTax;
 	}
 	
 	public int getItemTax() {
-		int itemTax = taxLogic.calcTax(getItemTotalPriceExcludeTax());
+		int itemTax = (int)(getItemTotalPriceExcludeTax() * 0.08);
+		System.out.println(itemTax + "getItemTaxTaxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas");
 		return itemTax;
 	}
 	
@@ -106,8 +101,7 @@ public class OrderItem {
 	public String toString() {
 		return "OrderItem [id=" + id + ", itemId=" + itemId + ", quantity=" + quantity + ", orderId=" + orderId
 				+ ", item=" + item + ", itemTotalPriceExcludeTax=" + itemTotalPriceExcludeTax
-				+ ", itemTotalPriceIncludeTax=" + itemTotalPriceIncludeTax + ", itemTax=" + itemTax + ", taxLogic="
-				+ taxLogic + "]";
+				+ ", itemTotalPriceIncludeTax=" + itemTotalPriceIncludeTax + ", itemTax=" + itemTax + "]";
 	}
 	
 	

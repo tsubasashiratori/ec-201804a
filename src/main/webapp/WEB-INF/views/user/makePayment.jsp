@@ -23,10 +23,10 @@
 		<c:forEach var="orderItem" items="${order.orderItemList}">
 				<tr>
 					<td><c:out value="${orderItem.item.name}"/></td>
-					<td><c:out value="${orderItem.item.price}"/></td>
+					<td>&yen;<c:out value="${orderItem.item.price}"/></td>
 					<td><c:out value="${orderItem.quantity}"/></td>
-					<td><c:out value="${orderItem.itemTotalPriceExcludeTax}"/></td>
-					<td><c:out value="${orderItem.itemTotalPriceIncludeTax}"/></td>
+					<td>&yen;<c:out value="${orderItem.itemTotalPriceExcludeTax}"/></td>
+					<td>&yen;<c:out value="${orderItem.itemTotalPriceIncludeTax}"/></td>
 				</td>
 				</tr>
 		</c:forEach>
@@ -56,7 +56,6 @@
 	住所：<c:out value="${order.deliveryAddress}"/><br>
 	電話番号：<c:out value="${order.deliveryTel}"/><br><br>
 	
-	<form:hidden path="${order.id }" name="orderId"/>
 	<input type="submit" value="確定">
 	</form:form></div>
 	

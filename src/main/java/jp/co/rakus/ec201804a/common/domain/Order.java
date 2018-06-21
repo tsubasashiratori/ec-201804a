@@ -85,6 +85,7 @@ public class Order {
 		for (OrderItem orderItem : getOrderItemList()) {
 			totalPriceIncludeTaxAndPostage += orderItem.getItemTotalPriceIncludeTax();
 		}
+		totalPriceIncludeTaxAndPostage += getPostage();
 		return totalPriceIncludeTaxAndPostage;
 	}
 	public Long getId() {

@@ -26,7 +26,7 @@ public class IncludeTaxLogic {
 	 * @return 消費税のみ戻す
 	 */
 	public Integer calcTax(Integer excludeTax) {
-		setTax((int) (excludeTax * 0.08));
+		Integer tax = (int) (excludeTax * 0.08);
 		return tax;
 	}
 
@@ -38,7 +38,7 @@ public class IncludeTaxLogic {
 	 * @return 税込み価格を戻す
 	 */
 	public Integer includeTax(Integer excludeTax) {
-		setTax((int) (excludeTax * 1.08));
+		Integer tax = (int) (excludeTax * 1.08);
 		return tax;
 	}
 
