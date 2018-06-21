@@ -17,7 +17,7 @@
 
 		<form
 			action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted"
-			method="post">
+			method="get">
 			<input type="submit" value="全件表示" align="center">
 		</form>
 		<br>
