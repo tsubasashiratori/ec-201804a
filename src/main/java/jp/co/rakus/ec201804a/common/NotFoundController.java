@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NotFoundController implements ErrorController{
 	
 	private static final String PATH = "/error";
-
+	
 	@Override
 	@RequestMapping(PATH)
 	public String getErrorPath() {
 		System.out.println("404 not found");
-		return "/common/error404";
+		return "common/error404";
 	}
 
 }
