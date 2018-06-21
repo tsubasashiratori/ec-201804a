@@ -71,20 +71,16 @@ public class OrderItem {
 		int itemPrice = getItem().getPrice();
 		int itemQuantity = getQuantity();
 		int itemTotalPriceExcludeTax = itemPrice * itemQuantity;
-		System.out.println(itemTotalPriceExcludeTax + "getItemTotalPriceExcludeTaxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		//setTempTax(tempTax);
 		return itemTotalPriceExcludeTax;
 	}
 	
 	public Integer getItemTotalPriceIncludeTax() {
 		int itemTotalPriceIncludeTax = (int)(getItemTotalPriceExcludeTax() * 1.08);
-		System.out.println(itemTotalPriceIncludeTax + "getItemTotalPriceIncludeTaxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas");
 		return itemTotalPriceIncludeTax;
 	}
 	
 	public int getItemTax() {
 		int itemTax = (int)(getItemTotalPriceExcludeTax() * 0.08);
-		System.out.println(itemTax + "getItemTaxTaxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas");
 		return itemTax;
 	}
 	

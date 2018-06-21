@@ -55,7 +55,7 @@
 	メールアドレス：<c:out value="${order.deliveryEmail}"/><br>
 	住所：<c:out value="${order.deliveryAddress}"/><br>
 	電話番号：<c:out value="${order.deliveryTel}"/><br><br>
-	
+	<input type="hidden" name="orderId" value="${order.id}">
 	<input type="submit" value="確定">
 	</form:form></div>
 	

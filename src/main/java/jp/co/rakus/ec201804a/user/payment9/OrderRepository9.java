@@ -116,7 +116,12 @@ public class OrderRepository9 {
 	public void save(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 
-		String sql = "UPDATE orders SET order_number = :order_number , status = :status , total_price = :total_price WHERE id = :id ;";
+		String sql = "UPDATE orders SET order_number = :orderNumber , user_id = :userId "
+				+", status = :status , total_price = :totalPrice , order_date = :orderDate "
+				+", delivery_name = :deliveryName, delivery_email = :deliveryEmail "
+				+", delivery_zip_code = :deliveryZipCode, delivery_address = :deliveryAddress "
+				+", delivery_tel = :deliveryTel"
+				+" WHERE id = :id ;";
 
 		namedParameterJdbcTemplate.update(sql, param);
 	}
