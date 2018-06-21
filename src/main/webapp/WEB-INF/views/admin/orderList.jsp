@@ -23,7 +23,7 @@
       </tr>
       <c:forEach var="order" items="${orderList}">
       <tr>
-        <td><a href="admin/viewOrderDetail?id =${order.id}"><c:out value="${order.orderNumber}"/></a></td>
+        <td><a href="admin/viewOrderDetail?orderId ${order.id}"><c:out value="${order.orderNumber}"/></a></td>
         <td><c:out value="${order.orderDate}"/></td>
         <td><c:out value="${order.user.name}"/></td>
         <td>
@@ -50,7 +50,7 @@
       </c:forEach>
     </table>
     <br>
-    <a href="./administerMenu.html">メニューに戻る</a>
+    <a href="/admin/administerMenu.jsp">メニューに戻る</a>
 </div>
 	
 </body>

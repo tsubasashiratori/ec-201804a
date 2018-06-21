@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jp.co.rakus.ec201804a.common.domain.AdminUser;
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.user.payment9.OrderRepository9;
 

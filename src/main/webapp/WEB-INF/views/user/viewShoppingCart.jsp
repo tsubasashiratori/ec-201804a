@@ -38,7 +38,6 @@
 			<br>
 			<br>
 			<c:forEach var="orders" items="${orderList}">
-				<c:out value="${orders.id}"/>
 				<a href="${pageContext.request.contextPath }/user/viewPaymentDetail?orderId=${orders.id}">決済へ</a>
 			</c:forEach>
 	</form:form>
