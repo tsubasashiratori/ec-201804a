@@ -9,16 +9,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.common.domain.OrderItem;
+import jp.co.rakus.ec201804a.common.login.LoginUser;
 import jp.co.rakus.ec201804a.common.repository.OrderItemRepository;
 import jp.co.rakus.ec201804a.common.repository.OrderRepository;
 
@@ -73,20 +77,29 @@ public class ShoppingCartController {
 	 */
 	@RequestMapping(value = "/toInsertShoppingCart")
 	public String insert(/* @RequestParam Integer price, */InsertShoppingCartForm form,
-			/* @RequestParam Integer itemId, */Model model,HttpSession session) {
-		
-		/*String userId=session.getAttribute(id);*/
-		
+			 @RequestParam Long id,Model model,HttpSession session) {
+			Long itemId=id;
+		//セッションIDを15桁で取得
 		String sessionId = session.getId();
 		String a=sessionId.replaceAll("[^0-9]","");
 		String b=a.substring(0, 15);
-		//String b=String.format("%5d", a);
-		//System.out.println(sessionId);
-		//System.out.println(a);
-		Long userId=Long.parseLong(b);
+		session.setAttribute("sessionId", b);
+		//Long userId=Long.parseLong(b);
+		
+		//user情報を取得.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long userId=(long)0;
+		if (principal instanceof LoginUser) {
+				LoginUser loginUser = (LoginUser)principal;
+				userId = loginUser.getUser().getId();
+			}
+		//useridが取得できなければsessionIDを代入.
+		if(userId==0) {
+			userId=Long.parseLong(b);
+		}
+		System.out.println(userId);
 		// 2回目押したときの判定
-		//int userId = Integer.parseInt(sessionId.replaceAll("[^1-9]",""));
-		//int userId = ret;
+
 		//int userId=1;
 		int status=0;
 		
@@ -95,7 +108,7 @@ public class ShoppingCartController {
 		Order order1 = orderRepository.findByUserIdAndStatusForInsert(userId,status);
 		
 		if (order1 == null) {
-			// orderが取れなかったr新しいidを発行
+			// orderが取れなかったら新しいidを発行
 			Order order = new Order();
 
 			LocalDate localdate = LocalDate.now();
@@ -116,14 +129,15 @@ public class ShoppingCartController {
 		}
 
 		OrderItem orderItem = new OrderItem();
-		int itemId = 1;
+		//int itemId = 1;
 		orderItem.setItemId((long) itemId);
-		orderItem.setOrderId((long) 1);
+		Order order2=orderRepository.findByUserIdAndStatusForInsert(userId,status);
+		orderItem.setOrderId(order2.getId());
 		orderItem.setQuantity(form.getIntQuantiy());
 		orderItemRepository.insert(orderItem);
 
-		System.out.println("a");
-		return viewShoppingCart(model);
+		//System.out.println("a");
+		return viewShoppingCart(model,session);
 	}
 
 	public static Date localDate2Date(final LocalDate localDate) {
@@ -136,12 +150,27 @@ public class ShoppingCartController {
 	 * @return
 	 */
 	@RequestMapping(value="/toViewShoppingCart")
-	public String viewShoppingCart(Model model) {
+	public String viewShoppingCart(Model model,HttpSession session) {
+		//user情報を取得.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long userId=(long)0;
+		if (principal instanceof LoginUser) {
+				LoginUser loginUser = (LoginUser)principal;
+				userId = loginUser.getUser().getId();
+			}
+		//useridが取得できなければsessionIDを代入.
+		if(userId==0) {
+			String sessionId=(String) session.getAttribute("sessionId");
+			userId=Long.parseLong(sessionId);
+			//System.out.println(userId);
+		}
 		int status=0;
-		Long userId=(long)1;
 		List<Order> orderList=orderRepository.findByUserIdAndStatusForView(userId, status);
+		System.out.println("b");
 		model.addAttribute("orderList",orderList);
-		
+		for(Order order3:orderList) {
+			System.out.println(order3.getId());
+		}
 		return "/user/viewShoppingCart";
 	}
 	
@@ -152,9 +181,9 @@ public class ShoppingCartController {
 	 * @return
 	 */
 	@RequestMapping(value="/toDeleteShoppingCart")
-	public String deleteShoppingCart(DeleteShoppingCartForm form,Model model) {
+	public String deleteShoppingCart(DeleteShoppingCartForm form,Model model,HttpSession session) {
 		Long orderItemId=(long)form.getIntOrderItemId();
 		orderItemRepository.delete(orderItemId);
-		return viewShoppingCart(model);
+		return viewShoppingCart(model,session);
 	}
 }

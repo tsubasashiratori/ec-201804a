@@ -71,7 +71,7 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, rowMapper);
 		return order;
 		}catch(Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 			return null;
 		}
 		//return null;
@@ -144,52 +144,36 @@ public class OrderRepository {
 	 * @return
 	 */
 	public List<Order> findByUserIdAndStatusForView(Long userId,int status){
-		String sql="SELECT " + 
-				" orders.id AS order_id" + 
-				",orders.order_number" + 
-				",orders.user_id" + 
-				",orders.status" + 
-				",orders.total_price" + 
-				",orders.order_date" + 
-				",orders.delivery_name" + 
-				",orders.delivery_email" + 
-				",orders.delivery_zip_code" + 
-				",orders.delivery_address" + 
-				",orders.delivery_tel" + 
-				",order_items.id AS order_items_id" + 
-				",order_items.item_id" + 
-				",order_items.order_id" + 
-				",order_items.quantity" + 
-				",items.id AS items_id" + 
-				",items.name AS item_name" + 
-				",items.description" + 
-				",items.price" + 
-				",items.imagepath" + 
-				",items.deleted" + 
-				",users.id AS users_id" + 
-				",users.name AS user_name" + 
-				",users.email" + 
-				",users.password" + 
-				",users.zipcode" + 
-				",users.address" + 
-				",users.telephone" + 
-				" FROM" + 
-				" orders" + 
-				" LEFT OUTER JOIN" + 
-				" order_items" + 
-				" ON orders.id = order_items.order_id" + 
-				" LEFT OUTER JOIN" + 
-				" items" + 
-				" ON order_items.item_id = items.id" + 
-				" LEFT OUTER JOIN" + 
-				" users" + 
-				" ON orders.user_id = users.id" + 
-				" WHERE" + 
-				" users.id =:users.id AND status=:status" + 
-				" ORDER BY" + 
-				" orders.id DESC";
-		SqlParameterSource param=new MapSqlParameterSource().addValue("users.id", userId).addValue("status", status);
+		String sql="SELECT"+  
+				 " o.id AS order_id,o.order_number,o.user_id ,o.status"+ 
+				 ",o.total_price,o.order_date,o.delivery_name ,o.delivery_email"+ 
+				 ",o.delivery_zip_code,o.delivery_address,o.delivery_tel"+ 
+				 ",oi.id AS order_items_id,oi.item_id,oi.order_id,oi.quantity"+ 
+				 ",i.id AS items_id,i.name AS item_name,i.description,i.price"+ 
+				 ",i.imagepath,i.deleted"+ 
+				 ",u.id AS users_id,u.name AS user_name ,u.email"+ 
+				 ",u.password,u.zipcode,u.address,u.telephone"+ 
+				  " FROM"+ 
+				  " orders o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id"+ 
+				  " LEFT OUTER JOIN items i ON oi.item_id = i.id LEFT OUTER JOIN"+ 
+				  " users u ON o.user_id = u.id"+ 
+				  " WHERE"+ 
+				  " o.user_id =:usersId AND o.status=:status"+
+				  " ORDER BY"+ 
+				  " o.id DESC";
+		//System.out.println(userId);
+		//System.out.println(status);
+		try {
+		SqlParameterSource param=new MapSqlParameterSource().addValue("usersId", userId).addValue("status", status);
 		List<Order> orderList = template.query(sql, param,ORDER_RESULT_SET_EXTRACTOR);
+		for(Order a:orderList) {
+			System.out.println(a.toString());
+		}
+		//System.out.println("a");
 		return orderList;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

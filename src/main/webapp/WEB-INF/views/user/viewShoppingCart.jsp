@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%@ include file="../common/userHeader.jsp" %>
 <body>
 	<form:form modelAttribute="deleteShoppingCartForm"
 		action="${pageContext.request.contextPath}/user/toDeleteShoppingCart">
