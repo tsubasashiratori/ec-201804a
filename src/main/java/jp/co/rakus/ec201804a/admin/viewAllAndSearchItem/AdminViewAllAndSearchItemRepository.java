@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.admin.adminViewAllAndSearchItem;
+package jp.co.rakus.ec201804a.admin.viewAllAndSearchItem;
 
 import java.util.List;
 
@@ -11,9 +11,15 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 
+/**
+ * 管理者の商品一覧と部分一致検索を行うレポジトリクラス.
+ * 
+ * @author tatsuro.okazaki
+ */
 @Repository
 public class AdminViewAllAndSearchItemRepository {
 
+	/** DBの商品情報に関するテーブル名 */
 	private static final String TABLE_NAME = "items";
 
 	@Autowired
@@ -31,21 +37,41 @@ public class AdminViewAllAndSearchItemRepository {
 		return item;
 	};
 
+	/**
+	 * 削除フラグの状態に関係なく商品を全検索する.
+	 * 
+	 * @return 検索結果の入ったリストを返す
+	 */
 	public List<Item> adminItemFindAll() {
-		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME;
-
-		List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
-
-		return itemList;
+		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME+" ORDER BY id;";
+		
+		try {
+			List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
+			return itemList;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
+	/**
+	 * 削除フラグの状態に関係なく商品名で部分一致検索をする.
+	 * 
+	 * @param name 商品名
+	 * @return 検索結果の入ったリストを返す
+	 */
 	public List<Item> adminItemFindByName(String name) {
-		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME + " WHERE name LIKE :name";
-
+		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME + " WHERE name LIKE :name ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
 
-		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
+		try {
+			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
+			return itemList;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+			
 
-		return itemList;
 	}
 }
