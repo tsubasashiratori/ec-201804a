@@ -23,7 +23,7 @@
       </tr>
       <c:forEach var="order" items="${orderList}">
       <tr>
-        <td><a href="admin/viewOrderDetail?orderId ${order.id}"><c:out value="${order.orderNumber}"/></a></td>
+        <td><a href="${pageContext.request.contextPath}/admin/viewOrderDetail?orderId=${order.id}"><c:out value="${order.orderNumber}"/></a></td>
         <td><c:out value="${order.orderDate}"/></td>
         <td><c:out value="${order.user.name}"/></td>
         <td>

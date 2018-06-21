@@ -21,12 +21,12 @@ public class OrderDetailController {
 	@RequestMapping(value = "/viewOrderDetail")
 	public String viewOrderDetail(@RequestParam long orderId, Model model) {
 		Order order = orderRepository.findById(orderId);
-		
-		model.addAttribute("Order", order);
+		System.out.println(order);
+		model.addAttribute("order", order);
 		return "/admin/orderDetail";
 	}
 	
-	@RequestMapping(value = "updateStatus")
+	@RequestMapping(value = "/updateStatus")
 	public String updateStatus(@RequestParam long orderId, @RequestParam Integer status, Model model) {
 		Order order = orderRepository.findById(orderId);
 		order.setStatus(status);

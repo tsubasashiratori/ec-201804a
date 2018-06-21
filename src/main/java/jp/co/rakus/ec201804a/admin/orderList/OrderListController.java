@@ -18,7 +18,7 @@ public class OrderListController {
 	@Autowired
 	OrderRepository9 orderRipositroy;
 	
-	@RequestMapping(value = "viewOrderList")
+	@RequestMapping(value = "/viewOrderList")
 	public String index(Model model) {
 		List<Order> orderList = orderRipositroy.findAll();
 		
