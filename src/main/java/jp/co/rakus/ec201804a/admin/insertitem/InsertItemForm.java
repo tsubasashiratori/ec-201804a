@@ -1,42 +1,39 @@
-package jp.co.rakus.ec201804a.common.domain;
+package jp.co.rakus.ec201804a.admin.insertitem;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
- * 商品を表すクラス.
+ * 商品情報が入るフォーム.
  * 
- * @author yuta.kitazawa
+ * @author tsubasa.shiratori
  */
-public class Item {
-	/**
-	 * id
-	 */
-	private Long id;
+public class InsertItemForm {
 	/**
 	 * 商品名
 	 */
+	@NotBlank(message = "商品名を入力してください")
 	private String name;
 	/**
 	 * 商品説明
 	 */
+	@NotBlank(message = "商品説明を入力してください")
 	private String description;
 	/**
 	 * 値段
 	 */
+	@NotNull(message = "値段を入力してください")
 	private Integer price;
 	/**
 	 * 画像の保存先
 	 */
+	@NotBlank(message = "画像を選択してください")
 	private String imagePath;
 	/**
 	 * 削除したか
 	 */
 	private Boolean deleted;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -67,9 +64,6 @@ public class Item {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", imagePath=" + imagePath + ", deleted=" + deleted + "]";
-	}
+	
+	
 }
