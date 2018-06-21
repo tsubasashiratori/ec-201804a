@@ -12,7 +12,7 @@ import jp.co.rakus.ec201804a.common.domain.Item;
 public class DeleteItemController {
 
 	@Autowired
-	private EditItemRepository repository;
+	private DeleteEditItemRepository repository;
 
 	@RequestMapping("/")
 	public String deleteItemById(@RequestParam("id") Long id) {

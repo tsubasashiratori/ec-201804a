@@ -1,5 +1,8 @@
 package jp.co.rakus.ec201804a.common.domain;
 
+
+
+
 /**
  * 注文された商品を表すクラス.
  * 
@@ -26,6 +29,13 @@ public class OrderItem {
 	 * 注文された商品
 	 */
 	private Item item;
+	
+	private Integer itemTotalPriceExcludeTax;
+	
+	private Integer itemTotalPriceIncludeTax;
+	
+	private Integer itemTax;
+
 	public Long getId() {
 		return id;
 	}
@@ -56,9 +66,39 @@ public class OrderItem {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+	
+	public Integer getItemTotalPriceExcludeTax() {
+		int itemPrice = getItem().getPrice();
+		int itemQuantity = getQuantity();
+		int itemTotalPriceExcludeTax = itemPrice * itemQuantity;
+		return itemTotalPriceExcludeTax;
+	}
+	
+	public Integer getItemTotalPriceIncludeTax() {
+		int itemTotalPriceIncludeTax = (int)(getItemTotalPriceExcludeTax() * 1.08);
+		return itemTotalPriceIncludeTax;
+	}
+	
+	public int getItemTax() {
+		int itemTax = (int)(getItemTotalPriceExcludeTax() * 0.08);
+		return itemTax;
+	}
+	
+	public void setItemTotalPriceExcludeTax(Integer itemTotalPriceExcludeTax) {
+		this.itemTotalPriceExcludeTax = itemTotalPriceExcludeTax;
+	}
+	public void setItemTotalPriceIncludeTax(Integer itemTotalPriceIncludeTax) {
+		this.itemTotalPriceIncludeTax = itemTotalPriceIncludeTax;
+	}
+	public void setItemTax(Integer itemTax) {
+		this.itemTax = itemTax;
+	}
 	@Override
 	public String toString() {
 		return "OrderItem [id=" + id + ", itemId=" + itemId + ", quantity=" + quantity + ", orderId=" + orderId
-				+ ", item=" + item + "]";
+				+ ", item=" + item + ", itemTotalPriceExcludeTax=" + itemTotalPriceExcludeTax
+				+ ", itemTotalPriceIncludeTax=" + itemTotalPriceIncludeTax + ", itemTax=" + itemTax + "]";
 	}
+	
+	
 }

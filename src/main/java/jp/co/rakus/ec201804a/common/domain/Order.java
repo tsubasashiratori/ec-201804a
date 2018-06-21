@@ -61,6 +61,33 @@ public class Order {
 	 * 利用者
 	 */
 	private User user;
+	
+	private int totalPriceTax;
+	
+	private static final int POSTAGE = 500;
+	
+	private int totalPriceIncludeTaxAndPostage;
+	
+	public int getPostage() {
+		return POSTAGE;
+	}
+	
+	public int getTotalPriceTax() {
+		int totalPriceTax = 0;
+		for (OrderItem orderItem : getOrderItemList()) {
+			totalPriceTax += orderItem.getItemTax();
+		}
+		return totalPriceTax;
+	}
+	
+	public int getTotalPriceIncludeTaxAndPostage() {
+		int totalPriceIncludeTaxAndPostage = 0;
+		for (OrderItem orderItem : getOrderItemList()) {
+			totalPriceIncludeTaxAndPostage += orderItem.getItemTotalPriceIncludeTax();
+		}
+		totalPriceIncludeTaxAndPostage += getPostage();
+		return totalPriceIncludeTaxAndPostage;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -145,6 +172,7 @@ public class Order {
 				+ ", orderItemList=" + orderItemList + ", totalPrice=" + totalPrice + ", orderDate=" + orderDate
 				+ ", deliveryName=" + deliveryName + ", deliveryEmail=" + deliveryEmail + ", deliveryZipCode="
 				+ deliveryZipCode + ", deliveryAddress=" + deliveryAddress + ", deliveryTel=" + deliveryTel + ", user="
-				+ user + "]";
+				+ user + ", totalPriceTax=" + totalPriceTax + ", totalPriceIncludeTaxAndPostage="
+				+ totalPriceIncludeTaxAndPostage + "]";
 	}
 }
