@@ -15,7 +15,7 @@ import jp.co.rakus.ec201804a.common.domain.Item;
  * @author tatsuro.okazaki
  */
 @Controller
-@RequestMapping("/adminAllandSearch")
+@RequestMapping(value = "/admin")
 public class AdminViewAllAndSearchItemController {
 
 	@Autowired

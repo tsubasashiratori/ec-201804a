@@ -10,13 +10,12 @@
 <%@ include file="../common/adminHeader.jsp"%>
 <body>
 <br>
-<form action="${pageContext.request.contextPath}/adminAllandSearch/adminFindByName" method="post">
+<form action="${pageContext.request.contextPath}/admin/adminFindByName" method="post">
 	<input type="text" name="name"><br>
 	<input type="submit" value="検索">
 </form>
 
 <c:forEach var="item" items="${itemList}">
-	<form action="${pageContext.request.contextPath}/admin/adminEditItem" method="post">
 		<table border="1">
 			<tr>
 				<th>画像</th>
@@ -37,15 +36,26 @@
 			<tr>
 				<th>操作</th>
 				<td>
-					<button type="submit" name="" value="edit">編集</button>
-					<button type="submit" value="delete">削除</button>
+	<form action="${pageContext.request.contextPath}/admin/viewEditItem?itemId=${item.id}" method="post">
+					<button type="submit" name="edit" value="${item.id}">編集</button>
+	</form>
+	<c:choose>
+		<c:when test="${item.deleted}">
+			<form action="${pageContext.request.contextPath}/admin/deleteItem" method="post">
+				<button type="submit" name="redisplay" value="${item.deleted}">再表示</button>
+			</form>
+		</c:when>
+		<c:otherwise>
+			<form action="${pageContext.request.contextPath}/admin/deleteItem" method="post">
+				<button type="submit" name="delete" value="${item.deleted}">削除</button>
+			</form>
+		</c:otherwise>
+	</c:choose>
 					
 				</td>
 			</tr>
 		</table>
-	</form>
 </c:forEach>
-
 
 </body>
 </html>

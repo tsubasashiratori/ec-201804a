@@ -21,11 +21,10 @@ public class EditItemRepository {
 		Item item = new Item();
 		item.setId(rs.getLong("id"));
 		item.setName(rs.getString("name"));
-		item.setDescription(rs.getString("name"));
+		item.setDescription(rs.getString("description"));
 		item.setPrice(rs.getInt("price"));
 		item.setImagePath(rs.getString("imagepath"));
 		item.setDeleted(rs.getBoolean("deleted"));
-
 		return item;
 	};
 	
@@ -50,10 +49,11 @@ public class EditItemRepository {
 															  .addValue("description", item.getDescription())
 															  .addValue("price", item.getPrice())
 															  .addValue("imagePath", item.getImagePath())
-															  .addValue("deleted", item.getDeleted());
+															  .addValue("deleted", item.getDeleted())
+															  .addValue("id", item.getId());
 	
 		try {
-			template.query(sql, param, ITEM_ROWMAPPER);
+			template.update(sql, param);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
