@@ -2,7 +2,7 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ec-201804a
+    url: jdbc:postgresql://localhost:5432/team
     username: postgres
     password: postgres
   mvc:
