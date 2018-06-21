@@ -10,13 +10,12 @@
 <div align ="center">
     <h2>管理者メニュー画面</h2>
         <a href="/admin/insertItem/">商品を登録</a><br><br>
-        <a href="/adminAllandSearch/adminFindAll">商品一覧</a><br><br>
+        <a href="/admin/adminFindAll/">商品一覧</a><br><br>
         <a href="">注文一覧</a>
         <br>
         <br>
         <br>
-        <a href="/admin/">ログアウト</a>
-
+        <a href="/admin/logout">ログアウト</a>
 </div>
 </body>
 </html>

@@ -64,7 +64,7 @@ public class AdminUserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginPage("/admin/")//ログイン画面のパス
 		.loginProcessingUrl("/admin/login")//ログインボタンを押したときのパス
 		.failureUrl("/admin/?error=true")//ログイン失敗画面のパス
-		.defaultSuccessUrl("/admin/", false)//TODO:後で変える
+		.defaultSuccessUrl("/admin/menu", false)
 		// 第1引数:デフォルトでログイン成功時に遷移させるパス
         // 第2引数: true :認証後常に第1引数のパスに遷移 
         //         false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
