@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,8 +23,8 @@ public class PaymentController {
 	@Autowired
 	private OrderRepository9 orderRepository;
 
-	@RequestMapping(value = "/viewPaymentDetail")
-	public String viewPaymentDetail(User user, @RequestParam String orderId, Model model) {
+	@RequestMapping(value = "/viewPaymentDetail/{id}")
+	public String viewPaymentDetail(User user, @PathVariable("id") String orderId, Model model) {
 //		user.setId(1l);
 //		user.setName("abc");
 //		user.setEmail("abc@abc");

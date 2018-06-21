@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>決済画面</title>
 </head>
+<%@ include file="../common/userHeader.jsp" %>
 <body>
 	<h2 align="center">ご注文内容</h2>
 	<hr>
@@ -26,7 +27,7 @@
 					<td>&yen;<c:out value="${orderItem.item.price}"/></td>
 					<td><c:out value="${orderItem.quantity}"/></td>
 					<td>&yen;<c:out value="${orderItem.itemTotalPriceExcludeTax}"/></td>
-					<td>&yen;<c:out value="${orderItem.itemTotalPriceIncludeTax}"/></td>
+					<td>&yen;<c:out value="${orderItem.totalPrice}"/></td>
 				</td>
 				</tr>
 		</c:forEach>

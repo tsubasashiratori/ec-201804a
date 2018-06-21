@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>決済完了画面</title>
 </head>
+<%@ include file="../common/userHeader.jsp" %>
 <body>
 	<h1 align="center">決済が完了しました！</h1>
 	<h2 align="center">この度はご注文ありがとうございます。<br>
