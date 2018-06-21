@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.case6;
+package jp.co.rakus.ec201804a.common.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

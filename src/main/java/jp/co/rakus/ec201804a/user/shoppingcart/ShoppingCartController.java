@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.case6;
+package jp.co.rakus.ec201804a.user.shoppingcart;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.common.domain.OrderItem;
+import jp.co.rakus.ec201804a.common.repository.OrderItemRepository;
+import jp.co.rakus.ec201804a.common.repository.OrderRepository;
 
 /**
  * ショッピングカートのレポジトリーを操作するコントローラー.
@@ -133,14 +135,14 @@ public class ShoppingCartController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/toView")
+	@RequestMapping(value="/toViewShoppingCart")
 	public String viewShoppingCart(Model model) {
 		int status=0;
 		Long userId=(long)1;
 		List<Order> orderList=orderRepository.findByUserIdAndStatusForView(userId, status);
 		model.addAttribute("orderList",orderList);
 		
-		return "/user/case7";
+		return "/user/viewShoppingCart";
 	}
 	
 	/**

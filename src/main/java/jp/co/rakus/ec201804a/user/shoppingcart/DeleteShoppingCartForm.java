@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.case6;
+package jp.co.rakus.ec201804a.user.shoppingcart;
 
 /**
  * フォームを受け取るクラス.
