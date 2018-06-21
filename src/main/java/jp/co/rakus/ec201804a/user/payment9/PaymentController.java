@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.common.domain.User;
+import jp.co.rakus.ec201804a.common.login.LoginUser;
 
 @Controller
 @Transactional
@@ -23,16 +25,24 @@ public class PaymentController {
 	@Autowired
 	private OrderRepository9 orderRepository;
 
-	@RequestMapping(value = "/viewPaymentDetail/{id}")
-	public String viewPaymentDetail(User user, @PathVariable("id") String orderId, Model model) {
+	@RequestMapping(value = "/viewPaymentDetail")
+	public String viewPaymentDetail(@RequestParam long orderId, Model model) {
 //		user.setId(1l);
 //		user.setName("abc");
 //		user.setEmail("abc@abc");
 //		user.setZipCode("1234567");
 //		user.setAddress("abc-abc");
 //		user.setTelephone("012-345-6789");
-//		
-		if (user.getId() == null) {
+		User user = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof LoginUser) {
+				LoginUser loginUser = (LoginUser)principal;
+				user = loginUser.getUser();
+			} else {
+			 System.out.println(principal.toString());
+		}
+		
+		if (user == null) {
 			return "redirect:/user/";
 		}
 		
@@ -40,9 +50,9 @@ public class PaymentController {
 		
 		//long longOrderId = new Long(2);
 		
-		long longOrderId = new Long(orderId);
+		//long longOrderId = new Long(orderId);
 		
-		Order order = orderRepository.findById(longOrderId);
+		Order order = orderRepository.findById(orderId);
 
 		if (order == null) {
 			model.addAttribute("nullError", "注文がありません");

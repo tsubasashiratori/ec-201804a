@@ -27,7 +27,7 @@
 					<td>&yen;<c:out value="${orderItem.item.price}"/></td>
 					<td><c:out value="${orderItem.quantity}"/></td>
 					<td>&yen;<c:out value="${orderItem.itemTotalPriceExcludeTax}"/></td>
-					<td>&yen;<c:out value="${orderItem.totalPrice}"/></td>
+					<td>&yen;<c:out value="${orderItem.itemTotalPriceIncludeTax}"/></td>
 				</td>
 				</tr>
 		</c:forEach>
@@ -44,7 +44,7 @@
 		</tr>
 		<tr>
 			<td>商品合計</td>
-			<td align="right" colspan="4">&yen;<c:out value="${order.totalPriceIncludeTaxAndPostage}"/></td>
+			<td align="right" colspan="4">&yen;<c:out value="${order.totalPrice}"/></td>
 
 		</tr>
 	</table>
