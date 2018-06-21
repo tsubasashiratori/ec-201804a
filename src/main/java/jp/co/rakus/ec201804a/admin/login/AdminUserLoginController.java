@@ -15,8 +15,6 @@ import jp.co.rakus.ec201804a.common.domain.AdminUser;
 @SessionAttributes(types = {AdminUser.class})
 @RequestMapping(value = "/admin")
 public class AdminUserLoginController {
-//	@Autowired
-//	private AdminUserLoginRepository repository;
 	
 	@ModelAttribute
 	public AdminUserLoginForm setUpForm() {
@@ -30,33 +28,9 @@ public class AdminUserLoginController {
 		
 		if(error != null) {
 			System.err.println("adminUser: login failed");
-			result.addError(new ObjectError("loginError", "メールアドレスまたはパスワードが違います"));
+			result.addError(new ObjectError("loginError", "入力情報は不正です"));
 		}
 
 		return "/admin/loginAdminister";
 	}
-	
-//	@RequestMapping(value = "login")
-//	public String login(AdminUserLoginForm form, HttpSession session) {
-//		AdminUser adminUser = repository.findByOneMailAddress(form.getEmail());
-//		
-//		boolean error = false;
-//		if(adminUser==null) {
-//			System.out.println("管理者が存在しない");
-//			return index();
-//		}
-//		System.out.println(adminUser);
-//		if(!form.getPassword().equals(adminUser.getPassword())) {
-//			error = true;
-//		}
-//		//errorがあればreturn
-//		if(error) {
-//			System.out.println("エラーがあります");
-//			return index();
-//		}
-//		
-//		session.setAttribute("adminUser", adminUser);
-//		
-//		return "administerMenu";
-//	}
 }

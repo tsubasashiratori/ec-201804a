@@ -52,7 +52,7 @@ public class AdminUserSecurityConfig extends WebSecurityConfigurerAdapter{
 				"/admin/"
 				,"/admin/login"
 				,"/admin/form"
-				,"/regist/register"
+				,"/admin/register"
 				).permitAll() //このパスは全てのユーザに許可
 //		.anyRequest().authenticated()//それ以外のパスは認証が必要
 		;
