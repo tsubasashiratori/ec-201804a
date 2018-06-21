@@ -20,12 +20,12 @@ public class ViewEditItemController {
 	@ModelAttribute
 	public EditItemForm setUpForm(@RequestParam long itemId) {
 		Item item = editItemRepository.load(itemId);
-		System.out.println(item);
 		EditItemForm form = new EditItemForm();
 		BeanUtils.copyProperties(item, form);
 		System.out.println(form.getId());
 		return form;
 	}
+
 	
 	@RequestMapping(value = "/viewEditItem")
 	public String viewEditItemPage(Model model, @RequestParam long itemId) {
