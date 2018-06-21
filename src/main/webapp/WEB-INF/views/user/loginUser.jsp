@@ -11,13 +11,14 @@
 	<div align="center">
 	<h2>ログイン</h2>
 	
+	<form:errors path="userLoginForm.*" cssStyle="color:red" element="div"/>
 	<form:form modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/user/login">
 		メールアドレス：<form:input path="email"/><br>
-		パスワード：<form:input path="password"/><br>
+		パスワード：<form:password path="password"/><br>
 		<input type="submit" value="ログイン"><br>
 	</form:form>
 	
-	<a href="ユーザ登録を行うコントローラ">新規登録はこちら</a>
+	<a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a>
 	</div>
 </body>
 </html>

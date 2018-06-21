@@ -13,11 +13,11 @@
 
 <body>
 	<div align="center">
-	<h2>商品詳細</h2>
+	<h2 align="center">商品詳細</h2>
 	
 	<table border="1" align="center">
 		<tr>
-			<td colspan="2" rowspan="3"><img src="../img/pc.jpg" width="150"
+			<td colspan="2" rowspan="3"><img src="../img/${item.imagePath}" width="150"
 				height="150" alt="商品画像">
 			</td>
 			<th>商品名：</th>
@@ -34,6 +34,6 @@
 		</tr>
 	</table>
 	<br>
-		<a href = "${pageContext.request.contextPath}/ViewAllItemsAndSearchItem/findAllNotDeleted">商品一覧に戻る</a>
+		<a href = "${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">商品一覧に戻る</a>
 </body>
 </html>

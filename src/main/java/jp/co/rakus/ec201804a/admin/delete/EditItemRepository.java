@@ -1,7 +1,6 @@
-package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository;
+package jp.co.rakus.ec201804a.admin.delete;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,13 +11,15 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 
+/**
+ * @author shunta.nakamura
+ *
+ */
 @Repository
-public class ViewAllItemsRepository {
-	@Autowired
-	private NamedParameterJdbcTemplate template;
+public class EditItemRepository {
 
 	private static final String TABLE_NAME = "items";
-
+	
 	private static final RowMapper<Item> ITEM_ROWMAPPER = (rs, i) -> {
 		Item item = new Item();
 		item.setId(rs.getLong("id"));
@@ -30,36 +31,10 @@ public class ViewAllItemsRepository {
 
 		return item;
 	};
-
-	public List<Item> findAllNotDeleted() {
-
-		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
-				+ " where deleted = false order by price";
-
-		List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
-
-		return itemList;
-	}
-
-	public List<Item> findByNameNotDeleted(String name) {
-
-		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
-				+ " where deleted = false and name LIKE :name order by price";
-
-		if (name == "") {
-			List<Item> nullItemList = new ArrayList<>();
-			return nullItemList;
-
-		} else {
-			String nameFixed = "%" + name + "%";
-			SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameFixed);
-			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
-			return itemList;
-		}
-	}
+	@Autowired
+	private NamedParameterJdbcTemplate template;
 	
-	public Item findDetailByIdNotDeleted(long id) {
-		
+	public Item load (Long id) {
 		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME + " where id = :id";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
@@ -68,5 +43,13 @@ public class ViewAllItemsRepository {
 		
 		return item;
 	}
-
+	//デリート処理のみを行うメソッド
+	public void save (Item item) {
+		
+		String sql = "update " + TABLE_NAME + " set deleted =:deleted where id = :id;";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", item.getId()).addValue("deleted", item.getDeleted());
+		
+		template.update(sql, param);
+	}
 }
