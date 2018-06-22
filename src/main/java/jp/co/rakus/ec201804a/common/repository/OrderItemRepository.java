@@ -1,5 +1,7 @@
 package jp.co.rakus.ec201804a.common.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -52,15 +54,42 @@ public class OrderItemRepository {
 	 * ショッピングカートに同じものが入れば更新するメソッド.
 	 * @param quantity
 	 */
-	public void update(Integer quantity,long orderId,long itemId) {
-		System.out.println(quantity);
-		System.out.println(orderId);
-		System.out.println(itemId);
+	public void updateQuantity(Integer quantity,long orderId,long itemId) {
+		System.out.println("quantity="+quantity);
+		System.out.println("orderId="+orderId);
+		System.out.println("itemId="+itemId);
+		//System.out.println(orderId);
+		//System.out.println(itemId);
 		String sql ="UPDATE order_items SET quantity=:quantity WHERE item_id=:item_id AND order_id=:order_id";
 		SqlParameterSource param=new MapSqlParameterSource().addValue("quantity", quantity).addValue("item_id", itemId).addValue("order_id", orderId);
 		try {
 		template.update(sql, param);
-		System.out.println(template.query("SELECT quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id;", param, rowMapper));
+		//System.out.println(template.query("SELECT quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id;", param, rowMapper));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void updateQuantityByItemId(Integer quantity,long itemId) {
+		//System.out.println(quantity);
+		//System.out.println(orderId);
+		//System.out.println(itemId);
+		String sql ="UPDATE order_items SET quantity=:quantity WHERE item_id=:item_id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("quantity", quantity).addValue("item_id", itemId);
+		try {
+		template.update(sql, param);
+		//System.out.println(template.query("SELECT quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id;", param, rowMapper));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**ゲストの注文番号をホストの注文番号に更新するメソッド.
+	 * 
+	 */
+	public void updateOrderId(Long orderId,Long itemId) {
+		String sql="UPDATE order_items SET order_id=:order_id WHERE item_id=item_id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("order_id", orderId).addValue("item_id", itemId);
+		try {
+			template.update(sql, param);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -82,5 +111,20 @@ public class OrderItemRepository {
 			return null;
 		}
 		
+	}
+	public List<OrderItem> findByOrderId(Long orderId) {
+		String sql="SELECT id,item_id,order_id,quantity FROM order_items WHERE order_id=:order_id ORDER BY item_id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("order_id", orderId);
+		try {
+		List<OrderItem> orderItemList=template.query(sql, param,rowMapper);
+		return orderItemList;
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	public void deleteByOrderItemId(Long orderItemId) {
+		String sql="DELETE FROM order_items WHERE id=:id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("id", orderItemId);
+		template.update(sql, param);
 	}
 }

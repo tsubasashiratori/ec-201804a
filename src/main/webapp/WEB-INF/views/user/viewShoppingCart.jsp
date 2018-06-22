@@ -7,12 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<%@ include file="../common/userHeader.jsp" %>
+<%@ include file="../common/userHeader.jsp"%>
 <body>
-	<form:form modelAttribute="deleteShoppingCartForm"
-		action="${pageContext.request.contextPath}/user/toDeleteShoppingCart">
-		<center>
+
+
 			<h1>ショッピングカート一覧</h1>
+
+
+				<c:forEach var="orders" items="${orderList}">
+	<c:choose>
+		<c:when test="${orders.orderItemList.size()==0}">
+<p>ショッピングカートに商品がありません</p>
+		</c:when>
+		<c:otherwise>
 			<table border=1>
 				<tr>
 					<th colspan="2">商品名</th>
@@ -20,27 +27,31 @@
 					<th>個数</th>
 					<th></th>
 				</tr>
-				<c:forEach var="orders" items="${orderList}">
 					<c:forEach var="orderItem" items="${orders.orderItemList}">
 						<tr>
 							<td><c:out value="${orderItem.item.imagePath}" /><br></td>
 							<td><c:out value="${orderItem.item.name}" /><br></td>
 							<td><c:out value="${orderItem.item.price}" /><br></td>
 							<td><c:out value="${orderItem.quantity}" /></td>
-							<td><button type="submit" name="orderItemId"
-									value="${orderItem.id}">削除</button>
-								<br></td>
+							<td><form:form modelAttribute="deleteShoppingCartForm"
+									action="${pageContext.request.contextPath}/user/toDeleteShoppingCart">
+									<button type="submit" name="orderItemId"
+										value="${orderItem.id}">削除</button>
+								</form:form> <br></td>
 						</tr>
 					</c:forEach>
+			</table>
+		</c:otherwise>
+	</c:choose>
 				</c:forEach>
 
-			</table>
-			<br>
-			<br>
+			<br> <br>
 			<c:forEach var="orders" items="${orderList}">
+				<c:choose>
+		<c:when test="${orders.orderItemList.size()!=0}">
 				<a href="${pageContext.request.contextPath }/user/viewPaymentDetail?orderId=${orders.id}">決済へ</a>
+		</c:when>
+		</c:choose>
 			</c:forEach>
-	</form:form>
-	</center>
 </body>
 </html>

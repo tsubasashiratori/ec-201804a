@@ -139,10 +139,10 @@ public class ShoppingCartController {
 			orderItemRepository.insert(orderItem);			
 		}else {
 			int quantity=orderItem2.getQuantity()+form.getIntQuantiy();
-			System.out.println(quantity);
+			//System.out.println(quantity);
 			Long orderId2=orderItem2.getOrderId();
 			Long itemId2=orderItem2.getItemId();
-			orderItemRepository.update(quantity, orderId2, itemId2);
+			orderItemRepository.updateQuantity(quantity, orderId2, itemId2);
 		}
 
 	
