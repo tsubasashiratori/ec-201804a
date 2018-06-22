@@ -10,7 +10,7 @@
 	<h1 align="center">決済が完了しました！</h1>
 	<h2 align="center">この度はご注文ありがとうございます。<br>
 	お支払い先は、お送りしたメールに記載してありますのでご確認ください。</h2>
-	<p align="center"><a href="user/toViewShoppingCart">一覧画面へ戻る</a></p>
+	<p align="center"><a href="user/toViewShoppingCart">商品一覧画面へ戻る</a></p>
 </body>
 
 </body>
