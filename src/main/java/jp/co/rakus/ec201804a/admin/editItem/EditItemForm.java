@@ -1,11 +1,14 @@
 package jp.co.rakus.ec201804a.admin.editItem;
 
+import javax.validation.constraints.Size;
+
 public class EditItemForm {
 
 	/** id */
 	private Long id;
 	
 	/** 名前 */
+	@Size(min=1, max=20, message="1文字以上20文字以内でキーワードを入力してください")
 	private String name;
 	
 	/** 値段 */

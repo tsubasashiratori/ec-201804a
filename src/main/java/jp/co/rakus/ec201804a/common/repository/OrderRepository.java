@@ -71,7 +71,7 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, rowMapper);
 		return order;
 		}catch(Exception e) {
-		//	e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
 		//return null;
@@ -166,9 +166,9 @@ public class OrderRepository {
 		try {
 		SqlParameterSource param=new MapSqlParameterSource().addValue("usersId", userId).addValue("status", status);
 		List<Order> orderList = template.query(sql, param,ORDER_RESULT_SET_EXTRACTOR);
-		for(Order a:orderList) {
-			System.out.println(a.toString());
-		}
+		//for(Order a:orderList) {
+			//System.out.println(a.toString());
+		//}
 		//System.out.println("a");
 		return orderList;
 		}catch(Exception e) {
