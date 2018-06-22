@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import jp.co.rakus.ec201804a.admin.login.AdminUserLoginRepository;
 import jp.co.rakus.ec201804a.common.domain.AdminUser;
+import jp.co.rakus.ec201804a.common.repository.AdminUserRepository;
 
 /**
  * ログイン後の管理者情報に権限を付与するサービスクラス.
@@ -25,7 +25,7 @@ public class AdminUserDetailsServiceImp1 implements UserDetailsService{
 	 * 管理者をfindByOneMailAddresするリポジトリ
 	 */
 	@Autowired
-	private AdminUserLoginRepository adminUserRepository;
+	private AdminUserRepository adminUserRepository;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
