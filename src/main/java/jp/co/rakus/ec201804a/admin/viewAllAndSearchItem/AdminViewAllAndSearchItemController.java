@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jp.co.rakus.ec201804a.admin.editItem.EditItemForm;
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 
@@ -27,8 +26,8 @@ public class AdminViewAllAndSearchItemController {
 	private ItemRepository itemRepository;
 	
 	@ModelAttribute
-	private EditItemForm setUpform() {
-		return new EditItemForm();
+	private AdminViewAllAndSearchItemForm setUpform() {
+		return new AdminViewAllAndSearchItemForm();
 	}
 	/**
 	 * 検索結果をリクエストスコープに格納する.
@@ -39,7 +38,6 @@ public class AdminViewAllAndSearchItemController {
 	@RequestMapping("/adminFindAll")
 	public String adminItemFindAll(Model model) {
 		List<Item> itemList = itemRepository.adminItemFindAll();
-		itemList.forEach(System.out::println);
 		model.addAttribute("itemList", itemList);
 		
 		return "/admin/itemList";
@@ -53,19 +51,17 @@ public class AdminViewAllAndSearchItemController {
 	 * @return 商品一覧ページに遷移する
 	 */
 	@RequestMapping("/adminFindByName")
-	public String adminItemFindByName(@Validated EditItemForm editItemForm,BindingResult result, Model model) {
+	public String adminItemFindByName(@Validated AdminViewAllAndSearchItemForm form ,BindingResult result, Model model) {
 		
-		String name = editItemForm.getName();
+		String name = form.getName();
 		
 		List<Item> itemList = itemRepository.adminItemFindByName(name);
-		
 		if(itemList.size()==0) {
-			result.rejectValue("name",null, "該当する商品がありません");
+			result.rejectValue("name",null, "商品がありません");
 		}
 		if(result.hasErrors()) {
 			return "/admin/itemList";
 		}
-		
 		model.addAttribute("itemList", itemList);
 		return "/admin/itemList";
 	}

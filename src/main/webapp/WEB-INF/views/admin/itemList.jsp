@@ -14,7 +14,7 @@
 <form action="${pageContext.request.contextPath}/admin/adminFindAll" method="get" align="center">
 	<input type="submit" value="全件表示" align="center">
 </form><br>
-<form:form modelAttribute="editItemForm" action="${pageContext.request.contextPath}/admin/adminFindByName" method="post" align="center">
+<form:form modelAttribute="adminViewAllAndSearchItemForm" action="${pageContext.request.contextPath}/admin/adminFindByName" method="post" align="center">
 	<form:errors path="name" element="div" cssStyle="color:red" align="center"/>
 	
 	<form:input path="name"/>
