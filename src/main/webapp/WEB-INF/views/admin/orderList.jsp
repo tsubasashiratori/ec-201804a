@@ -45,7 +45,7 @@
         	</c:when>	
         </c:choose>
         </td>
-        <td><c:out value="${order.totalPrice}"/>円</td>
+        <td><fmt:formatNumber value="${order.totalPrice}" pattern="###,###円"/></td>
       </tr>
       </c:forEach>
     </table>

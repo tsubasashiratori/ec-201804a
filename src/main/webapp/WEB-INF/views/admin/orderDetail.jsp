@@ -49,10 +49,10 @@
       <c:forEach var="orderItem" items="${order.orderItemList}">
       <tr>
         <td><c:out value="${orderItem.item.name}"/></td>
-        <td><c:out value="${orderItem.item.price}"/>円</td>
+        <td><fmt:formatNumber value="${orderItem.item.price}" pattern="###,###円"/></td>
         <td>×</td>
         <td><c:out value="${orderItem.quantity}"/></td>
-        <td><c:out value="${orderItem.itemTotalPriceExcludeTax}"/>円</td>
+        <td><fmt:formatNumber value="${orderItem.itemTotalPriceExcludeTax}" pattern="###,###円"/></td>
       </tr>
       </c:forEach>
     </table><br>
@@ -61,11 +61,11 @@
     <table border="1">
 				  <tr>
 				    <th nowrap>小計</th>
-				    <td><c:out value="${order.totalPriceExcludeTax}"/>円</td>
+				    <td><fmt:formatNumber value="${order.totalPriceExcludeTax}" pattern="###,###円"/></td>
 				  </tr>
 				  <tr>
 				    <th nowrap>税</th>
-				    <td><c:out value="${order.totalPriceTax}"/>円</td>
+				    <td><fmt:formatNumber value="${order.totalPriceTax}" pattern="###,###円"/></td>
 				  </tr>
 				  <tr>
 				    <th nowrap>支払い方法</th>
@@ -73,11 +73,11 @@
 				  </tr>
 				  <tr>
 				    <th nowrap>送料一律</th>
-				    <td><c:out value="${order.postage}"/>円</td>
+				    <td><fmt:formatNumber value="${order.postage}" pattern="###,###円"/></td>
 				  </tr>
 				  <tr>
 				    <th nowrap> 総計</th>
-				    <td><c:out value="${order.totalPriceIncludeTaxAndPostage}"/>円</td>
+				    <td><fmt:formatNumber value="${order.totalPriceIncludeTaxAndPostage}" pattern="###,###円"/></td>
 				  </tr>
 				  </table><br>
 

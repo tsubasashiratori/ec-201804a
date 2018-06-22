@@ -12,6 +12,5 @@
 	お支払い先は、お送りしたメールに記載してありますのでご確認ください。</h2>
 	<p align="center"><a href="user/toViewShoppingCart">商品一覧画面へ戻る</a></p>
 </body>
-
 </body>
 </html>

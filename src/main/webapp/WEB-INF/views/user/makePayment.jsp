@@ -24,27 +24,28 @@
 		<c:forEach var="orderItem" items="${order.orderItemList}">
 				<tr>
 					<td><c:out value="${orderItem.item.name}"/></td>
-					<td>&yen;<c:out value="${orderItem.item.price}"/></td>
+					<td><fmt:formatNumber value="${orderItem.item.price}" pattern="￥###,###"/></td>
+				
 					<td><c:out value="${orderItem.quantity}"/></td>
-					<td>&yen;<c:out value="${orderItem.itemTotalPriceExcludeTax}"/></td>
-					<td>&yen;<c:out value="${orderItem.itemTotalPriceIncludeTax}"/></td>
+					<td><fmt:formatNumber value="${orderItem.itemTotalPriceExcludeTax}" pattern="￥###,###"/></td>
+					<td><fmt:formatNumber value="${orderItem.itemTotalPriceIncludeTax}" pattern="￥###,###"/></td>
 				</td>
 				</tr>
 		</c:forEach>
 
 		<tr>
 		<td>消費税</td>
-		<td align="right" colspan="4">&yen;<c:out value="${order.totalPriceTax}"/></td>
+		<td align="right" colspan="4"><fmt:formatNumber value="${order.totalPriceTax}" pattern="￥###,###"/></td>
 
 		</tr>
 		<tr>
 			<td>送料一律</td>
-			<td align="right" colspan="4">&yen;<c:out value="${order.postage}"/></td>
+			<td align="right" colspan="4"><fmt:formatNumber value="${order.postage}" pattern="￥###,###"/></td>
 
 		</tr>
 		<tr>
 			<td>商品合計</td>
-			<td align="right" colspan="4">&yen;<c:out value="${order.totalPrice}"/></td>
+			<td align="right" colspan="4"><fmt:formatNumber value="${order.totalPrice}" pattern="￥###,###"/></td>
 
 		</tr>
 	</table>
