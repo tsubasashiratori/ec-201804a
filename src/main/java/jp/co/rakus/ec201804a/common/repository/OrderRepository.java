@@ -176,4 +176,14 @@ public class OrderRepository {
 			return null;
 		}
 	}
+	/**
+	 * テーブルを削除するメソッド.
+	 * @param userId
+	 */
+	public void delete(Long userId) {
+		String sql="DELETE FROM orders WHERE user_id=:user_id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("user_id", userId);
+		template.update(sql, param);
+	}
+	
 }
