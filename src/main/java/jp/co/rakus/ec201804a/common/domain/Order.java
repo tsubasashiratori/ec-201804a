@@ -62,6 +62,8 @@ public class Order {
 	 */
 	private User user;
 	
+	private int totalPriceExcludeTax;
+	
 	private int totalPriceTax;
 	
 	private static final int POSTAGE = 500;
@@ -76,6 +78,14 @@ public class Order {
 		int totalPriceTax = 0;
 		for (OrderItem orderItem : getOrderItemList()) {
 			totalPriceTax += orderItem.getItemTax();
+		}
+		return totalPriceTax;
+	}
+	
+	public int getTotalPriceExcludeTax() {
+		int totalPriceTax = 0;
+		for (OrderItem orderItem : getOrderItemList()) {
+			totalPriceTax += orderItem.getItemTotalPriceExcludeTax();
 		}
 		return totalPriceTax;
 	}
@@ -172,7 +182,7 @@ public class Order {
 				+ ", orderItemList=" + orderItemList + ", totalPrice=" + totalPrice + ", orderDate=" + orderDate
 				+ ", deliveryName=" + deliveryName + ", deliveryEmail=" + deliveryEmail + ", deliveryZipCode="
 				+ deliveryZipCode + ", deliveryAddress=" + deliveryAddress + ", deliveryTel=" + deliveryTel + ", user="
-				+ user + ", totalPriceTax=" + totalPriceTax + ", totalPriceIncludeTaxAndPostage="
-				+ totalPriceIncludeTaxAndPostage + "]";
+				+ user + ", totalPriceExcludeTax=" + totalPriceExcludeTax + ", totalPriceTax=" + totalPriceTax
+				+ ", totalPriceIncludeTaxAndPostage=" + totalPriceIncludeTaxAndPostage + "]";
 	}
 }

@@ -1,6 +1,7 @@
 package jp.co.rakus.ec201804a.common.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -18,6 +19,15 @@ public class OrderItemRepository {
 
 	@Autowired
 	NamedParameterJdbcTemplate template;
+	
+	public final static RowMapper<OrderItem> rowMapper = (rs, i) -> {
+		OrderItem orderItem = new OrderItem();
+		orderItem.setId(rs.getLong("id"));
+		orderItem.setItemId(rs.getLong("item_id"));
+		orderItem.setOrderId(rs.getLong("order_id"));
+		orderItem.setQuantity(rs.getInt("quantity"));
+		return orderItem;
+	};
 
 	/**
 	 * order_itemsに商品を追加するメソッド.
@@ -38,5 +48,39 @@ public class OrderItemRepository {
 		SqlParameterSource param=new MapSqlParameterSource().addValue("id", orderItemId);
 		template.update(sql, param);
 	}
-
+	/**
+	 * ショッピングカートに同じものが入れば更新するメソッド.
+	 * @param quantity
+	 */
+	public void update(Integer quantity,long orderId,long itemId) {
+		System.out.println(quantity);
+		System.out.println(orderId);
+		System.out.println(itemId);
+		String sql ="UPDATE order_items SET quantity=:quantity WHERE item_id=:item_id AND order_id=:order_id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("quantity", quantity).addValue("item_id", itemId).addValue("order_id", orderId);
+		try {
+		template.update(sql, param);
+		System.out.println(template.query("SELECT quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id;", param, rowMapper));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 注文一覧から情報を取得するメソッド.
+	 * @param orderId
+	 * @param itemId
+	 * @return
+	 */
+	public OrderItem findByOrderIdAndItemId(Long orderId,Long itemId) {
+		String sql="SELECT id,item_id,order_id,quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("item_id", itemId).addValue("order_id", orderId);
+		try {
+		OrderItem orderItem=template.queryForObject(sql, param,rowMapper);
+		return orderItem;
+		}catch(Exception e) {
+			return null;
+		}
+		
+	}
 }

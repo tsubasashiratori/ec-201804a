@@ -79,6 +79,7 @@ public class ShoppingCartController {
 	public String insert(/* @RequestParam Integer price, */InsertShoppingCartForm form,
 			 @RequestParam Long id,Model model,HttpSession session) {
 			Long itemId=id;
+			System.out.println("start");
 		//セッションIDを15桁で取得
 		String sessionId = session.getId();
 		String a=sessionId.replaceAll("[^0-9]","");
@@ -97,7 +98,7 @@ public class ShoppingCartController {
 		if(userId==0) {
 			userId=Long.parseLong(b);
 		}
-		System.out.println(userId);
+		//System.out.println(userId);
 		// 2回目押したときの判定
 
 		//int userId=1;
@@ -128,15 +129,24 @@ public class ShoppingCartController {
 
 		}
 
-		OrderItem orderItem = new OrderItem();
-		//int itemId = 1;
-		orderItem.setItemId((long) itemId);
 		Order order2=orderRepository.findByUserIdAndStatusForInsert(userId,status);
-		orderItem.setOrderId(order2.getId());
-		orderItem.setQuantity(form.getIntQuantiy());
-		orderItemRepository.insert(orderItem);
+		Long orderId=order2.getId();
+		OrderItem orderItem2=orderItemRepository.findByOrderIdAndItemId(orderId, itemId);
+		if(orderItem2==null) {
+			OrderItem orderItem = new OrderItem();
+			orderItem.setItemId((long) itemId);
+			orderItem.setOrderId(order2.getId());
+			orderItem.setQuantity(form.getIntQuantiy());
+			orderItemRepository.insert(orderItem);			
+		}else {
+			int quantity=orderItem2.getQuantity()+form.getIntQuantiy();
+			System.out.println(quantity);
+			Long orderId2=orderItem2.getOrderId();
+			Long itemId2=orderItem2.getItemId();
+			orderItemRepository.update(quantity, orderId2, itemId2);
+		}
 
-		//System.out.println("a");
+	
 		return viewShoppingCart(model,session);
 	}
 
@@ -166,11 +176,11 @@ public class ShoppingCartController {
 		}
 		int status=0;
 		List<Order> orderList=orderRepository.findByUserIdAndStatusForView(userId, status);
-		System.out.println("b");
+		//System.out.println("b");
 		model.addAttribute("orderList",orderList);
-		for(Order order3:orderList) {
-			System.out.println(order3.getId());
-		}
+		//for(Order order3:orderList) {
+			//System.out.println(order3.getId());
+		//}
 		return "/user/viewShoppingCart";
 	}
 	
