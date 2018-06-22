@@ -6,28 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import jp.co.rakus.ec201804a.admin.deleteItem.DeleteEditItemRepository;
-import jp.co.rakus.ec201804a.common.domain.Item;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class Ec201804aApplicationTests {
 
 	@Autowired
-	private DeleteEditItemRepository repository;
+//	private DeleteEditItemRepository repository;
 
 	@Test
 	public void contextLoads() {
-		try {
-			Long num = (long) 2;
-			Item item = repository.load(num);
-			System.out.println(item);
-			item.setDeleted(false);
-			repository.save(item);
-			Item itemNew = repository.load(num);
-			System.out.println(itemNew);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+//		try {
+//			Long num = (long) 2;
+//			Item item = repository.load(num);
+//			System.out.println(item);
+//			item.setDeleted(false);
+//			repository.save(item);
+//			Item itemNew = repository.load(num);
+//			System.out.println(itemNew);
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
 	}
 }

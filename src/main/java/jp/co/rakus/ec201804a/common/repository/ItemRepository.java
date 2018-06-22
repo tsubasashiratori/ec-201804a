@@ -108,16 +108,7 @@ public class ItemRepository {
 			return null;
 		}
 	}
-	
-//	public Item load (Long id) {
-//		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME + " where id = :id";
-//		
-//		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-//		
-//		Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
-//		
-//		return item;
-//	}
+
 	
 	/**
 	 * 削除フラグの状態に関係なく商品を全検索する.
@@ -157,13 +148,6 @@ public class ItemRepository {
 	public void save(Item item) {
 		String sql = "UPDATE "+TABLE_NAME+" SET name=:name, description=:description, price=:price, imagepath=:imagePath, deleted=:deleted WHERE id=:id;";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
-//		.addValue("name", item.getName())
-//															  .addValue("description", item.getDescription())
-//															  .addValue("price", item.getPrice())
-//															  .addValue("imagePath", item.getImagePath())
-//															  .addValue("deleted", item.getDeleted())
-//															  .addValue("id", item.getId());
-	
 		try {
 			template.update(sql, param);
 		}catch (Exception e) {

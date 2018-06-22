@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import jp.co.rakus.ec201804a.common.domain.User;
-import jp.co.rakus.ec201804a.user.login.UserLoginRepository;
+import jp.co.rakus.ec201804a.common.repository.UserRepository;
 
 /**
  * ログイン後の利用者情報に権限を付与するサービスクラス.
@@ -25,7 +25,7 @@ public class UserDetailsServiceImp1 implements UserDetailsService{
 	 * 利用者をfindByOneMailAddresするリポジトリ
 	 */
 	@Autowired
-	private UserLoginRepository userRepository;
+	private UserRepository userRepository;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
