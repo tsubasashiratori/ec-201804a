@@ -1,5 +1,7 @@
 package jp.co.rakus.ec201804a.admin.editItem;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class EditItemForm {
@@ -11,13 +13,16 @@ public class EditItemForm {
 	@Size(min=1, max=20, message="1文字以上20文字以内でキーワードを入力してください")
 	private String name;
 	
-	/** 値段 */
+	/** 価格 */
+	@NotNull(message="価格を入力してください")
 	private Integer price;
 	
 	/** 商品説明 */
+	@NotBlank(message="商品説明を入力してください")
 	private String description;
 	
 	/** 画像までのパス */
+	@NotBlank(message="画像を選択してください")
 	private String imagePath;
 	
 	/** 削除フラグ */

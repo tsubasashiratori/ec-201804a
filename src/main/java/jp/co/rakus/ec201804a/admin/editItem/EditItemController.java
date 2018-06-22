@@ -4,11 +4,18 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 
+/**
+ * 商品詳細の編集に関するコントローラクラス.
+ * 
+ * @author tatsuro.okazaki
+ */
 @Controller
 @RequestMapping(value = "/admin")
 public class EditItemController {
@@ -16,14 +23,24 @@ public class EditItemController {
 	@Autowired
 	private ItemRepository ItemRepository;
 	
+	/**
+	 * 商品詳細を編集し管理者の商品一覧画面にリダイレクトする.
+	 * 
+	 * @param form フォーム
+	 * @param model モデル
+	 * @return 
+	 */
 	@RequestMapping("/editItem")
-	public String editItem(EditItemForm form, Model model) {
+	public String editItem(@Validated EditItemForm form, BindingResult result, Model model) {
 
 		Item item = new Item();
-		System.out.println(form.getId());
 		BeanUtils.copyProperties(form, item);
-		System.out.println(item.getId());
+		
+		if(result.hasErrors()) {
+			return "/admin/edit";
+		}
 		ItemRepository.save(item);
+		
 		model.addAttribute("item", item);
 		System.out.println("編集完了");
 		

@@ -18,21 +18,25 @@
 	<form:hidden path="id"/>
 	<!-- idをhiddenで埋め込んでいる -->
 	
-	
+			<form:errors path="name" element="div" cssStyle="color:red" align="center"></form:errors>
 			商品名：<form:input path="name" value="${form.name}"/><br>
 			<p><small></small></p>
 			<br>
+			
+			<form:errors path="price" element="div" cssStyle="color:red" align="center"></form:errors>
 			価格：<form:input path="price" value="${form.price}"/><br>
 			<p><small></small></p>
 			<br>
+			
+			<form:errors path="description" element="div" cssStyle="color:red" align="center"></form:errors>
 			説明：<form:textarea path="description" value="${form.description}" rows="5" cols="40"/><br>
 			<p><small></small></p>
 			<br>
+			
+			<form:errors path="imagePath" element="div" cssStyle="color:red" align="center"></form:errors>
 			画像：<form:input path="imagePath" value="${form.imagePath}"/><br>
-			<div>
-				<font size="2" color="red">※ファイルはjpgファイルを指定してください</font>
-			</div>
 			<p><small></small></p>
+			<br>
 			
 			削除:<form:checkbox path="deleted" value="${form.deleted}"/><br>
 			<p><small></small></p>
