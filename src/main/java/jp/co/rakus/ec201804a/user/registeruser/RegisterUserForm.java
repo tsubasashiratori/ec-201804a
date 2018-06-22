@@ -36,18 +36,17 @@ public class RegisterUserForm {
 	 * 郵便番号
 	 */
 	@NotBlank(message = "郵便番号を入力してください")
-	@Size(min = 7, max = 7, message = "郵便番号が不正です")
 	private String zipCode;
 	/**
 	 * 住所
 	 */
 	@NotBlank(message = "住所を入力してください")
 	private String address;
-	/**
-	 * 電話番号
-	 */
-	@NotBlank(message = "電話番号を入力してください")
-	private String telephone;
+//	/**
+//	 * 電話番号
+//	 */
+//	@NotBlank(message = "電話番号を入力してください")
+//	private String telephone;
 	
 	public String getName() {
 		return name;
@@ -85,12 +84,45 @@ public class RegisterUserForm {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getTelephone() {
-		return telephone;
-	}
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+//	public String getTelephone() {
+//		return telephone;
+//	}
+//	public void setTelephone(String telephone) {
+//		this.telephone = telephone;
+//	}
 	
 
+	/**
+	 * 電話番号の先頭
+	 */
+	private String telHead;
+	/**
+	 * 電話番号の真ん中
+	 */
+	private String telBody;
+	/**
+	 * 電話番号の最後
+	 */
+	private String telTeil;
+	
+	public String getTelHead() {
+		return telHead;
+	}
+	public void setTelHead(String telHead) {
+		this.telHead = telHead;
+	}
+	public String getTelBody() {
+		return telBody;
+	}
+	public void setTelBody(String telBody) {
+		this.telBody = telBody;
+	}
+	public String getTelTeil() {
+		return telTeil;
+	}
+	public void setTelTeil(String telTeil) {
+		this.telTeil = telTeil;
+	}
+	
+	
 }
