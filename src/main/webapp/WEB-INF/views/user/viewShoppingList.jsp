@@ -50,7 +50,7 @@
 								src="${pageContext.request.contextPath}/img/${item.imagePath}"
 								width="150" height="125"></a></td>
 							<td><a
-								href="${pageContext.request.contextPath}/user/ViewDetail?id=${item.id}">
+								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
 									<c:out value="${item.name}"></c:out>
 							</a></td>
 							<td><fmt:formatNumber value="${item.price}"

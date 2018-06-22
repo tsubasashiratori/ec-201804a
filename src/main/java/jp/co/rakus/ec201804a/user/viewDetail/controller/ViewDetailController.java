@@ -21,7 +21,7 @@ import jp.co.rakus.ec201804a.user.shoppingcart.InsertShoppingCartForm;
  *
  */
 @Controller
-@RequestMapping("/user/ViewDetail")
+@RequestMapping("/user")
 public class ViewDetailController {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class ViewDetailController {
 	 * @param request リクエストスコープ
 	 * @return 商品詳細ページへ遷移する
 	 */
-	@RequestMapping("")
+	@RequestMapping("/viewDetail")
 	public String ViewDetail(@RequestParam ("id") String id, HttpServletRequest request) {
 		long idLong = Long.parseLong(id);
 		Item item = itemRepository.findDetailByIdNotDeleted(idLong);
