@@ -38,15 +38,26 @@ public class OrderRepository9 {
 	 */
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTER = (rs) -> {
 		List<Order> orderList = new LinkedList<Order>();
+//		取得したOrdersの情報を入れるOrder型リストを用意する
 		Order order = null;
+//		取得したOrderの情報を入れるOrderオブジェクトを用意する
 		List<OrderItem> orderItemList = null;
+//		Orderオブジェクト内にあるOrderItemに情報を入れるためOrderItem型のリストを用意する
 		Item item = null;
+//		OrderItem内のItemに情報を入れるためItemオブジェクトを用意する
 		User user = null;
+//		Orderオブジェクト内にあるUserに情報を入れるためUser型のオブジェクトを用意する
 		long beforeOrderId = 0;
+//		重複したIDのOrderオブジェクトを作らないようにするチェッカー
+//		
 
 		while (rs.next()) {
+//			リザルトセットエクストラクターなので手動でrs.next()を回す必要がある
 			if (rs.getInt("order_id") != beforeOrderId) {
+//				取得したOrdersのIDを既に持っているOrderオブジェクトがあれば処理をスキップする
 				order = new Order();
+//				新しいOrderオブジェクトをインスタンス化する
+//				以下インスタンス化したOrderオブジェクトに、SQLで取得したOrdersテーブルの情報を入れていく
 				order.setId(rs.getLong("order_id"));
 				order.setOrderNumber(rs.getString("order_number"));
 				order.setUserId(rs.getLong("order_user_id"));
@@ -64,13 +75,16 @@ public class OrderRepository9 {
 				user = new User();
 				user.setId(rs.getLong("user_id"));
 				user.setName(rs.getString("user_name"));
-				user.setEmail(rs.getString("password"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
 				user.setZipCode(rs.getString("zipcode"));
 				user.setAddress(rs.getString("address"));
 				user.setTelephone(rs.getString("telephone"));
 				order.setUser(user);
+//				Orderオブジェクトへの情報代入ここまで
 
 				orderList.add(order);
+//				情報を入れたOrderオブジェクトをリストに入れる
 			}
 
 			if (rs.getInt("order_item_id") != 0) {

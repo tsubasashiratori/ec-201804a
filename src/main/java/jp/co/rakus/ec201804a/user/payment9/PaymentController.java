@@ -15,15 +15,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.common.domain.User;
 import jp.co.rakus.ec201804a.common.login.LoginUser;
+import jp.co.rakus.ec201804a.common.repository.OrderRepository;
 
+/**
+ * 決済関連処理を行うコントローラー.
+ * @author kohei.taguchi
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping(value = "/user")
 public class PaymentController {
 
 	@Autowired
-	private OrderRepository9 orderRepository;
+	private OrderRepository orderRepository;
 
+	/**
+	 * 決済確認画面の表示を行う.
+	 * @param orderId　表示するOrderオブジェクトのID
+	 * @param model　モデル
+	 * @return　画面表示を行うJspのURL
+	 * 
+	 */
 	@RequestMapping(value = "/viewPaymentDetail")
 	public String viewPaymentDetail(@RequestParam long orderId, Model model) {
 		User user = null;
@@ -66,6 +79,12 @@ public class PaymentController {
 		return "/user/makePayment";
 	}
 
+	/**
+	 * 決済完了処理を行う.
+	 * @param orderId　決済完了するOrderオブジェクトのId
+	 * @param model　モデル
+	 * @return　決済完了画面へ移動するメソッドへのリダイレクト
+	 */
 	@RequestMapping(value = "/toPayment")
 	public String payment(@RequestParam String orderId, Model model) {
 		long longOrderId = new Long(orderId);
@@ -83,11 +102,19 @@ public class PaymentController {
 		return "redirect:/user/confirmedPayment";
 	}
 	
+	/**
+	 * 決済完了画面へ移動を行うメソッド.
+	 * @return　決済完了画面のjspのURL
+	 */
 	@RequestMapping(value = "/confirmedPayment")
 	public String toPayment() {
 		return "/user/payment";
 	}
 
+	/**
+	 * Orderオブジェクト内のobjectNumberにセットする値を取得するメソッド.
+	 * @return　objectNumberにセットする値
+	 */
 	public String dateAndSequence() {
 		LocalDate localDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -95,6 +122,10 @@ public class PaymentController {
 		return strDate;
 	}
 	
+	/**
+	 * Orderオブジェクト内のorderDateにセットする日付を取得するメソッド.
+	 * @return　orderDateにセットする(Java.sql.)Date型日付
+	 */
 	public Date setSqlDateNow() {
 		LocalDate localDate = LocalDate.now();
 		Date date = Date.valueOf(localDate);

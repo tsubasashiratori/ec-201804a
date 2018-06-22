@@ -7,8 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -28,8 +30,10 @@ import jp.co.rakus.ec201804a.common.domain.User;
 public class OrderRepository {
 
 	@Autowired
-	NamedParameterJdbcTemplate template;
+	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
 
 	public final static RowMapper<Order> rowMapper = (rs, i) -> {
 		Order order = new Order();
@@ -56,7 +60,7 @@ public class OrderRepository {
 				.addValue("delivery_zip_code", order.getDeliveryZipCode())
 				.addValue("delivery_address", order.getDeliveryAddress())
 				.addValue("delivery_tel", order.getDeliveryTel());
-		template.update(sql, param);
+		namedParameterJdbcTemplate.update(sql, param);
 	}
 	/**
 	 * ショッピングカートの情報を取得するメソッド.
@@ -68,7 +72,7 @@ public class OrderRepository {
 		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE user_id=:user_id AND status=:status";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
 		try{
-		Order order = template.queryForObject(sql, param, rowMapper);
+		Order order = namedParameterJdbcTemplate.queryForObject(sql, param, rowMapper);
 		return order;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -76,6 +80,7 @@ public class OrderRepository {
 		}
 		//return null;
 	}
+	
 	
 	
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTOR = (rs) -> {
@@ -165,7 +170,7 @@ public class OrderRepository {
 		//System.out.println(status);
 		try {
 		SqlParameterSource param=new MapSqlParameterSource().addValue("usersId", userId).addValue("status", status);
-		List<Order> orderList = template.query(sql, param,ORDER_RESULT_SET_EXTRACTOR);
+		List<Order> orderList = namedParameterJdbcTemplate.query(sql, param,ORDER_RESULT_SET_EXTRACTOR);
 		//for(Order a:orderList) {
 			//System.out.println(a.toString());
 		//}
@@ -176,4 +181,92 @@ public class OrderRepository {
 			return null;
 		}
 	}
+	
+	
+	/**
+	 * 一件検索を行うメソッド.
+	 * @param orderId　OrdersテーブルのID
+	 * @return　検索された情報を持ったOrderオブジェクト
+	 * @author kohei.taguchi
+	 */
+	public Order findById(long orderId) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderId);
+
+		String sql = "SELECT orders.id as order_id,	orders.order_number "
+				+ ",	orders.user_id as order_user_id, orders.status ,orders.total_price "
+				+ ",	orders.order_date , orders.delivery_name "
+				+ ",	orders.delivery_email , orders.delivery_zip_code "
+				+ ",	orders.delivery_address , orders.delivery_tel "
+				+ ",	order_items.id as order_item_id"
+				+ ",	order_items.item_id, order_items.order_id,	order_items.quantity "
+				+ ",	items.id as item_id, items.name as item_name, items.description "
+				+ ",	items.price , items.imagepath , items.deleted "
+				+ ",	users.id as user_id, users.name as user_name, users.email "
+				+ ",	users.password , users.zipcode , users.address "
+				+ ",	users.telephone "
+				+ "		FROM orders "
+				+ "		LEFT OUTER JOIN order_items "
+				+ "		ON orders.id = order_items.order_id "
+				+ " 	LEFT OUTER JOIN items "
+				+ "		ON order_items.item_id = items.id "
+				+ "		LEFT OUTER JOIN users "
+				+ "		ON orders.user_id = users.id "
+				+ "		WHERE orders.id = :id "
+				+ "		ORDER BY orders.id ;";
+
+		List<Order> orderList = namedParameterJdbcTemplate.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
+		Order order = orderList.get(0);
+
+		return order;
+	}
+	
+	/**
+	 * 情報の登録を行うメソッド.
+	 * @param order　登録したい情報を持ったOrderオブジェクト
+	 * @author kohei.taguchi
+	 */
+	public void save(Order order) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+
+		String sql = "UPDATE orders SET order_number = :orderNumber , user_id = :userId "
+				+", status = :status , total_price = :totalPrice , order_date = :orderDate "
+				+", delivery_name = :deliveryName, delivery_email = :deliveryEmail "
+				+", delivery_zip_code = :deliveryZipCode, delivery_address = :deliveryAddress "
+				+", delivery_tel = :deliveryTel"
+				+" WHERE id = :id ;";
+
+		namedParameterJdbcTemplate.update(sql, param);
+	}
+	
+	/**
+	 * 全件検索を行うメソッド.
+	 * @return　検索された情報を持ったリスト
+	 * @author kohei.taguchi
+	 */
+	public List<Order> findAll(){
+		String sql = "SELECT orders.id as order_id,	orders.order_number "
+				+ ",	orders.user_id as order_user_id, orders.status ,orders.total_price "
+				+ ",	orders.order_date , orders.delivery_name "
+				+ ",	orders.delivery_email , orders.delivery_zip_code "
+				+ ",	orders.delivery_address , orders.delivery_tel "
+				+ ",	order_items.id as order_item_id"
+				+ ",	order_items.item_id, order_items.order_id,	order_items.quantity "
+				+ ",	items.id as item_id, items.name as item_name, items.description "
+				+ ",	items.price , items.imagepath , items.deleted "
+				+ ",	users.id as user_id, users.name as user_name, users.email "
+				+ ",	users.password , users.zipcode , users.address "
+				+ ",	users.telephone "
+				+ "		FROM orders "
+				+ "		LEFT OUTER JOIN order_items "
+				+ "		ON orders.id = order_items.order_id "
+				+ " 	LEFT OUTER JOIN items "
+				+ "		ON order_items.item_id = items.id "
+				+ "		LEFT OUTER JOIN users "
+				+ "		ON orders.user_id = users.id "
+				+ "		ORDER BY orders.order_number ;";
+		
+		List<Order> orderList = jdbcTemplate.query(sql, ORDER_RESULT_SET_EXTRACTOR);
+
+		return orderList;
+		}
 }

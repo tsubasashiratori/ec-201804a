@@ -25,7 +25,7 @@
 	
 	<c:when test="${orderNullChecker == false}">
 	<form:form action="${pageContext.request.contextPath}/user/toPayment" method="POST">
-	<table border="1" width="350"  align="center">
+	<table border="1" align="center">
 		<tr>
 			<th>商品名</th>
 			<th>価格</th>
@@ -41,7 +41,6 @@
 					<td><c:out value="${orderItem.quantity}"/></td>
 					<td><fmt:formatNumber value="${orderItem.itemTotalPriceExcludeTax}" pattern="￥###,###"/></td>
 					<td><fmt:formatNumber value="${orderItem.itemTotalPriceIncludeTax}" pattern="￥###,###"/></td>
-				</td>
 				</tr>
 		</c:forEach>
 

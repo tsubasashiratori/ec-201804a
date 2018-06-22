@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Order;
-import jp.co.rakus.ec201804a.user.payment9.OrderRepository9;
+import jp.co.rakus.ec201804a.common.repository.OrderRepository;
 
 /**
  * 注文一覧表示を行うコントローラー
@@ -21,8 +21,12 @@ import jp.co.rakus.ec201804a.user.payment9.OrderRepository9;
 @RequestMapping(value = "/admin")
 public class OrderListController {
 	@Autowired
-	OrderRepository9 orderRipositroy;
+	OrderRepository orderRipositroy;
 	
+	/**注文一覧画面の初期表示を行うメソッド.
+	 * @param model　モデル
+	 * @return　注文一覧表示画面のURL
+	 */
 	@RequestMapping(value = "/viewOrderList")
 	public String index(Model model) {
 		List<Order> orderList = orderRipositroy.findAll();
