@@ -56,25 +56,31 @@ public class RegisterUserController {
 	 */
 	@RequestMapping(value="/register")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
+		if(!form.getZipCode().matches("^\\d{3}\\-?\\d{4}$")) {
+			result.rejectValue("zipCode","","郵便番号が不正です");
+		}
+		String telephone = ""+ form.getTelHead() +"-"+ form.getTelBody() +"-"+ form.getTelTeil();
+		if(telephone.equals("--")) {
+			result.rejectValue("telHead","","電話番号を入力してください");
+		} else if(!telephone.matches("[0-9]+-[0-9]+-[0-9]+")) {
+			result.rejectValue("telHead","","電話番号が不正です");
+		}
 		if(!form.getPassword().equals(form.getCheckPassword())) {
 			result.rejectValue("checkPassword","","確認用パスワードか一致していません");
 		}
 		if (result.hasErrors()) {			
 			return viewRegisterUser();
 		}
+		
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
-//		user.setName(form.getName());
-//		user.setEmail(form.getEmail());
-//		user.setPassword(form.getPassword());
-//		user.setZipCode(form.getZipCode());
-//		user.setAddress(form.getAddress());
-//		user.setTelephone(form.getTelephone());
+		user.setTelephone(telephone);
 		System.out.println(user);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		System.out.println(user);
 		userRepository.registerUser(user);
 		return "redirect:/user/";
 	}
+	
 
 }

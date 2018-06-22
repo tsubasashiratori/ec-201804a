@@ -35,7 +35,7 @@
 			<tr>
 				<td><p><small><form:errors path="zipCode" cssStyle="color:red"/></small></p>
 				郵便番号</td>
-				<td><form:input path="zipCode" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/></td>
+				<td>〒<form:input path="zipCode" size="8" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/></td>
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="address" cssStyle="color:red"/></small></p>
@@ -44,10 +44,13 @@
 
 			</tr>
 			<tr>
-				<td><p><small><form:errors path="telephone" cssStyle="color:red"/></small></p>
+				<td><p><small><form:errors path="telHead" cssStyle="color:red"/></small></p>
 				電話番号
 				</td>
-				<td><form:input path="telephone"/></td>
+				<td><form:input path="telHead" size="4" maxlength="4"/>
+				- <form:input path="telBody" size="4" maxlength="4"/>
+				- <form:input path="telTeil" size="4" maxlength="4"/>
+				</td>
 
 			</tr>
 			<tr>
