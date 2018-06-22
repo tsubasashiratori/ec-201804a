@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.user.payment9.OrderRepository9;
 
+/**
+ * 注文一覧表示を行うコントローラー
+ * @author kohei.taguchi
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping(value = "/admin")

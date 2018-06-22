@@ -18,6 +18,12 @@ import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.common.domain.OrderItem;
 import jp.co.rakus.ec201804a.common.domain.User;
 
+/**
+ * Ordersテーブルの操作を行うリポジトリー.
+ * 使用ユースケース：9.決済をする、17、注文一覧を表示する、18.注文ステータスを変更する
+ * @author kohei.taguchi
+ *
+ */
 @Repository
 public class OrderRepository9 {
 
@@ -27,6 +33,9 @@ public class OrderRepository9 {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	/**
+	 * SQLで取得したOrders情報をOrderオブジェクト型のリストに入れるエクストラクター.
+	 */
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTER = (rs) -> {
 		List<Order> orderList = new LinkedList<Order>();
 		Order order = null;
@@ -89,6 +98,11 @@ public class OrderRepository9 {
 		return orderList;
 	};
 
+	/**
+	 * 一件検索を行うメソッド.
+	 * @param orderId　OrdersテーブルのID
+	 * @return　検索された情報を持ったOrderオブジェクト
+	 */
 	public Order findById(long orderId) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderId);
 
@@ -120,6 +134,10 @@ public class OrderRepository9 {
 		return order;
 	}
 
+	/**
+	 * 情報の登録を行うメソッド.
+	 * @param order　登録したい情報を持ったOrderオブジェクト
+	 */
 	public void save(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 
@@ -133,6 +151,10 @@ public class OrderRepository9 {
 		namedParameterJdbcTemplate.update(sql, param);
 	}
 	
+	/**
+	 * 全件検索を行うメソッド.
+	 * @return　検索された情報を持ったリスト
+	 */
 	public List<Order> findAll(){
 		String sql = "SELECT orders.id as order_id,	orders.order_number "
 				+ ",	orders.user_id as order_user_id, orders.status ,orders.total_price "

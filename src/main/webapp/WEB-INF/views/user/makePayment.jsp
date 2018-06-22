@@ -10,8 +10,20 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
-	<h2 align="center">ご注文内容</h2>
+<div align="center">
+	<h2>ご注文内容</h2>
 	<hr>
+	
+	<c:choose>
+		<c:when test="${orderNullChecker == true}">
+		<font color="red"><c:out value="${nullError}"/></font>
+		<hr>
+		<p align="center">
+		<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted ">商品一覧画面へ戻る</a>
+		</p>
+		</c:when>
+	
+	<c:when test="${orderNullChecker == false}">
 	<form:form action="${pageContext.request.contextPath}/user/toPayment" method="POST">
 	<table border="1" width="350"  align="center">
 		<tr>
@@ -60,7 +72,8 @@
 	<input type="hidden" name="orderId" value="${order.id}">
 	<input type="submit" value="確定">
 	</form:form></div>
-	
+	</c:when>
+	</c:choose>
 	
 	
 </body>

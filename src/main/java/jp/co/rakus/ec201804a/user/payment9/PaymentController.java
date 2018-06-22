@@ -42,8 +42,10 @@ public class PaymentController {
 		
 		Order order = orderRepository.findById(orderId);
 
-		if (order == null) {
+		if (order == null || order.getOrderItemList().isEmpty() == true) {
+			model.addAttribute("orderNullChecker", true);
 			model.addAttribute("nullError", "注文がありません");
+			return "/user/makePayment";
 		}
 		
 		else {
@@ -59,7 +61,7 @@ public class PaymentController {
 			
 			orderRepository.save(order);
 		}
-
+		model.addAttribute("orderNullChecker", false);
 		model.addAttribute("order", order);
 		return "/user/makePayment";
 	}
@@ -69,6 +71,10 @@ public class PaymentController {
 		long longOrderId = new Long(orderId);
 		
 		Order order = orderRepository.findById(longOrderId);
+		
+		if(order.getTotalPriceExcludeTax() == 0) {
+			
+		}
 		
 		order.setStatus(1);
 		order.setOrderNumber(dateAndSequence());
