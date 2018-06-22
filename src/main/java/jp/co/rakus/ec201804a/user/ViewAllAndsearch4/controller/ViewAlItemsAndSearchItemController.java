@@ -66,6 +66,7 @@ public class ViewAlItemsAndSearchItemController {
 		if(itemList.size() == 0) {
 			
 			result.rejectValue("name","", "該当する商品がありません");
+			model.addAttribute("itemList", null);
 			System.out.println("test");
 		}
 		if(result.hasErrors()) {
