@@ -62,18 +62,39 @@ public class Order {
 	 */
 	private User user;
 	
+	/**
+	 * ショッピングカート内商品の税別小計
+	 * @author kohei.taguchi
+	 */	
 	private int totalPriceExcludeTax;
 	
+	/**
+	 * ショッピングカート内商品の消費税
+	 * @author kohei.taguchi
+	 */
 	private int totalPriceTax;
 	
+	/**
+	 * 送料
+	 * @author kohei.taguchi
+	 */
 	private static final int POSTAGE = 500;
 	
+	/**
+	 * 送料含めた合計金額
+	 * @author kohei.taguchi
+	 */
 	private int totalPriceIncludeTaxAndPostage;
 	
 	public int getPostage() {
 		return POSTAGE;
 	}
 	
+	
+	/**ショッピングカート内の消費税合計を取得するゲッター.
+	 * @return totalPriceTax カート内の消費税
+	 * @author kohei.taguchi
+	 */
 	public int getTotalPriceTax() {
 		int totalPriceTax = 0;
 		for (OrderItem orderItem : getOrderItemList()) {
@@ -82,6 +103,11 @@ public class Order {
 		return totalPriceTax;
 	}
 	
+	/**
+	 * カート内商品の税別小計を取得するゲッター.
+	 * @return totalPriceTax カート内の税別小計
+	 * @author kohei.taguchi
+	 */
 	public int getTotalPriceExcludeTax() {
 		int totalPriceTax = 0;
 		for (OrderItem orderItem : getOrderItemList()) {
@@ -90,6 +116,11 @@ public class Order {
 		return totalPriceTax;
 	}
 	
+	/**
+	 * 消費税と送料を含めた合計金額を取得するゲッター.
+	 * @return　消費税と送料を含めた合計金額
+	 * @author kohei.taguchi
+	 */
 	public int getTotalPriceIncludeTaxAndPostage() {
 		int totalPriceIncludeTaxAndPostage = 0;
 		for (OrderItem orderItem : getOrderItemList()) {

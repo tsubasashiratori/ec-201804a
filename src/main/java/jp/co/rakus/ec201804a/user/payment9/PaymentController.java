@@ -26,13 +26,8 @@ public class PaymentController {
 
 	@RequestMapping(value = "/viewPaymentDetail")
 	public String viewPaymentDetail(@RequestParam long orderId, Model model) {
-//		user.setId(1l);
-//		user.setName("abc");
-//		user.setEmail("abc@abc");
-//		user.setZipCode("1234567");
-//		user.setAddress("abc-abc");
-//		user.setTelephone("012-345-6789");
 		User user = null;
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof LoginUser) {
 				LoginUser loginUser = (LoginUser)principal;
@@ -44,12 +39,6 @@ public class PaymentController {
 		if (user == null) {
 			return "redirect:/user/";
 		}
-		
-		System.out.println(user.toString());
-		
-		//long longOrderId = new Long(2);
-		
-		//long longOrderId = new Long(orderId);
 		
 		Order order = orderRepository.findById(orderId);
 
@@ -78,10 +67,11 @@ public class PaymentController {
 	@RequestMapping(value = "/toPayment")
 	public String payment(@RequestParam String orderId, Model model) {
 		long longOrderId = new Long(orderId);
+		
 		Order order = orderRepository.findById(longOrderId);
+		
 		order.setStatus(1);
 		order.setOrderNumber(dateAndSequence());
-
 		orderRepository.save(order);
 
 		return "redirect:/user/confirmedPayment";

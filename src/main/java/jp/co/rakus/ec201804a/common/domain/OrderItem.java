@@ -30,10 +30,22 @@ public class OrderItem {
 	 */
 	private Item item;
 	
+	/**
+	 * 注文された商品の価格小計
+	 * @author kohei.taguchi
+	 */
 	private Integer itemTotalPriceExcludeTax;
 	
+	/**
+	 * 注文された商品の税込小計
+	 * @author kohei.taguchi
+	 */
 	private Integer itemTotalPriceIncludeTax;
 	
+	/**
+	 * 注文された商品の消費税
+	 * @author kohei.taguchi
+	 */
 	private Integer itemTax;
 
 	public Long getId() {
@@ -67,6 +79,13 @@ public class OrderItem {
 		this.item = item;
 	}
 	
+	/**
+	 * 商品の税別小計を取得するゲッター.
+	 * @param　itemPrice　商品単価
+	 * @param　itemQuantity　注文個数
+	 * @return　itemTotalPriceExcludeTax　商品の税別小計
+	 * @author kohei.taguchi
+	 */
 	public Integer getItemTotalPriceExcludeTax() {
 		int itemPrice = getItem().getPrice();
 		int itemQuantity = getQuantity();
@@ -74,11 +93,20 @@ public class OrderItem {
 		return itemTotalPriceExcludeTax;
 	}
 	
+	/**
+	 * 商品の税込小計を取得するゲッター.
+	 * @return　itemTotalPriceIncludeTax　商品の税込小計.
+	 * @author kohei.taguchi
+	 */
 	public Integer getItemTotalPriceIncludeTax() {
 		int itemTotalPriceIncludeTax = (int)(getItemTotalPriceExcludeTax() * 1.08);
 		return itemTotalPriceIncludeTax;
 	}
 	
+	/**商品の消費税を取得するゲッター.
+	 * @return itemtax 消費税.
+	 * @author kohei.taguchi
+	 */
 	public int getItemTax() {
 		int itemTax = (int)(getItemTotalPriceExcludeTax() * 0.08);
 		return itemTax;
