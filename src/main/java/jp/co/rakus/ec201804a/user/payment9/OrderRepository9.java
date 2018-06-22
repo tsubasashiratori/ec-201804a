@@ -134,8 +134,6 @@ public class OrderRepository9 {
 	}
 	
 	public List<Order> findAll(){
-		//SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderId);
-
 		String sql = "SELECT orders.id as order_id,	orders.order_number "
 				+ ",	orders.user_id as order_user_id, orders.status ,orders.total_price "
 				+ ",	orders.order_date , orders.delivery_name "
