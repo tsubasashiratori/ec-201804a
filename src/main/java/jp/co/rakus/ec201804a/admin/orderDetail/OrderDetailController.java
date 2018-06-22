@@ -21,18 +21,18 @@ public class OrderDetailController {
 	@RequestMapping(value = "/viewOrderDetail")
 	public String viewOrderDetail(@RequestParam long orderId, Model model) {
 		Order order = orderRepository.findById(orderId);
-		System.out.println(order);
 		model.addAttribute("order", order);
 		return "/admin/orderDetail";
 	}
 	
 	@RequestMapping(value = "/updateStatus")
-	public String updateStatus(@RequestParam long orderId, @RequestParam Integer status, Model model) {
+	public String updateStatus(@RequestParam Integer status, @RequestParam long orderId, Model model) {
 		Order order = orderRepository.findById(orderId);
+		
 		order.setStatus(status);
 		orderRepository.save(order);
 		
 		model.addAttribute("updateMessage", "更新しました");
-		return "redirect:/admin/viewOrderDetail";
+		return "redirect:/admin/viewOrderDetail?orderId=" + orderId;
 	}
 }

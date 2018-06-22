@@ -107,8 +107,9 @@
         	</c:when>	
         </c:choose>
         </td>
-        <td><form action="${pageContext.request.contextPath}/admin/updateStatus" name="statusSubmit" method="get" onsubmit="return check()" onreset="return kakunin()">
+        <td><form action="${pageContext.request.contextPath}/admin/updateStatus" name="statusSubmit" method="GET" onsubmit="return check()" onreset="return kakunin()">
 <select name="status">
+<option value="0">購入前(変更非推奨)</option>
 <option value="1">未入金</option>
 <option value="2" selected>入金済み</option>
 <option value="3">発送済み</option>
@@ -122,9 +123,8 @@
       </tr>
     </table><br>
 
-
-
- <p id="notice-input-text-1" style="display: none; color: red;"> 更新されました。</p><br>
+ <c:out value="${updateMessage}"/>
+<br>
 <br>
     <a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧に戻る</a>
 
