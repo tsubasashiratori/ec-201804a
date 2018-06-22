@@ -34,7 +34,7 @@
 			<br>
 			
 			<form:errors path="imagePath" element="div" cssStyle="color:red" align="center"></form:errors>
-			画像：<form:input path="imagePath" value="${form.imagePath}"/><br>
+			画像：<input type="file" name="imagePath" accept="コンテンツタイプ(Content-Type)">
 			<p><small></small></p>
 			<br>
 			
