@@ -23,30 +23,42 @@
 		<br>
 		<form:form modelAttribute="viewAllItemsAndSearchItemForm"
 			action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeleted"
-			method="post">
-			<form:errors path="name" element="div" cssStyle="color:red" align="center"/> 
-			<form:input path="name" align="center"/><input type="submit" value="検索する"
-				align="center"><br>
+			method="post" align="center">
+			<form:errors path="name" element="div" cssStyle="color:red" />
+			<form:input path="name" />
+			<input type="submit" value="検索する">
+			<br>
 		</form:form>
 		<br>
-		<table border="1" align="center">
-				<tr>
-					<th colspan="2" width="150">商品名</th>
-					<th width="150">価格</th>
 
-				</tr>
-			<c:forEach var="item" items="${itemList}">
-				<tr>
-					<td><img
-						src="${pageContext.request.contextPath}/img/${item.imagePath}"
-						width="150" height="125"></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/user/ViewDetail?id=${item.id}">
-							<c:out value="${item.name}"></c:out>
-					</a></td>
-					<td><fmt:formatNumber value="${item.price}" pattern="￥###,###" />
-				</tr>
-			</c:forEach>
+		<table border="1" align="center">
+
+			<c:choose>
+
+				<c:when test="${itemList==null}">
+
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<th colspan="2" width="150">商品名</th>
+						<th width="150">価格</th>
+
+					</tr>
+					<c:forEach var="item" items="${itemList}">
+						<tr>
+							<td><img
+								src="${pageContext.request.contextPath}/img/${item.imagePath}"
+								width="150" height="125"></a></td>
+							<td><a
+								href="${pageContext.request.contextPath}/user/ViewDetail?id=${item.id}">
+									<c:out value="${item.name}"></c:out>
+							</a></td>
+							<td><fmt:formatNumber value="${item.price}"
+									pattern="￥###,###" />
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</table>
 
 
