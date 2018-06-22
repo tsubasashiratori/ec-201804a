@@ -19,7 +19,7 @@ import jp.co.rakus.ec201804a.common.repository.ItemRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value="/admin/insertItem")
+@RequestMapping(value="/admin")
 public class InsertItemController {
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class InsertItemController {
 	 * 
 	 * @return 商品登録画面
 	 */
-	@RequestMapping(value="/")
+	@RequestMapping(value="/insertItem")
 	public String viewInsertItem() {
 		return "admin/insertItem";
 	}
