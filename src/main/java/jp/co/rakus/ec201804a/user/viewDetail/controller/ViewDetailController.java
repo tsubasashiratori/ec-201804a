@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
-import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
+import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 import jp.co.rakus.ec201804a.user.shoppingcart.InsertShoppingCartForm;
 
 /**
@@ -25,7 +25,7 @@ import jp.co.rakus.ec201804a.user.shoppingcart.InsertShoppingCartForm;
 public class ViewDetailController {
 
 	@Autowired
-	public ItemsRepository itemRepository;
+	public ItemRepository itemRepository;
 	
 	@ModelAttribute
 	public InsertShoppingCartForm setUpInsert() {

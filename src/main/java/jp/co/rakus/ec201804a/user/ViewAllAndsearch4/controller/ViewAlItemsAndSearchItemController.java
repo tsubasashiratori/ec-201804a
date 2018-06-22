@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
+import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.form.ViewAllItemsAndSearchItemForm;
-import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
 
 /**
  * ４．商品一覧の表示と検索を行うコントローラー.
@@ -24,7 +24,7 @@ import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
 public class ViewAlItemsAndSearchItemController {
 
 	@Autowired
-	private ItemsRepository itemRepository;
+	private ItemRepository itemRepository;
 
 	@ModelAttribute
 	public ViewAllItemsAndSearchItemForm setUpForm() {
