@@ -1,6 +1,5 @@
 package jp.co.rakus.ec201804a.user.registeruser;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,7 +19,7 @@ public class RegisterUserForm {
 	 * メール
 	 */
 	@NotBlank(message = "アドレスを入力してください")
-	@Email(message = "アドレスが不正です")
+//	@Email(message = "アドレスが不正です")
 	@Pattern(regexp = "^([\\w])+([\\w\\._-])*\\@([\\w])+([\\w\\._-])*\\.([a-zA-Z])+$", message = "アドレスが不正です")
 	private String email;
 	/**
