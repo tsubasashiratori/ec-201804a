@@ -7,13 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
+import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 
 @Controller
 @RequestMapping(value = "/admin")
 public class EditItemController {
 	
 	@Autowired
-	private EditItemRepository editItemRepository;
+	private ItemRepository ItemRepository;
 	
 	@RequestMapping("/editItem")
 	public String editItem(EditItemForm form, Model model) {
@@ -22,7 +23,7 @@ public class EditItemController {
 		System.out.println(form.getId());
 		BeanUtils.copyProperties(form, item);
 		System.out.println(item.getId());
-		editItemRepository.save(item);
+		ItemRepository.save(item);
 		model.addAttribute("item", item);
 		System.out.println("編集完了");
 		

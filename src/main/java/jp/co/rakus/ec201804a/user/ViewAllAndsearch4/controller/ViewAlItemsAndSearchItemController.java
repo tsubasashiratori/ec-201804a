@@ -2,7 +2,6 @@ package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +24,7 @@ import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.repository.ItemsRepository;
 public class ViewAlItemsAndSearchItemController {
 
 	@Autowired
-	private ItemsRepository repository;
+	private ItemsRepository itemRepository;
 
 	@ModelAttribute
 	public ViewAllItemsAndSearchItemForm setUpForm() {
@@ -40,7 +39,7 @@ public class ViewAlItemsAndSearchItemController {
 	@RequestMapping("/findAllNotDeleted")
 	public String findAllNotDeleted(Model model) {
 
-		List<Item> itemList = repository.findAllNotDeleted();
+		List<Item> itemList = itemRepository.findAllNotDeleted();
 
 		model.addAttribute("itemList", itemList);
 
@@ -60,7 +59,7 @@ public class ViewAlItemsAndSearchItemController {
 
 		String name = viewAllItemsAndSearchForm.getName();
 		
-		List<Item> itemList = repository.findByNameNotDeleted(name);
+		List<Item> itemList = itemRepository.findByNameNotDeleted(name);
 
 		
 		if(itemList.size() == 0) {

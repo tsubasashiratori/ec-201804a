@@ -25,7 +25,7 @@ import jp.co.rakus.ec201804a.user.shoppingcart.InsertShoppingCartForm;
 public class ViewDetailController {
 
 	@Autowired
-	public ItemsRepository repository;
+	public ItemsRepository itemRepository;
 	
 	@ModelAttribute
 	public InsertShoppingCartForm setUpInsert() {
@@ -41,7 +41,7 @@ public class ViewDetailController {
 	@RequestMapping("")
 	public String ViewDetail(@RequestParam ("id") String id, HttpServletRequest request) {
 		long idLong = Long.parseLong(id);
-		Item item = repository.findDetailByIdNotDeleted(idLong);
+		Item item = itemRepository.findDetailByIdNotDeleted(idLong);
 		
 		Map<Integer, Integer> quantityMap = new LinkedHashMap<>();
 		quantityMap.put(1, 1);

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
+import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 
 /**
  * 管理者の商品一覧と部分一致検索を行うコントローラークラス.
@@ -19,7 +20,7 @@ import jp.co.rakus.ec201804a.common.domain.Item;
 public class AdminViewAllAndSearchItemController {
 
 	@Autowired
-	AdminViewAllAndSearchItemRepository adminRepository;
+	private ItemRepository itemRepository;
 	
 	/**
 	 * 検索結果をリクエストスコープに格納する.
@@ -29,7 +30,7 @@ public class AdminViewAllAndSearchItemController {
 	 */
 	@RequestMapping("/adminFindAll")
 	public String adminItemFindAll(Model model) {
-		List<Item> itemList = adminRepository.adminItemFindAll();
+		List<Item> itemList = itemRepository.adminItemFindAll();
 		itemList.forEach(System.out::println);
 		model.addAttribute("itemList", itemList);
 		
@@ -45,7 +46,7 @@ public class AdminViewAllAndSearchItemController {
 	 */
 	@RequestMapping("/adminFindByName")
 	public String adminItemFindByName(Model model, String name) {
-		List<Item> itemList = adminRepository.adminItemFindByName(name);
+		List<Item> itemList = itemRepository.adminItemFindByName(name);
 		model.addAttribute("itemList", itemList);
 		return "/admin/itemList";
 	}

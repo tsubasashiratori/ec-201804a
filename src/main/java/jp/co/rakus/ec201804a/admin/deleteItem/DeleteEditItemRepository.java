@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.admin.delete;
+package jp.co.rakus.ec201804a.admin.deleteItem;
 
 
 

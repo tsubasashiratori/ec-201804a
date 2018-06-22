@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.admin.delete;
+package jp.co.rakus.ec201804a.admin.deleteItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
+import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 
 @Controller
 @RequestMapping("/admin/DeleteItem")
 public class DeleteItemController {
 
 	@Autowired
-	private DeleteEditItemRepository repository;
+	private ItemRepository itemRepository;
 
 	@RequestMapping("/")
 	public String deleteItemById(@RequestParam("id") Long id) {
 
-		Item item = repository.load(id);
+		Item item = itemRepository.load(id);
 		
 		if(item.getDeleted() == true) {
 			item.setDeleted(false);
@@ -25,7 +26,7 @@ public class DeleteItemController {
 		else {
 			item.setDeleted(true);
 		}
-		repository.save(item);
+		itemRepository.save(item);
 
 		return "redirect:/admin/adminItemfindAll";
 

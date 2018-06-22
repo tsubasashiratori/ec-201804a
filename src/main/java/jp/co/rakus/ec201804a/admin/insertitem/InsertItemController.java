@@ -60,7 +60,7 @@ public class InsertItemController {
 		BeanUtils.copyProperties(form, item);
 		System.out.println(item);
 		itemRepository.insertItem(item);
-		return "redirect:/admin/adminAllandSearch/adminFindAll";
+		return "redirect:/admin/adminFindAll";
 	}
 
 }

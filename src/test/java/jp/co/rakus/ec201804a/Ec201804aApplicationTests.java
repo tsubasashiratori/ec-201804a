@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import jp.co.rakus.ec201804a.admin.delete.DeleteEditItemRepository;
+import jp.co.rakus.ec201804a.admin.deleteItem.DeleteEditItemRepository;
 import jp.co.rakus.ec201804a.common.domain.Item;
 
 @RunWith(SpringRunner.class)
