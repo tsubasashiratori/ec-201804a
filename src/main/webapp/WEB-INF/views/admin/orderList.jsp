@@ -13,8 +13,17 @@
 	<div align="center">
 
 <h1>注文一覧画面</h1>
-<table border="1">
-      <tr>
+
+	<c:choose>
+		<c:when test="${orderListEmptyChecker == true}">
+		<font color="red"><c:out value="${EmptyError}"/></font>
+		<hr>
+		<p align="center">
+		</p>
+		</c:when>
+		<c:when test="${orderListEmptyChecker == false}">
+		<table border="1">
+      	<tr>
         <th nowrap>注文番号</th>
         <th nowrap>日付</th>
         <th nowrap>利用者名</th>
@@ -27,6 +36,7 @@
         <td><c:out value="${order.orderDate}"/></td>
         <td><c:out value="${order.user.name}"/></td>
         <td>
+       
         <c:choose>
         	<c:when test="${order.status == 0}">
         		購入前
@@ -50,8 +60,10 @@
       </c:forEach>
     </table>
     <br>
-    <a href="/admin/administerMenu.jsp">メニューに戻る</a>
-</div>
+    </c:when>
+    </c:choose>
+    <a href="${pageContext.request.contextPath}/admin/menu">メニューに戻る</a>
+    </div>
 	
 </body>
 </html>

@@ -31,6 +31,12 @@ public class OrderListController {
 	public String index(Model model) {
 		List<Order> orderList = orderRipositroy.findAll();
 		
+		if (orderList.isEmpty() == true) {
+			model.addAttribute("orderListEmptyChecker", true);
+			model.addAttribute("EmptyError", "注文がありません");
+			return "/admin/orderList";
+		}
+		model.addAttribute("orderListEmptyChecker", false);
 		model.addAttribute("orderList", orderList);
 		
 		return "/admin/orderList";
