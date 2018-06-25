@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.controller;
+package jp.co.rakus.ec201804a.user.ViewAllAndsearch4;
 
 import java.util.List;
 
@@ -60,19 +60,11 @@ public class ViewAlItemsAndSearchItemController {
 		String name = viewAllItemsAndSearchForm.getName();
 		
 		List<Item> itemList = itemRepository.findByNameNotDeleted(name);
-
+		model.addAttribute("itemList", itemList);
 		
-		if(itemList.size() == 0) {
-			
-			result.rejectValue("name","", "該当する商品がありません");
-			model.addAttribute("itemList", null);
-			System.out.println("test");
-		}
 		if(result.hasErrors()) {
 			return "/user/viewShoppingList";
 		}
-		
-		model.addAttribute("itemList", itemList);
 
 		return "/user/viewShoppingList";
 	}

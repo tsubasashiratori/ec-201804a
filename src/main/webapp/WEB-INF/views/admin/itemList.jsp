@@ -10,6 +10,11 @@
 </head>
 <%@ include file="../common/adminHeader.jsp"%>
 <body>
+
+<div align="center">
+	<h2>商品一覧</h2>
+</div>
+
 <br>
 <form action="${pageContext.request.contextPath}/admin/adminFindAll" method="get" align="center">
 	
@@ -26,7 +31,7 @@
 <br>
 	<c:choose>
 		<c:when test="${itemList.size()==0}">
-		<p align="center">商品がありません</p>
+			<p align="center">商品がありません</p>
 		</c:when>
 		<c:otherwise>
 			<table border="1" align="center">
