@@ -63,6 +63,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/user/toInsertShoppingCart**" // : ショッピングカートに追加する
 				,"/user/toDeleteShoppingCart" // : ショッピングカートの要素を削除する
 				).permitAll() //このパスは全てのユーザに許可
+		.antMatchers("/user/**").hasRole("USER")
 		.anyRequest().authenticated()//それ以外のパスは認証が必要
 		;
 		

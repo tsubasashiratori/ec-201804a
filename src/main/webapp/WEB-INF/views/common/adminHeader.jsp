@@ -20,7 +20,7 @@
 				<c:otherwise>
 					<p>こんにちは<c:out value="${adminUser.name}"/>さん</p>
 					<p><a href="${pageContext.request.contextPath}/admin/logout">ログアウト</a></p>
-				</c:otherwise>	
+				</c:otherwise>
 			</c:choose>
 		</div>
 		<div id="linkHeader" align="left">
