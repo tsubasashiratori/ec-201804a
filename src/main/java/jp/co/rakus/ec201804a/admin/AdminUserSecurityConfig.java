@@ -49,12 +49,13 @@ public class AdminUserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatcher("/admin/**")
 		.authorizeRequests()
 		.antMatchers(
-				"/admin/"
-				,"/admin/login"
-				,"/admin/form"
-				,"/admin/register"
+				//ログインしていなくても開ける画面
+				"/admin/"// : 管理者のログインページ		
+				//ログインしていなくてもできる操作
+				,"/admin/login"// : 管理者のログイン処理
 				).permitAll() //このパスは全てのユーザに許可
-//		.anyRequest().authenticated()//それ以外のパスは認証が必要
+		.antMatchers("/admin/**").hasRole("ADMIN")
+		.anyRequest().authenticated()//それ以外のパスは認証が必要
 		;
 		
 		//ログインに関する設定

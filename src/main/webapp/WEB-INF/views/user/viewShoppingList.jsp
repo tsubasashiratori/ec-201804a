@@ -30,39 +30,36 @@
 			<br>
 		</form:form>
 		<br>
+	
+		<c:choose>
+			<c:when test="${itemList.size()==0}">
+				<p align="center">商品がありません</p>
+			</c:when>
 
-		<table border="1" align="center">
-
-			<c:choose>
-
-				<c:when test="${itemList==null}">
-
-				</c:when>
-				<c:otherwise>
+			<c:otherwise>
+				<table border="1" align="center">
 					<tr>
 						<th colspan="2" width="150">商品名</th>
 						<th width="150">価格</th>
-
 					</tr>
+
 					<c:forEach var="item" items="${itemList}">
 						<tr>
 							<td><img
 								src="${pageContext.request.contextPath}/img/${item.imagePath}"
-								width="150" height="125"></a></td>
+								width="150" height="125"></td>
 							<td><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
-									<c:out value="${item.name}"></c:out>
-							</a></td>
-							<td><fmt:formatNumber value="${item.price}"
-									pattern="￥###,###" />
+								<c:out value="${item.name}"/>
+								</a></td>
+							<td><fmt:formatNumber value="${item.price}" pattern="￥###,###" />
 						</tr>
 					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</table>
 
+				</table>
+			</c:otherwise>
 
-
+		</c:choose>
 	</div>
 </body>
 </html>
