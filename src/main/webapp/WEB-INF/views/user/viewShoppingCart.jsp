@@ -25,22 +25,7 @@
 							<th>個数</th>
 							<th></th>
 						</tr>
-<<<<<<< HEAD
-					</c:forEach>
-			</table>
-		</c:otherwise>
-	</c:choose>
-				</c:forEach>
 
-			<br> <br>
-			<c:forEach var="orders" items="${orderList}">
-				<c:choose>
-		<c:when test="${orders.orderItemList.size()!=0}">
-				<a href="${pageContext.request.contextPath }/user/viewPaymentDetail">決済へ</a>
-		</c:when>
-		</c:choose>
-			</c:forEach>
-=======
 						<c:forEach var="orderItem" items="${orders.orderItemList}">
 							<tr>
 								<td><img
@@ -68,11 +53,10 @@
 			<c:choose>
 				<c:when test="${orders.orderItemList.size()!=0}">
 					<a
-						href="${pageContext.request.contextPath }/user/viewPaymentDetail?orderId=${orders.id}">決済へ</a>
+						href="${pageContext.request.contextPath }/user/viewPaymentDetail">決済へ</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
-	
->>>>>>> d31deddb09c4567aa9202f9a0423c68aafb47ea2
+
 </body>
 </html>
