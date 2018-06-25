@@ -5,7 +5,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ショッピングカート一覧</title>
 </head>
 <%@ include file="../common/userHeader.jsp"%>
 <body>
@@ -13,7 +13,7 @@
 
 			<h1>ショッピングカート一覧</h1>
 
-
+	<c:if test="${damyOrder.id==-1}">ショッピングカートに商品がありません</c:if>
 				<c:forEach var="orders" items="${orderList}">
 	<c:choose>
 		<c:when test="${orders.orderItemList.size()==0}">

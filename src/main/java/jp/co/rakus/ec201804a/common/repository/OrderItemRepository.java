@@ -85,9 +85,10 @@ public class OrderItemRepository {
 	/**ゲストの注文番号をホストの注文番号に更新するメソッド.
 	 * 
 	 */
-	public void updateOrderId(Long orderId,Long itemId) {
-		String sql="UPDATE order_items SET order_id=:order_id WHERE item_id=item_id";
-		SqlParameterSource param=new MapSqlParameterSource().addValue("order_id", orderId).addValue("item_id", itemId);
+	public void updateOrderId(Long orderHostId,Long orderGestId) {
+		//String sql="UPDATE order_items SET order_id=:order_id WHERE item_id=:item_id";
+		String sql="UPDATE order_items SET order_id=:order_id WHERE order_id=:order_id2";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("order_id", orderHostId).addValue("order_id2", orderGestId);
 		try {
 			template.update(sql, param);
 		}catch(Exception e) {
