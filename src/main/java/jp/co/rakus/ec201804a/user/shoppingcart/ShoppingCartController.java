@@ -4,9 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -61,7 +59,6 @@ public class ShoppingCartController {
 	public String insert(/* @RequestParam Integer price, */InsertShoppingCartForm form,
 			 @RequestParam Long id,Model model,HttpSession session) {
 			Long itemId=id;
-			System.out.println("start");
 		//セッションIDを15桁で取得
 		String sessionId = session.getId();
 		String a=sessionId.replaceAll("[^0-9]","");
@@ -80,14 +77,7 @@ public class ShoppingCartController {
 		if(userId==0) {
 			userId=Long.parseLong(b);
 		}
-		//System.out.println(userId);
-		// 2回目押したときの判定
-
-		//int userId=1;
 		int status=0;
-		
-		
-		
 		Order order1 = orderRepository.findByUserIdAndStatusForInsert(userId,status);
 		
 		if (order1 == null) {
@@ -108,7 +98,6 @@ public class ShoppingCartController {
 			order.setTotalPrice(totalPrice);
 			order.setOrderDate(day);
 			orderRepository.insert(order);
-
 		}
 
 		Order order2=orderRepository.findByUserIdAndStatusForInsert(userId,status);
@@ -122,43 +111,35 @@ public class ShoppingCartController {
 			orderItemRepository.insert(orderItem);			
 		}else {
 			int quantity=orderItem2.getQuantity()+form.getIntQuantiy();
-			//System.out.println(quantity);
 			Long orderId2=orderItem2.getOrderId();
 			Long itemId2=orderItem2.getItemId();
 			orderItemRepository.updateQuantity(quantity, orderId2, itemId2);
 		}
-
-	
-		return viewShoppingCart(model,session);
+		return "redirect:/user/toViewShoppingCart";
 	}
 
 	public static Date localDate2Date(final LocalDate localDate) {
 		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
-	
 	/**
 	 * ショッピングカートを表示するメソッド.
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value="/toViewShoppingCart")
+	
 	public String viewShoppingCart(Model model,HttpSession session) {
+		//セッションIDが取れなければ新しいセッションIDを作成する
 		try {
 			String sessionId=(String) session.getAttribute("sessionId");
 			Long userId=Long.parseLong(sessionId);
-			System.out.println("aa");
 		}catch(Exception e){
 			e.printStackTrace();
 			String sessionId = session.getId();
 			String a=sessionId.replaceAll("[^0-9]","");
 			String b=a.substring(0, 15);
 			session.setAttribute("sessionId", b);
-			//Order damyOrder=new Order();
-			//damyOrder.setId((long)-1);
-			//model.addAttribute("damyOrder",damyOrder);
-			//System.out.println("bb");
 		}
-
 		//user情報を取得.
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Long userId=(long)0;
@@ -170,23 +151,18 @@ public class ShoppingCartController {
 		if(userId==0) {
 			String sessionId=(String) session.getAttribute("sessionId");
 			userId=Long.parseLong(sessionId);
-			//System.out.println(userId);
 		}
 		int status=0;
 		List<Order> orderList=orderRepository.findByUserIdAndStatusForView(userId, status);
+		//オーダーリストの中身がなければダミーオブジェクトを作成する→ショッピングカートに中身がないときの対策
 		if(orderList.size()==0) {
 			Order damyOrder=new Order();
 			damyOrder.setId((long)-1);
 			model.addAttribute("damyOrder",damyOrder);
 		}
-		//System.out.println("b");
 		model.addAttribute("orderList",orderList);
-		//for(Order order3:orderList) {
-			//System.out.println(order3.getId());
-		//}
 		return "/user/viewShoppingCart";
 	}
-	
 	/**
 	 * ショッピングカートの名前を削除するメソッド.
 	 * @param form
