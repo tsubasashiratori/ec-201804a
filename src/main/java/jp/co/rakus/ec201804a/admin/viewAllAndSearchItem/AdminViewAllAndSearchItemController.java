@@ -38,7 +38,6 @@ public class AdminViewAllAndSearchItemController {
 	@RequestMapping("/adminFindAll")
 	public String adminItemFindAll(Model model){
 		List<Item> itemList = itemRepository.adminItemFindAll();
-		System.out.println(itemList);
 		
 		model.addAttribute("itemList", itemList);
 		
