@@ -1,41 +1,26 @@
-package jp.co.rakus.ec201804a.common.login;
+package jp.co.rakus.ec201804a.common.logic;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import jp.co.rakus.ec201804a.common.domain.Order;
 import jp.co.rakus.ec201804a.common.domain.OrderItem;
-import jp.co.rakus.ec201804a.common.domain.User;
+import jp.co.rakus.ec201804a.common.login.LoginUser;
 import jp.co.rakus.ec201804a.common.repository.OrderItemRepository;
 import jp.co.rakus.ec201804a.common.repository.OrderRepository;
 import jp.co.rakus.ec201804a.common.repository.UserRepository;
 
-/**
- * ログイン後の利用者情報に権限を付与するサービスクラス.
- * 
- * @author yuta.kitazawa
- */
-@Service("UserDetailsServiceImp1")
-public class UserDetailsServiceImp1 implements UserDetailsService {
-	/**
-	 * 利用者をfindByOneMailAddresするリポジトリ
-	 */
+@Component
+public class CreateOrder {
 	@Autowired
 	private UserRepository userRepository;
 
@@ -48,25 +33,18 @@ public class UserDetailsServiceImp1 implements UserDetailsService {
 	@Autowired
 	private OrderItemRepository orderItemRepository;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.core.userdetails.UserDetailsService#
-	 * loadUserByUsername(java.lang.String)
-	 */
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userRepository.findByOneMailAddress(email);
-		//System.out.println(user);
-		if (user == null) {
-			throw new UsernameNotFoundException("そのメールアドレスは登録されていません");
+	public  void createOrder() {
+		// user情報を取得.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long userId = (long) 0;
+		if (principal instanceof LoginUser) {
+			LoginUser loginUser = (LoginUser) principal;
+			userId = loginUser.getUser().getId();
 		}
+		// ゲスト作成
+		int status = 0;
+		Order order1 = orderRepository.findByUserIdAndStatusForInsert(userId, status);
 
-		//ゲスト作成
-		Long userId=user.getId();
-		int status=0;
-		Order order1 = orderRepository.findByUserIdAndStatusForInsert(userId,status);
-		
 		if (order1 == null) {
 			// orderが取れなかったら新しいidを発行
 			Order order = new Order();
@@ -74,7 +52,7 @@ public class UserDetailsServiceImp1 implements UserDetailsService {
 			LocalDate localdate = LocalDate.now();
 			Date day = localDate2Date(localdate);
 			int price = 0;
-			Integer totalPrice =  /*order.getTotalPrice()*/+ price;
+			Integer totalPrice = /* order.getTotalPrice() */+price;
 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String day1 = formatter.format(day);
@@ -87,14 +65,13 @@ public class UserDetailsServiceImp1 implements UserDetailsService {
 			orderRepository.insert(order);
 
 		}
-		
-		
+
 		// ゲスト情報受け取り
 		String sessionId = (String) session.getAttribute("sessionId");
 		if (sessionId != null) {
 			Long gestId = Long.parseLong(sessionId);
-			/*Long*/ userId = user.getId();
-			/*int*/ status = 0;
+			/* Long */ //userId = user.getId();
+			/* int */ status = 0;
 			// ログイン者の情報取得
 			Order orderHost = orderRepository.findByUserIdAndStatusForInsert(userId, status);
 			// ゲストの情報取得
@@ -134,14 +111,10 @@ public class UserDetailsServiceImp1 implements UserDetailsService {
 			}
 		}
 
-		Collection<GrantedAuthority> authorityList = new ArrayList<>();
-		// ROLE_は必ず書く.
-		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-		return new LoginUser(user, authorityList);
 	}
 
 	public static Date localDate2Date(final LocalDate localDate) {
 		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
+
 }

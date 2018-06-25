@@ -49,9 +49,6 @@ public class OrderRepository {
 	 */
 	public void insert(Order order) {
 
-		// SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
-		// String day1=formatter.format(order.getOrderDate());
-
 		String sql = "INSERT INTO orders(order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel) VALUES(:order_number,:user_id,:status,:total_price,:order_date,:delivery_name,:delivery_email,:delivery_zip_code,:delivery_address,:delivery_tel)";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("order_number", order.getOrderNumber())
 				.addValue("user_id", order.getUserId()).addValue("status", order.getStatus())
@@ -78,10 +75,7 @@ public class OrderRepository {
 			e.printStackTrace();
 			return null;
 		}
-		//return null;
 	}
-	
-	
 	
 	private static final ResultSetExtractor<List<Order>> ORDER_RESULT_SET_EXTRACTOR = (rs) -> {
 		List<Order> orderList = new LinkedList<Order>();
@@ -166,15 +160,9 @@ public class OrderRepository {
 				  " o.user_id =:usersId AND o.status=:status"+
 				  " ORDER BY"+ 
 				  " o.id DESC";
-		//System.out.println(userId);
-		//System.out.println(status);
 		try {
 		SqlParameterSource param=new MapSqlParameterSource().addValue("usersId", userId).addValue("status", status);
 		List<Order> orderList = namedParameterJdbcTemplate.query(sql, param,ORDER_RESULT_SET_EXTRACTOR);
-		//for(Order a:orderList) {
-			//System.out.println(a.toString());
-		//}
-		//System.out.println("a");
 		return orderList;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -215,7 +203,6 @@ public class OrderRepository {
 
 		List<Order> orderList = namedParameterJdbcTemplate.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
 		Order order = orderList.get(0);
-
 		return order;
 	}
 	/**
