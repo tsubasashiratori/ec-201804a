@@ -188,8 +188,8 @@ public class OrderRepository {
 	 * @return　検索された情報を持ったOrderオブジェクト
 	 * @author kohei.taguchi
 	 */
-	public Order findById(long orderId) {
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderId);
+	public Order findByUserIdAndStatus(long userId, Integer status) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
 
 		String sql = "SELECT orders.id as order_id,	orders.order_number "
 				+ ",	orders.user_id as user_id, orders.status ,orders.total_price "
@@ -210,12 +210,48 @@ public class OrderRepository {
 				+ "		ON order_items.item_id = items.id "
 				+ "		LEFT OUTER JOIN users "
 				+ "		ON orders.user_id = users.id "
-				+ "		WHERE orders.id = :id "
+				+ "		WHERE user_id = :user_id AND status = :status "
 				+ "		ORDER BY orders.id ;";
 
 		List<Order> orderList = namedParameterJdbcTemplate.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
 		Order order = orderList.get(0);
 
+		return order;
+	}
+	/**
+	 * 一件検索を行うメソッド.
+	 * @param orderId　OrdersテーブルのID
+	 * @return　検索された情報を持ったOrderオブジェクト
+	 * @author kohei.taguchi
+	 */
+	public Order findByOrderId(long orderId) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderId);
+		
+		String sql = "SELECT orders.id as order_id,	orders.order_number "
+				+ ",	orders.user_id as user_id, orders.status ,orders.total_price "
+				+ ",	orders.order_date , orders.delivery_name "
+				+ ",	orders.delivery_email , orders.delivery_zip_code "
+				+ ",	orders.delivery_address , orders.delivery_tel "
+				+ ",	order_items.id as order_items_id"
+				+ ",	order_items.item_id, order_items.order_id,	order_items.quantity "
+				+ ",	items.id as items_id, items.name as item_name, items.description "
+				+ ",	items.price , items.imagepath , items.deleted "
+				+ ",	users.id as users_id, users.name as user_name, users.email "
+				+ ",	users.password , users.zipcode , users.address "
+				+ ",	users.telephone "
+				+ "		FROM orders "
+				+ "		LEFT OUTER JOIN order_items "
+				+ "		ON orders.id = order_items.order_id "
+				+ " 	LEFT OUTER JOIN items "
+				+ "		ON order_items.item_id = items.id "
+				+ "		LEFT OUTER JOIN users "
+				+ "		ON orders.user_id = users.id "
+				+ "		WHERE order_id = :id "
+				+ "		ORDER BY orders.id ;";
+		
+		List<Order> orderList = namedParameterJdbcTemplate.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
+		Order order = orderList.get(0);
+		
 		return order;
 	}
 	

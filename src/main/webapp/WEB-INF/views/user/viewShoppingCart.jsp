@@ -49,7 +49,7 @@
 			<c:forEach var="orders" items="${orderList}">
 				<c:choose>
 		<c:when test="${orders.orderItemList.size()!=0}">
-				<a href="${pageContext.request.contextPath }/user/viewPaymentDetail?orderId=${orders.id}">決済へ</a>
+				<a href="${pageContext.request.contextPath }/user/viewPaymentDetail">決済へ</a>
 		</c:when>
 		</c:choose>
 			</c:forEach>

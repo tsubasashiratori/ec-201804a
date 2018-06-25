@@ -38,9 +38,7 @@ public class PaymentController {
 	 * 
 	 */
 	@RequestMapping(value = "/viewPaymentDetail")
-	public String viewPaymentDetail(@RequestParam long orderId, Model model) {
-		
-		
+	public String viewPaymentDetail(Model model) {
 //		ユーザーログインチェックここから================================================================
 		User user = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -58,7 +56,7 @@ public class PaymentController {
 		
 		
 		
-		Order order = orderRepository.findById(orderId);
+		Order order = orderRepository.findByUserIdAndStatus(user.getId(), 0);
 //		リクエストパラメータで受け取ったordersテーブルのIDをもとに一件検索を行う、検索した情報をOrderオブジェクトに入れる
 
 		if (order == null || order.getOrderItemList().isEmpty() == true) {
@@ -109,9 +107,9 @@ public class PaymentController {
 	 * @return　決済完了画面へ移動するメソッドへのリダイレクト
 	 */
 	@RequestMapping(value = "/toPayment")
-	public String payment(@RequestParam long orderId, Model model) {
+	public String payment(@RequestParam long userId, Model model) {
 		
-		Order order = orderRepository.findById(orderId);
+		Order order = orderRepository.findByUserIdAndStatus(userId, 0);
 //		リクエストパラメータで受け取ったOrdersテーブルIDをもとに、注文情報が残っているか再確認する
 		
 		if (order == null || order.getOrderItemList().isEmpty() == true) {

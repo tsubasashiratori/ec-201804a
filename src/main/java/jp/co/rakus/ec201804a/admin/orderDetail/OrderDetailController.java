@@ -36,7 +36,7 @@ public class OrderDetailController {
 			model.addAttribute("updateMessage", "更新しました");
 		}
 		
-		Order order = orderRepository.findById(orderId);
+		Order order = orderRepository.findByOrderId(orderId);
 		model.addAttribute("order", order);
 		return "/admin/orderDetail";
 	}
@@ -50,7 +50,7 @@ public class OrderDetailController {
 	 */
 	@RequestMapping(value = "/updateStatus")
 	public String updateStatus(@RequestParam Integer status, @RequestParam long orderId, Model model) {
-		Order order = orderRepository.findById(orderId);
+		Order order = orderRepository.findByOrderId(orderId);
 		
 		order.setStatus(status);
 		orderRepository.save(order);
