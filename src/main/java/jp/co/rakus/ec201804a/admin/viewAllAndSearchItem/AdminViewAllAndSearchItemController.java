@@ -24,7 +24,7 @@ public class AdminViewAllAndSearchItemController {
 
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@ModelAttribute
 	private AdminViewAllAndSearchItemForm setUpform() {
 		return new AdminViewAllAndSearchItemForm();
@@ -36,8 +36,10 @@ public class AdminViewAllAndSearchItemController {
 	 * @return 商品一覧ページに遷移する
 	 */
 	@RequestMapping("/adminFindAll")
-	public String adminItemFindAll(Model model) {
+	public String adminItemFindAll(Model model){
 		List<Item> itemList = itemRepository.adminItemFindAll();
+		System.out.println(itemList);
+		
 		model.addAttribute("itemList", itemList);
 		
 		return "/admin/itemList";
@@ -56,13 +58,11 @@ public class AdminViewAllAndSearchItemController {
 		String name = form.getName();
 		
 		List<Item> itemList = itemRepository.adminItemFindByName(name);
-		if(itemList.size()==0) {
-			result.rejectValue("name",null, "商品がありません");
-		}
+		model.addAttribute("itemList", itemList);
+		
 		if(result.hasErrors()) {
 			return "/admin/itemList";
 		}
-		model.addAttribute("itemList", itemList);
 		return "/admin/itemList";
 	}
 }
