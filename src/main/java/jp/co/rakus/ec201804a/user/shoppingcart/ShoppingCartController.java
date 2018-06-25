@@ -50,23 +50,6 @@ public class ShoppingCartController {
 	public DeleteShoppingCartForm setUpDelete() {
 		return new DeleteShoppingCartForm();
 	}
-
-	/**
-	 * 仮ページ表示(テスト用)
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "a")
-	public String index(Model model) {
-		Map<Integer, Integer> map = new LinkedHashMap<>();
-		map.put(1, 1);
-		map.put(2, 2);
-		map.put(3, 3);
-		model.addAttribute("list", map);
-		return "/user/case";
-	}
-
 	/**
 	 * ショッピングカートに商品を追加するメソッド.
 	 * 
@@ -113,7 +96,7 @@ public class ShoppingCartController {
 
 			LocalDate localdate = LocalDate.now();
 			Date day = localDate2Date(localdate);
-			int price = 100;
+			int price = 0;
 			Integer totalPrice = /* order.getTotalPrice()+ */price;
 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -160,6 +143,22 @@ public class ShoppingCartController {
 	 */
 	@RequestMapping(value="/toViewShoppingCart")
 	public String viewShoppingCart(Model model,HttpSession session) {
+		try {
+			String sessionId=(String) session.getAttribute("sessionId");
+			Long userId=Long.parseLong(sessionId);
+			System.out.println("aa");
+		}catch(Exception e){
+			e.printStackTrace();
+			String sessionId = session.getId();
+			String a=sessionId.replaceAll("[^0-9]","");
+			String b=a.substring(0, 15);
+			session.setAttribute("sessionId", b);
+			//Order damyOrder=new Order();
+			//damyOrder.setId((long)-1);
+			//model.addAttribute("damyOrder",damyOrder);
+			//System.out.println("bb");
+		}
+
 		//user情報を取得.
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Long userId=(long)0;
@@ -175,6 +174,11 @@ public class ShoppingCartController {
 		}
 		int status=0;
 		List<Order> orderList=orderRepository.findByUserIdAndStatusForView(userId, status);
+		if(orderList.size()==0) {
+			Order damyOrder=new Order();
+			damyOrder.setId((long)-1);
+			model.addAttribute("damyOrder",damyOrder);
+		}
 		//System.out.println("b");
 		model.addAttribute("orderList",orderList);
 		//for(Order order3:orderList) {
