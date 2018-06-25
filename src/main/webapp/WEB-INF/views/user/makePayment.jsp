@@ -15,7 +15,7 @@
 	<hr>
 	
 	<c:choose>
-		<c:when test="${orderNullChecker == true}">
+		<c:when test="${cartNullChecker == true}">
 		<font color="red"><c:out value="${nullError}"/></font>
 		<hr>
 		<p align="center">
@@ -23,7 +23,7 @@
 		</p>
 		</c:when>
 	
-	<c:when test="${orderNullChecker == false}">
+	<c:when test="${cartNullChecker == false}">
 	<form:form action="${pageContext.request.contextPath}/user/toPayment" method="POST">
 	<table border="1" align="center">
 		<tr>

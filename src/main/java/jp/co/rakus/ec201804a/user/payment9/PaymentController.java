@@ -39,8 +39,10 @@ public class PaymentController {
 	 */
 	@RequestMapping(value = "/viewPaymentDetail")
 	public String viewPaymentDetail(@RequestParam long orderId, Model model) {
+		
+		
+//		ユーザーログインチェックここから================================================================
 		User user = null;
-
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof LoginUser) {
 				LoginUser loginUser = (LoginUser)principal;
@@ -52,30 +54,49 @@ public class PaymentController {
 		if (user == null) {
 			return "redirect:/user/";
 		}
+//		ユーザーログインチェックここまで================================================================
+		
+		
 		
 		Order order = orderRepository.findById(orderId);
+//		リクエストパラメータで受け取ったordersテーブルのIDをもとに一件検索を行う、検索した情報をOrderオブジェクトに入れる
 
 		if (order == null || order.getOrderItemList().isEmpty() == true) {
-			model.addAttribute("orderNullChecker", true);
+			model.addAttribute("cartNullChecker", true);
 			model.addAttribute("nullError", "注文がありません");
 			return "/user/makePayment";
 		}
+//		検索した情報が空であるか、ショッピングカートに商品が一つも入ってない場合はエラーメッセージをスコープに入れてJSPを呼び出す
 		
-		else {
-			order.setUserId(user.getId());
-			order.setStatus(0);
-			order.setTotalPrice(order.getTotalPriceIncludeTaxAndPostage());
-			order.setOrderDate(setSqlDateNow());
-			order.setDeliveryName(user.getName());
-			order.setDeliveryEmail(user.getEmail());
-			order.setDeliveryZipCode(user.getZipCode());
-			order.setDeliveryAddress(user.getAddress());
-			order.setDeliveryTel(user.getTelephone());
-			
-			orderRepository.save(order);
-		}
+		
+
+//		検索した情報が空でなく、ショッピングカートにも商品が入っていればOrderテーブルの注文情報を更新する======================
+		
+		order.setUserId(user.getId());
+//		ログインチェックした際のユーザー情報からIDを取得、保存
+		order.setStatus(0);
+//		注文ステータスを未購入に設定
+		order.setTotalPrice(order.getTotalPriceIncludeTaxAndPostage());
+//		合計金額を取得して保存
+		order.setOrderDate(setSqlDateNow());
+//		注文日を保存
+		order.setDeliveryName(user.getName());
+		order.setDeliveryEmail(user.getEmail());
+		order.setDeliveryZipCode(user.getZipCode());
+		order.setDeliveryAddress(user.getAddress());
+		order.setDeliveryTel(user.getTelephone());
+//		届け先情報をログインチェックしたユーザー情報から取得、保存
+//		現状ログインしているユーザー情報そのままだが、届け先を変えられるようにするときは要対応
+		orderRepository.save(order);
+//		取得した情報をOrdersテーブルに保存する
+		
+//		注文情報の更新ここまで======================================================================================
+		
+		
 		model.addAttribute("orderNullChecker", false);
 		model.addAttribute("order", order);
+//		更新した情報をリクエストスコープに入れる
+		
 		return "/user/makePayment";
 	}
 
@@ -86,20 +107,31 @@ public class PaymentController {
 	 * @return　決済完了画面へ移動するメソッドへのリダイレクト
 	 */
 	@RequestMapping(value = "/toPayment")
-	public String payment(@RequestParam String orderId, Model model) {
-		long longOrderId = new Long(orderId);
+	public String payment(@RequestParam long orderId, Model model) {
 		
-		Order order = orderRepository.findById(longOrderId);
+		Order order = orderRepository.findById(orderId);
+//		リクエストパラメータで受け取ったOrdersテーブルIDをもとに、注文情報が残っているか再確認する
 		
-		if(order.getTotalPriceExcludeTax() == 0) {
-			
+		if (order == null || order.getOrderItemList().isEmpty() == true) {
+			model.addAttribute("cartNullChecker", true);
+			model.addAttribute("nullError", "注文がありません");
+			return "/user/makePayment";
 		}
+//		検索した情報が空であるか、ショッピングカートに商品が一つも入ってない場合はエラーメッセージをスコープに入れて呼び出し元画面に戻る
+		
+//		検索した情報が空でなく、ショッピングカートにも商品が入っていればOrderテーブルの注文情報を更新する======================
 		
 		order.setStatus(1);
+//		注文ステータスを未入金に設定
 		order.setOrderNumber(dateAndSequence());
+//		注文番号を設定(注文日付＋年内の連番)
 		orderRepository.save(order);
-
+//		更新した情報をOrdersテーブルに保存
+//		注文情報の更新ここまで======================================================================================
+		
+		
 		return "redirect:/user/confirmedPayment";
+//		決済完了画面を表示するメソッドへのリダイレクト
 	}
 	
 	/**
@@ -119,6 +151,10 @@ public class PaymentController {
 		LocalDate localDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 		String strDate = formatter.format(localDate);
+		
+//		String sql = "SELECT order_date FROM orders ORDER BY order_date DESC LIMIT 1;";
+		
+		
 		return strDate;
 	}
 	
