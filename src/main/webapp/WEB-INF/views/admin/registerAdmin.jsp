@@ -16,7 +16,8 @@
 	<br>
 
 <form:errors path="AdminUserForm.*" />
-	<form:form modelAttribute="registerAdminForm" action="${pageContext.request.contextPath}/admin/register" method="post">
+	<form:form modelAttribute="registerAdminForm" action="${pageContext.request.contextPath}/admin/register" 
+	method="post" onreset="return confirm('入力内容を削除してもよろしいですか？')">
 		<br>
 		<table border="">
 			<tr>

@@ -34,7 +34,7 @@
 			<form:checkbox path="deleted"/>利用者商品一覧に表示しない<br>
 			<input type="submit" value="登録"><br>
 		</form:form>
-		<br> <a href="${pageContext.request.contextPath}/administerMenu">管理者メニュー画面に戻る</a>
+		<br> <a href="${pageContext.request.contextPath}/admin/menu">管理者メニュー画面に戻る</a>
 	</div>
 </body>
 </html>
