@@ -122,8 +122,8 @@
 </form></td>
       </tr>
     </table><br>
+<font color="red"><c:out value="${updateMessage}"/></font>
 
- <c:out value="${updateMessage}"/>
 <br>
 <br>
     <a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧に戻る</a>

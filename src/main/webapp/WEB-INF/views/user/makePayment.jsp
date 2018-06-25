@@ -11,8 +11,6 @@
 <%@ include file="../common/userHeader.jsp" %>
 <body>
 <div align="center">
-	<h2>ご注文内容</h2>
-	<hr>
 	
 	<c:choose>
 		<c:when test="${cartNullChecker == true}">
@@ -22,8 +20,9 @@
 		<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted ">商品一覧画面へ戻る</a>
 		</p>
 		</c:when>
-	
 	<c:when test="${cartNullChecker == false}">
+	<h2>ご注文内容</h2>
+	<hr>
 	<form:form action="${pageContext.request.contextPath}/user/toPayment" method="POST">
 	<table border="1" align="center">
 		<tr>
@@ -63,16 +62,17 @@
 	<br>
 	
 	<h2 align="center">お届け先</h2>
-	<hr><div align="center">
+	<hr>
 	お名前：<c:out value="${order.deliveryName}"/><br>
 	メールアドレス：<c:out value="${order.deliveryEmail}"/><br>
 	住所：<c:out value="${order.deliveryAddress}"/><br>
 	電話番号：<c:out value="${order.deliveryTel}"/><br><br>
 	<input type="hidden" name="orderId" value="${order.id}">
 	<input type="submit" value="確定">
-	</form:form></div>
+	</form:form>
 	</c:when>
 	</c:choose>
+	</div>
 	
 	
 </body>

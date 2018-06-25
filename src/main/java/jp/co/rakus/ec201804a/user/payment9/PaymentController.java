@@ -62,6 +62,7 @@ public class PaymentController {
 //		リクエストパラメータで受け取ったordersテーブルのIDをもとに一件検索を行う、検索した情報をOrderオブジェクトに入れる
 
 		if (order == null || order.getOrderItemList().isEmpty() == true) {
+			System.out.println("empty-------------------------------------------------------");
 			model.addAttribute("cartNullChecker", true);
 			model.addAttribute("nullError", "注文がありません");
 			return "/user/makePayment";
@@ -93,10 +94,11 @@ public class PaymentController {
 //		注文情報の更新ここまで======================================================================================
 		
 		
-		model.addAttribute("orderNullChecker", false);
+		model.addAttribute("cartNullChecker", false);
 		model.addAttribute("order", order);
 //		更新した情報をリクエストスコープに入れる
 		
+		System.out.println("beforeviewpayment===================================================================");
 		return "/user/makePayment";
 	}
 
@@ -113,6 +115,7 @@ public class PaymentController {
 //		リクエストパラメータで受け取ったOrdersテーブルIDをもとに、注文情報が残っているか再確認する
 		
 		if (order == null || order.getOrderItemList().isEmpty() == true) {
+			System.out.println("empty-------------------------------------------------------");
 			model.addAttribute("cartNullChecker", true);
 			model.addAttribute("nullError", "注文がありません");
 			return "/user/makePayment";
@@ -129,7 +132,7 @@ public class PaymentController {
 //		更新した情報をOrdersテーブルに保存
 //		注文情報の更新ここまで======================================================================================
 		
-		
+		System.out.println("beforeconfirmed===================================================================");
 		return "redirect:/user/confirmedPayment";
 //		決済完了画面を表示するメソッドへのリダイレクト
 	}

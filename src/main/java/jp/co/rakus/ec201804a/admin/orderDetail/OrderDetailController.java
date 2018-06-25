@@ -26,11 +26,16 @@ public class OrderDetailController {
 	/**
 	 * 注文詳細情報を表示するメソッド.
 	 * @param orderId　表示したいOrdersテーブルのID
+	 * @param update 更新フラグ
 	 * @param model　モデル
 	 * @return　詳細情報を表示するjspのURL
 	 */
 	@RequestMapping(value = "/viewOrderDetail")
-	public String viewOrderDetail(@RequestParam long orderId, Model model) {
+	public String viewOrderDetail(@RequestParam long orderId, @RequestParam boolean update,  Model model) {
+		if(update == true) {
+			model.addAttribute("updateMessage", "更新しました");
+		}
+		
 		Order order = orderRepository.findById(orderId);
 		model.addAttribute("order", order);
 		return "/admin/orderDetail";
@@ -50,7 +55,6 @@ public class OrderDetailController {
 		order.setStatus(status);
 		orderRepository.save(order);
 		
-		model.addAttribute("updateMessage", "更新しました");
-		return "redirect:/admin/viewOrderDetail?orderId=" + orderId;
+		return "redirect:/admin/viewOrderDetail?orderId=" + orderId + "&update=true";
 	}
 }
