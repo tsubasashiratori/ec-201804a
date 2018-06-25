@@ -49,12 +49,21 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatcher("/user/**")
 		.authorizeRequests()
 		.antMatchers(
-				"/user/"
-				,"/user/login"
-				,"/user/form"
-				,"/user/register"
+				//ログインしていなくても表示可能な画面
+				"/user/"// : 利用者のログインページ
+				,"/user/form" //: 利用者の登録画面
+				,"/user/ViewAllItemsAndSearchItem/findAllNotDeleted" // : 商品一覧画面
+				,"/user/viewDetail**" // : 商品詳細の表示
+				,"/user/toViewShoppingCart" //　:　ショッピングカート一覧画面
+				
+				//ログインしていなくても可能な操作
+				,"/user/login" // : 利用者のログイン処理
+				,"/user/register" // : 利用者登録処理
+				,"/user/ViewAllItemsAndSearchItem/findByNameNotDeleted" // : 商品の検索
+				,"/user/toInsertShoppingCart**" // : ショッピングカートに追加する
+				,"/user/toDeleteShoppingCart" // : ショッピングカートの要素を削除する
 				).permitAll() //このパスは全てのユーザに許可
-//		.anyRequest().authenticated()//それ以外のパスは認証が必要
+		.anyRequest().authenticated()//それ以外のパスは認証が必要
 		;
 		
 		//ログインに関する設定

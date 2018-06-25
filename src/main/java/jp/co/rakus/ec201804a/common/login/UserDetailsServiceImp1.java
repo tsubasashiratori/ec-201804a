@@ -97,7 +97,8 @@ public class UserDetailsServiceImp1 implements UserDetailsService{
 			orderId=orderItem.getOrderId();
 			beforeItemId=currentItemId;
 		}
-		}				
+		}
+		
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		//ROLE_は必ず書く.
 		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
