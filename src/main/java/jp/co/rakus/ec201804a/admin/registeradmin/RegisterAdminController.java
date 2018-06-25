@@ -50,16 +50,21 @@ public class RegisterAdminController {
 	 */
 	@RequestMapping(value="/register")
 	public String registerUser(@Validated RegisterAdminForm form, BindingResult result) {
-		if(adminUserRepository.findByOneMailAddress(form.getEmail()) != null){
+		if(!form.getEmail().equals("")) {
+			if(!form.getEmail().matches("^([\\w])+([\\w\\._-])*\\@([\\w])+([\\w\\._-])*\\.([a-zA-Z])+$")){
+				result.rejectValue("email","","アドレスが不正です");
+			}else if(adminUserRepository.findByOneMailAddress(form.getEmail()) != null){
 			result.rejectValue("email","","そのアドレスはすでに使われています");
+			}
 		}
-		
 		if(!form.getPassword().equals(form.getCheckPassword())) {
 			result.rejectValue("checkPassword","","確認用パスワードか一致していません");
 		}
 		if (result.hasErrors()) {			
 			return viewRegisterAdmin();
 		}
+		
+		
 		AdminUser adminUser = new AdminUser();
 		BeanUtils.copyProperties(form, adminUser);
 		System.out.println(adminUser);

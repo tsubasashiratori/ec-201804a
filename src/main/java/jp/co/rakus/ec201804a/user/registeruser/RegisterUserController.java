@@ -56,8 +56,12 @@ public class RegisterUserController {
 	 */
 	@RequestMapping(value="/register")
 	public String registerUser(@Validated RegisterUserForm form, BindingResult result) {
-		if(userRepository.findByOneMailAddress(form.getEmail()) != null){
-			result.rejectValue("email","","そのアドレスはすでに使われています");
+		if(!form.getEmail().equals("")) {
+			if(!form.getEmail().matches("^([\\w])+([\\w\\._-])*\\@([\\w])+([\\w\\._-])*\\.([a-zA-Z])+$")){
+				result.rejectValue("email","","アドレスが不正です");
+			}else if(userRepository.findByOneMailAddress(form.getEmail()) != null){
+				result.rejectValue("email","","そのアドレスはすでに使われています");
+			}
 		}
 		
 		if(!form.getZipCode().matches("^\\d{3}\\-?\\d{4}$") && !form.getZipCode().equals("")) {
