@@ -50,6 +50,7 @@ public class EditItemController {
 		} else if (form.getIntPrice() <= 0 || 1000001 <= form.getIntPrice()) {
 			result.rejectValue("price", null, "1～1000000の数字で入力してください");
 		}
+		
 		Item beforeItem = ItemRepository.load(form.getId());
 		if(beforeItem.getName().equals(form.getName())) {
 			
