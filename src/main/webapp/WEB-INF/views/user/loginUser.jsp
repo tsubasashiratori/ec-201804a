@@ -12,8 +12,8 @@
 	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-materialbtn.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css2/arange.css">
+<!--<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css2/arange.css">-->
 <meta http-equiv="content-type" charset="utf-8">
 <title>ユーザログイン</title>
 <!-- jQuery読み込み -->
@@ -35,9 +35,6 @@
 <%@ include file="../common/userHeader.jsp" %>
 <body>
 
-
-<div class="bg">
-<div class="whole">
 	<div align="center">
 	<h2>ログイン</h2><br>
 	<span class="text-danger"><form:errors path="userLoginForm.*"/></span>
@@ -59,7 +56,6 @@
 	<br>
 	<a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a>
 	</div>
-</div>
-</div>
+
 </body>
 </html>
