@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.buyLog;
+package jp.co.rakus.ec201804a.user.orderLog;
 
 import java.util.List;
 
