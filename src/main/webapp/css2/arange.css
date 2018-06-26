@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+
+
+table { background-color: #bde9ba; }
 img {
   
     max-width:100%;
@@ -64,13 +67,14 @@ html,body{
   margin: 0;
 }
 .bg{
-
+	width:800px; height:500px;
 	margin : auto;
- background-image: url("../image/Energy_drinks.jpg");
+ background: url("../image/Energy_drinks.jpg");
  background-size: contain;
  position: relative;
  background-size:800px 800px;
 }
+
  
 .bg::before{
  content: ' ';

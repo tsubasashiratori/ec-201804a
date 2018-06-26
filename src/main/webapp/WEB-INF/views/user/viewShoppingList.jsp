@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../common/userHeader.jsp"%>
+<%@ page import="java.util.*" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,7 +16,7 @@
 </head>
 <body>
 
-
+<div class="bg2">
 	<div align="center">
 		<h2>商品一覧</h2>
 
@@ -42,9 +45,10 @@
 
 			<c:otherwise>
 		
-				<table align="center"  class="table-striped" style=WIDTH:600px >
+				<table  class="table-striped" style=WIDTH:800px >
 					<tr>
-						<th colspan="2" width="150">商品名</th>
+						<th width="150">画像</th>
+						<th width="150">商品名</th>
 						<th width="150">価格</th>
 					</tr>
 
@@ -67,6 +71,7 @@
 
 		</c:choose>
 		<br><br>
+	
 				<c:choose>
 			<c:when test="${itemListTop5Count==null}">
 				<p align="center"></p>
@@ -74,15 +79,18 @@
 
 			<c:otherwise>
 			観覧数ランキングTOP5
-				<table border="1" align="center">
+				<table border="1" align="center"  class="table table-bordered" style=WIDTH:800px >
 					<tr>
-						<th colspan="2" width="150">商品名</th>
-						<th width="150">価格</th>
+						<th align="center">順位</th>
+						<th width="150" align="center">画像</th>
+						<th width="150" align="center">商品名</th>
+						<th width="150" align="center">価格</th>
 					</tr>
-
-					<c:forEach var="itemTop5Count" items="${itemListTop5Count}">
+					
+					<c:forEach var="itemTop5Count" items="${itemListTop5Count}"  varStatus="status">
 						<tr>
-							<td><img
+							<td style=WIDTH:50px><c:out value="${status.count}"/></td>
+							<td style=WIDTH:150px><img
 								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
 								width="150" height="125"></td>
 							<td><a
@@ -97,6 +105,7 @@
 			</c:otherwise>
 
 		</c:choose>
+		</div>
 	</div>
 </body>
 </html>
