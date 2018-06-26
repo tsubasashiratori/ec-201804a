@@ -1,0 +1,21 @@
+package jp.co.rakus.ec201804a.common;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
+
+@Component
+public class GlobalExceptionHandoler implements HandlerExceptionResolver {
+	
+	@Override
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
+			Exception ex) {
+		
+		ModelAndView mav = new ModelAndView("redirect:/user/systemError");
+		
+		return mav;
+	}
+}

@@ -43,6 +43,7 @@ public class EditItemController {
 	 */
 	@RequestMapping("/editItem")
 	public String editItem(@Validated EditItemForm form, BindingResult result, RedirectAttributes flash) {
+		
 		if ("".equals(form.getPrice())) {
 			result.rejectValue("price", null, "価格を入力してください");
 		} else if (!form.getPrice().matches("\\d+")) {

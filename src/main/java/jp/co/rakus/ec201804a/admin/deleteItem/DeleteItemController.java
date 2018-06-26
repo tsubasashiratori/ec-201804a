@@ -30,7 +30,7 @@ public class DeleteItemController {
 		}
 		else {
 			item.setDeleted(true);
-			flash.addFlashAttribute("delete", item.getName()+"を削除完了しました");
+			flash.addFlashAttribute("delete", item.getName()+"を削除しました");
 		}
 		itemRepository.save(item);
 		
