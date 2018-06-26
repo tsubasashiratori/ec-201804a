@@ -21,66 +21,25 @@
 <!-- jQuery読み込み -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <!-- BootstrapのJS読み込み -->
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/topMenu.css" />
 	
 	<!-- ------------------------------------------------------------------------------- -->
 <head>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/topMenu.css" />
 </head>
-<!-- <body>
-	<header>
-
-		<div id="userHeader" align="right">
-			<sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
-				<sec:authentication var="user" property="principal.user" />
-			</sec:authorize>
-			<c:choose>
-				<c:when test="${user==null}">
-					<p>こんにちはゲストさん</p>
-					<p>
-						<a href="${pageContext.request.contextPath}/user/">ログイン</a>
-					</p>
-					
-				</c:when>
-				<c:otherwise>
-					<p>
-						こんにちは
-						<c:out value="${user.name}" />
-						さん
-					</p>
-					<p>
-						<a href="${pageContext.request.contextPath}/user/logout">ログアウト</a>
-					</p>
-				</c:otherwise>
-			</c:choose>
-			<p>
-				<a href="${pageContext.request.contextPath}/user/toViewShoppingCart">カートの中身を見る</a>
-			</p>
-		</div>
-		<div id="linkHeader" align="left">
-			<h1 align="left">
-				<a
-					href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted"><img
-					src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-					height="50" alt="ロゴ画像">ＥＣサイトラクス</a>
-			</h1>
-		</div>
-		<div id="title" align="center"></div>
-	</header>
-</body> -->
-
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
 			<div class="navbar-header">
 				<!--  logoimg -->
 				<a class="navbar-brand" href="${pageContext.request.contextPath}
 					/user/ViewAllItemsAndSearchItem/findAllNotDeleted">
 					<img src="${pageContext.request.contextPath}/img/rakus.jpg" 
-					 alt="ロゴ画像" id="logo-img">ＥＣサイトラクス
+					id="logo-img">
 				</a>
 				
 				<!-- toggle -->
@@ -113,17 +72,19 @@
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${user==null}">
-							<li>こんにちはゲストさん</li>
+							<p class="navbar-text">
+								こんにちはゲストさん
+							</p>
 							<li>
 								<a href="${pageContext.request.contextPath}/user/"><span class="glyphicon glyphicon-log-in"></span>ログイン</a>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li>
+							<p class="navbar-text">
 								こんにちは
 								<c:out value="${user.name}" />
 								さん
-							</li>
+							</p>
 							<li>
 								<a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-out"></span>ログアウト</a>
 							</li>
@@ -136,11 +97,5 @@
 		<!-- end container -->
 	</nav>
 <!-- end nav -->
-
-<!-- jQuery読み込み -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- BootstrapのJS読み込み -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </body>
 </html>
