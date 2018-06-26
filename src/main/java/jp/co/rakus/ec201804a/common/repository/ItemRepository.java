@@ -45,7 +45,7 @@ public class ItemRepository {
 	 * @return 検索された商品
 	 */
 	public Item load(Long id) {
-		String sql = "SELECT id, name, description, price, imagepath, deleted FROM "+TABLE_NAME+" WHERE id=:id";
+		String sql = "SELECT id, name, description, price, imagepath, deleted, count FROM "+TABLE_NAME+" WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		
 		try {
@@ -165,18 +165,18 @@ public class ItemRepository {
 		}
 	}
 	
-	/**
-	 * 削除情報を更新する.
-	 * 
-	 * @param item 削除情報を変更した商品情報
-	 */
-	public void saveDelete(Item item) {
-		String sql = "update " + TABLE_NAME + " set deleted =:deleted where id = :id;";
-		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", item.getId()).addValue("deleted", item.getDeleted());
-		
-		template.update(sql, param);
-	}
+//	/**
+//	 * 削除情報を更新する.
+//	 * 
+//	 * @param item 削除情報を変更した商品情報
+//	 */
+//	public void saveDelete(Item item) {
+//		String sql = "update " + TABLE_NAME + " set deleted =:deleted where id = :id;";
+//		
+//		SqlParameterSource param = new MapSqlParameterSource().addValue("id", item.getId()).addValue("deleted", item.getDeleted());
+//		
+//		template.update(sql, param);
+//	}
 	
 	public void updateCount(Item item) {
 		String sql = "update " + TABLE_NAME + " set count =:count where id = :id;";
