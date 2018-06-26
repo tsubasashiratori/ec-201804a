@@ -1,5 +1,10 @@
 package jp.co.rakus.ec201804a.admin.login;
 
+/**
+ * 管理者ログイン画面のフォーム.
+ * 
+ * @author yuta.kitazawa
+ */
 public class AdminUserLoginForm {
 	private String email;
 	private String password;
