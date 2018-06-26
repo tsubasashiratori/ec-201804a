@@ -28,17 +28,18 @@
 <form:errors path="UserForm.*" />
 	<form:form modelAttribute="registerUserForm" action="${pageContext.request.contextPath}/user/register" method="post">
 		<br>
-		<table border="">
+		
+		<table class="table-striped"style=WIDTH:600px>
 			<tr>
 				<td><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前</td>
-				<td><form:input path="name" /></td>
+				<td><form:input path="name" class="form-control"/></td>
 
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="email" cssStyle="color:red"/></small></p>
 				メールアドレス</td>
-				<td><form:input path="email"/></td>
+				<td><form:input path="email" class="form-control"/></td>
 
 			</tr>
 			<tr>
@@ -49,7 +50,7 @@
 			<tr>
 				<td><p><small><form:errors path="address" cssStyle="color:red"/></small></p>
 				住所</td>
-				<td><form:input path="address"/></td>
+				<td><form:input path="address" class="form-control"/></td>
 
 			</tr>
 			<tr>
@@ -57,7 +58,7 @@
 				電話番号
 				</td>
 				<td><form:input path="telHead" size="4" maxlength="4"/>
-				- <form:input path="telBody" size="4" maxlength="4"/>
+				- <form:input path="telBody" size="4" maxlength="4" />
 				- <form:input path="telTeil" size="4" maxlength="4"/>
 				</td>
 
@@ -66,7 +67,7 @@
 				<td><p><small><form:errors path="password" cssStyle="color:red"/></small></p>
 				パスワード<br>
 				<font color="grey"><small>※8桁以上16桁以下で設定してください</small></font></td>
-				<td><form:password path="password"/></td>
+				<td><form:password path="password" class="form-control"/></td>
 
 			</tr>
 			<tr>
@@ -74,7 +75,7 @@
 				確認用パスワード<br>
 				<font color="grey"><small>※設定したパスワードを再度入力してください</small></font>
 				</td>
-				<td><form:password path="checkPassword"/></td>
+				<td><form:password path="checkPassword" class="form-control"/></td>
 
 			</tr>
 		</table>
