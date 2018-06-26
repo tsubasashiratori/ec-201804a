@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.common.repository.ItemRepository;
@@ -38,15 +39,55 @@ public class ViewAlItemsAndSearchItemController {
 	 */
 	@RequestMapping("/findAllNotDeleted")
 	public String findAllNotDeleted(Model model) {
-
-		List<Item> itemList = itemRepository.findAllNotDeleted();
+		
+		int limit=2;
+		Integer pageCount=itemRepository.pageCount();
+		Integer page=pageCount/limit;
+		model.addAttribute("page",page);
+		int pageNum=1;
+		model.addAttribute("pageNum",pageNum);
+		int thisfind=(pageNum*limit)-limit;
+		List<Item> itemList=itemRepository.findAllNotDeletedByPageNum(thisfind, limit);
 		model.addAttribute("itemList", itemList);
+
+		//List<Item> itemList = itemRepository.findAllNotDeleted();
+		//model.addAttribute("itemList", itemList);
 		
 		List<Item> itemListTop5Count=itemRepository.findHighCountItem();
 		model.addAttribute("itemListTop5Count",itemListTop5Count);
 
 		return "/user/viewShoppingList";
+	}
+	
+	/**ページ番号に対応して表示
+	 * @param pageNum
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/findAllNotDeletedByPageNum")
+	public String findAllNotDeletedByPageNum(@RequestParam Integer pageNum,Model model) {
+		try {
+		int limit=2;
+		Integer pageCount=itemRepository.pageCount();
+		Integer page=pageCount/limit;
+		model.addAttribute("page",page);
+		model.addAttribute("pageNum",pageNum);
+		int thisfind=(pageNum*limit)-limit;
+		
+		List<Item> itemList=itemRepository.findAllNotDeletedByPageNum(thisfind, limit);
+		model.addAttribute("itemList", itemList);
 
+		//List<Item> itemList = itemRepository.findAllNotDeleted();
+		//model.addAttribute("itemList", itemList);
+		
+		List<Item> itemListTop5Count=itemRepository.findHighCountItem();
+		model.addAttribute("itemListTop5Count",itemListTop5Count);
+
+		return "/user/viewShoppingList";
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "/user/viewShoppingList";
+		}
 	}
 
 	/**

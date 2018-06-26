@@ -67,6 +67,29 @@ public class ItemRepository {
 		return itemList;
 		
 	}
+	
+	/**指定された所から10件検索
+	 * @param thisfind
+	 * @param limit
+	 * @return
+	 */
+	public List<Item> findAllNotDeletedByPageNum(int thisfind,int limit) {
+
+		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
+				+ " where deleted = false order by id offset :thisfind limit :limit";
+		SqlParameterSource param=new MapSqlParameterSource().addValue("thisfind", thisfind).addValue("limit", limit);
+		List<Item> itemList = template.query(sql,param,ITEM_ROWMAPPER);
+		return itemList;
+	}
+
+	/**商品が何件あるか検索するメソッド.
+	 * @return 商品数
+	 */
+	public Integer pageCount() {
+		String sql="select COUNT(*) from items where deleted=false";
+		SqlParameterSource param=new MapSqlParameterSource();
+		return template.queryForObject(sql, param, Integer.class);
+	}
 	/**
 	 * 全件検索をするメソッド.
 	 * @return 全件の情報が入ったリストを返すか、もしくは空のリストを返す。
