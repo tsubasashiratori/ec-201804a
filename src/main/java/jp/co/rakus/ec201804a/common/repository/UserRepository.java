@@ -62,4 +62,14 @@ public class UserRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		template.update(sql, param);
 	}
+	
+	/**
+	 * 利用者情報を更新する.
+	 * @param user　利用者情報
+	 */
+	public void update(User user) {
+		String sql = "UPDATE SET users(name, zipcode, address, telephone) values(:name, :zipCode, :address, :telephone) WHERE id=:id;";
+		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		template.update(sql, param);
+	}
 }
