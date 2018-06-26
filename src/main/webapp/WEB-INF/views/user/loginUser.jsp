@@ -3,37 +3,23 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-materialbtn.min.css">
-<!--<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css2/arange.css">-->
-<meta http-equiv="content-type" charset="utf-8">
-<title>ユーザログイン</title>
-<!-- jQuery読み込み -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- BootstrapのCSS読み込み -->
-<link href="${pageContext.request.contextPath}/css2/bootstrap.min.css"
-	rel="stylesheet">
-<!-- jQuery読み込み -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- BootstrapのJS読み込み -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-
 <meta charset="UTF-8">
+<%@ include file="../common/userHeader.jsp" %>
 <title>ユーザログイン</title>
 </head>
-<%@ include file="../common/userHeader.jsp" %>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
 <div class ="bg">
 <div class="whole">
 	<div align="center">

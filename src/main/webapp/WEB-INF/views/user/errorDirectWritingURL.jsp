@@ -8,6 +8,14 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
 	<div align="center">
 	<h2>時間をおいてアクセスしてください</h2>
 	

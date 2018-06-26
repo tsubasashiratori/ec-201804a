@@ -9,6 +9,15 @@
 </head>
 <%@ include file="../common/userHeader.jsp"%>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
+	
 	<center>
 		<h1>ショッピングカート一覧</h1>
 		<c:if test="${damyOrder.id==-1}">ショッピングカートに商品がありません</c:if>

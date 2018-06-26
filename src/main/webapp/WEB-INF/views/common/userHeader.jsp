@@ -76,7 +76,10 @@
 								こんにちはゲストさん
 							</p>
 							<li>
-								<a href="${pageContext.request.contextPath}/user/"><span class="glyphicon glyphicon-log-in"></span>ログイン</a>
+								<a href="${pageContext.request.contextPath}/user/">
+									<span class="glyphicon glyphicon-log-in"></span>
+									ログイン
+								</a>
 							</li>
 						</c:when>
 						<c:otherwise>
@@ -86,10 +89,20 @@
 								さん
 							</p>
 							<li>
-								<a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-out"></span>ログアウト</a>
+								<a href="${pageContext.request.contextPath}/user/logout">
+									<span class="glyphicon glyphicon-log-out"></span>
+									ログアウト
+								</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
+					
+					<li>
+						<a href="${pageContext.request.contextPath}/user/toViewShoppingCart">
+							<span class="glyphicon glyphicon-shopping-cart"></span>
+							ショッピングカートを見る
+						</a>
+					</li>
 				</ul>
 				
 			</div>
