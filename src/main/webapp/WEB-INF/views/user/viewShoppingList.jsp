@@ -84,6 +84,37 @@
 			</c:otherwise>
 
 		</c:choose>
+		<br><br>
+				<c:choose>
+			<c:when test="${itemListTop5Count.size()==0}">
+				<p align="center">商品がありません</p>
+			</c:when>
+
+			<c:otherwise>
+			観覧数ランキングTOP5
+				<table border="1" align="center">
+					<tr>
+						<th colspan="2" width="150">商品名</th>
+						<th width="150">価格</th>
+					</tr>
+
+					<c:forEach var="itemTop5Count" items="${itemListTop5Count}">
+						<tr>
+							<td><img
+								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
+								width="150" height="125"></td>
+							<td><a
+								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
+								<c:out value="${itemTop5Count.name}"/>
+								</a></td>
+							<td><fmt:formatNumber value="${itemTop5Count.price}" pattern="￥###,###" />
+						</tr>
+					</c:forEach>
+
+				</table>
+			</c:otherwise>
+
+		</c:choose>
 	</div>
 </body>
 </html>
