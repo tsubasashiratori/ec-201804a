@@ -93,7 +93,7 @@ public class OrderItemRepository {
 	 * @return
 	 */
 	public OrderItem findByOrderIdAndItemId(Long orderId,Long itemId) {
-		String sql="SELECT id,item_id,order_id,quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id ORDER BY item_id";
+		String sql="SELECT id,item_id,order_id,quantity FROM order_items WHERE item_id=:item_id AND order_id=:order_id";
 		SqlParameterSource param=new MapSqlParameterSource().addValue("item_id", itemId).addValue("order_id", orderId);
 		try {
 		OrderItem orderItem=template.queryForObject(sql, param,rowMapper);

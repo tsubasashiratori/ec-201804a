@@ -34,6 +34,7 @@ public class ItemRepository {
 		item.setPrice(rs.getInt("price"));
 		item.setImagePath(rs.getString("imagePath"));
 		item.setDeleted(rs.getBoolean("deleted"));
+		item.setCount(rs.getInt("count"));
 		return item;
 	};
 	
@@ -56,14 +57,23 @@ public class ItemRepository {
 		}		
 		return null;
 	}
-	
+	/**観覧数TOP５を検索するメソッド.
+	 * @return
+	 */
+	public List<Item> findHighCountItem(){
+		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
+				+ " where deleted = false order by count desc limit 5";
+		List<Item> itemList=template.query(sql, ITEM_ROWMAPPER);
+		return itemList;
+		
+	}
 	/**
 	 * 全件検索をするメソッド.
 	 * @return 全件の情報が入ったリストを返すか、もしくは空のリストを返す。
 	 */
 	public List<Item> findAllNotDeleted() {
 
-		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
+		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
 				+ " where deleted = false order by price";
 
 		List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
@@ -79,7 +89,7 @@ public class ItemRepository {
 	 */
 	public List<Item> findByNameNotDeleted(String name) {
 
-		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
+		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
 				+ " where deleted = false and name LIKE :name order by price";
 
 		String nameLike = "%" + name + "%";
@@ -96,7 +106,7 @@ public class ItemRepository {
 	 */
 	public Item findDetailByIdNotDeleted(long id) {
 
-		String sql = "select id, name, description, price, imagePath, deleted from " + TABLE_NAME
+		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
 				+ " where id = :id and deleted = false";
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
@@ -116,7 +126,7 @@ public class ItemRepository {
 	 * @return 検索結果の入ったリストを返す
 	 */
 	public List<Item> adminItemFindAll() {
-		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME+" ORDER BY id;";
+		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME+" ORDER BY id;";
 		
 		try {
 			List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
@@ -134,7 +144,7 @@ public class ItemRepository {
 	 * @return 検索結果の入ったリストを返す
 	 */
 	public List<Item> adminItemFindByName(String name) {
-		String sql = "SELECT id, name, description, price, imagepath, deleted FROM " + TABLE_NAME + " WHERE name LIKE :name ORDER BY id;";
+		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME + " WHERE name LIKE :name ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
 		try {
 			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
@@ -168,6 +178,14 @@ public class ItemRepository {
 		template.update(sql, param);
 	}
 	
+	public void updateCount(Item item) {
+		String sql = "update " + TABLE_NAME + " set count =:count where id = :id;";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", item.getId()).addValue("count", item.getCount());
+		
+		template.update(sql, param);
+	}
+	
 	/**
 	 * 商品情報を追加.
 	 * @param 
@@ -178,8 +196,9 @@ public class ItemRepository {
 	 * @param item 商品情報
 	 */
 	public void insertItem(Item item) {
-		String sql = "INSERT INTO items(name,description,price,imagePath,deleted) values(:name,:description,:price,:imagePath,:deleted)";
+		String sql = "INSERT INTO items(name,description,price,imagePath,deleted,count) values(:name,:description,:price,:imagePath,:deleted,:count)";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
+	
 		template.update(sql, param);
 	}
 	
