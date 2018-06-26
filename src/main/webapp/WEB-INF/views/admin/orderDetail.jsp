@@ -106,15 +106,60 @@
         		キャンセル
         	</c:when>	
         </c:choose>
+        
         </td>
         <td><form action="${pageContext.request.contextPath}/admin/updateStatus" name="statusSubmit" method="GET" onsubmit="return check()" onreset="return kakunin()">
-<select name="status">
-<option value="0">購入前(変更非推奨)</option>
-<option value="1">未入金</option>
-<option value="2" selected>入金済み</option>
-<option value="3">発送済み</option>
-<option value="9">キャンセル</option>
-</select>
+          <c:choose>
+        	<c:when test="${order.status == 0}">
+        		<select name="status">
+					<option value="0" selected>購入前(変更非推奨)</option>
+					<option value="1">未入金</option>
+					<option value="2">入金済み</option>
+					<option value="3">発送済み</option>
+					<option value="9">キャンセル</option>
+				</select>
+        	</c:when>
+        	
+        	<c:when test="${order.status == 1}">
+        		<select name="status">
+					<option value="0">購入前(変更非推奨)</option>
+					<option value="1" selected>未入金</option>
+					<option value="2">入金済み</option>
+					<option value="3">発送済み</option>
+					<option value="9">キャンセル</option>
+				</select>
+        	</c:when>
+        	
+        	<c:when test="${order.status == 2}">
+        		<select name="status">
+					<option value="0">購入前(変更非推奨)</option>
+					<option value="1">未入金</option>
+					<option value="2" selected>入金済み</option>
+					<option value="3">発送済み</option>
+					<option value="9">キャンセル</option>
+				</select>
+        	</c:when>
+        	
+        	<c:when test="${order.status == 3}">
+        		<select name="status">
+					<option value="0">購入前(変更非推奨)</option>
+					<option value="1">未入金</option>
+					<option value="2">入金済み</option>
+					<option value="3" selected>発送済み</option>
+					<option value="9">キャンセル</option>
+				</select>
+        	</c:when>
+        	
+        	<c:when test="${order.status == 9}">
+        		<select name="status">
+					<option value="0">購入前(変更非推奨)</option>
+					<option value="1">未入金</option>
+					<option value="2">入金済み</option>
+					<option value="3">発送済み</option>
+					<option value="9" selected>キャンセル</option>
+				</select>
+        	</c:when>	
+        </c:choose>
 
 <input type="hidden" name="orderId" value="${order.id}">
 <input class="btn" type="submit" value="更新">
