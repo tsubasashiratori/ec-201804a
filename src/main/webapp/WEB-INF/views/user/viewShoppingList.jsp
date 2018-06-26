@@ -12,6 +12,14 @@
 <title>商品一覧</title>
 </head>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
 
 	<div align="center">
 		<h2>商品一覧</h2>

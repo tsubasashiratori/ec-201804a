@@ -7,6 +7,15 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
+	
 	<h1 align="center">決済が完了しました！</h1>
 	<h2 align="center">この度はご注文ありがとうございます。<br>
 	お支払い先は、お送りしたメールに記載してありますのでご確認ください。</h2>
