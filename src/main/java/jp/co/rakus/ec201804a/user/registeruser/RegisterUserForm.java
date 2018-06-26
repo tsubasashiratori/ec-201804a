@@ -40,11 +40,6 @@ public class RegisterUserForm {
 	 */
 	@NotBlank(message = "住所を入力してください")
 	private String address;
-//	/**
-//	 * 電話番号
-//	 */
-//	@NotBlank(message = "電話番号を入力してください")
-//	private String telephone;
 	
 	public String getName() {
 		return name;
@@ -82,12 +77,6 @@ public class RegisterUserForm {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-//	public String getTelephone() {
-//		return telephone;
-//	}
-//	public void setTelephone(String telephone) {
-//		this.telephone = telephone;
-//	}
 	
 
 	/**
