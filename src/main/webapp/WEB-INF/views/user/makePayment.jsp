@@ -24,7 +24,7 @@
 	<h2>ご注文内容</h2>
 	<hr>
 	<form:form action="${pageContext.request.contextPath}/user/toPayment" method="POST">
-	<table border="1" align="center">
+	<table border="1" align="center" class="table" >
 		<tr>
 			<th>商品名</th>
 			<th>価格</th>

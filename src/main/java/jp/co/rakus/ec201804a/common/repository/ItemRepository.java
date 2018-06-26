@@ -90,7 +90,7 @@ public class ItemRepository {
 	public List<Item> findByNameNotDeleted(String name) {
 
 		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
-				+ " where deleted = false and name LIKE :name order by price";
+				+ " where deleted = false and name ILIKE :name order by price";
 
 		String nameLike = "%" + name + "%";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike);
@@ -144,7 +144,7 @@ public class ItemRepository {
 	 * @return 検索結果の入ったリストを返す
 	 */
 	public List<Item> adminItemFindByName(String name) {
-		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME + " WHERE name LIKE :name ORDER BY id;";
+		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME + " WHERE name ILIKE :name ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
 		try {
 			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
