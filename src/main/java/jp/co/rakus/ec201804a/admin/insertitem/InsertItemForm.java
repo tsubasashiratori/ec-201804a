@@ -23,7 +23,11 @@ public class InsertItemForm {
 	 * 値段
 	 */
 	@NotNull(message = "値段を入力してください")
-	private Integer price;
+	private String price;
+	/**
+	 * 
+	 */
+	private int intPrice;
 	/**
 	 * 画像の保存先
 	 */
@@ -46,11 +50,17 @@ public class InsertItemForm {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(Integer price) {
+	public void setPrice(String price) {
 		this.price = price;
+	}
+	public int getIntPrice() {
+		return intPrice;
+	}
+	public void setIntPrice(int intPrice) {
+		this.intPrice = intPrice;
 	}
 	public String getImagePath() {
 		return imagePath;

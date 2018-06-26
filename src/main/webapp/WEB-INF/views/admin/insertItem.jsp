@@ -24,7 +24,7 @@
 			説明 ：<form:textarea path="description" cols="40" rows="5"/><br>
 			<p><small><form:errors path="description" cssStyle="color:red" /></small></p>
 			<br>
-			画像 ：<input type="file" name="imagePath">
+			画像 ：<input type="file" name="imagePath" accept="jpeg">
 			<%-- <form:input type="file" path="imagePath" accept="jpeg"/> 
 			 enctype="multipart/form-data" --%><br>
 			<div>

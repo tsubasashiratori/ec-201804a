@@ -70,9 +70,13 @@ public class InsertItemController {
 			result.rejectValue("name","","すでに同じ名前で商品が登録されています");
 		}
 		
-//		if(!form.getPrice().equals("")) {
-//			if(form.getPrice())
-//		}
+		if(!form.getPrice().equals("")) {
+			if(form.getPrice().matches("\\d+")) {
+				result.rejectValue("price","","1～1000000の数字で入力してください");
+			}else if(Integer.parseInt(form.getPrice()) <= 0 || Integer.parseInt(form.getPrice()) >= 1000001) {
+				result.rejectValue("price","","1～1000000の数字で入力してください");
+			}
+		}
 		
 		if (result.hasErrors()) {			
 			return viewInsertItem();
