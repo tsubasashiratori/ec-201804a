@@ -20,6 +20,9 @@ import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 @Controller
 @RequestMapping(value = "/admin")
 public class EditItemController {
+	
+//	@Autowired
+//	private EditItemRepository editItemRepository;
 
 	@Autowired
 	private ItemRepository ItemRepository;
@@ -42,10 +45,18 @@ public class EditItemController {
 	public String editItem(@Validated EditItemForm form, BindingResult result, RedirectAttributes flash) {
 		if ("".equals(form.getPrice())) {
 			result.rejectValue("price", null, "価格を入力してください");
-		} else if (!form.getPrice().matches("//d+")) {
+		} else if (!form.getPrice().matches("\\d+")) {
 			result.rejectValue("price", null, "1～1000000の数字で入力してください");
 		} else if (form.getIntPrice() <= 0 || 1000001 <= form.getIntPrice()) {
 			result.rejectValue("price", null, "1～1000000の数字で入力してください");
+		}
+		Item beforeItem = ItemRepository.load(form.getId());
+		if(beforeItem.getName().equals(form.getName())) {
+			
+		}else if(ItemRepository.adminItemFindByName(form.getName())==null) {			
+			
+		}else {
+			result.rejectValue("name", null, "すでに登録されている商品名です");	
 		}
 		if (result.hasErrors()) {
 			return "/admin/edit";
