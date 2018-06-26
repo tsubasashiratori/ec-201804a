@@ -86,8 +86,8 @@
 		</c:choose>
 		<br><br>
 				<c:choose>
-			<c:when test="${itemListTop5Count.size()==0}">
-				<p align="center">商品がありません</p>
+			<c:when test="${itemListTop5Count==null}">
+				<p align="center"></p>
 			</c:when>
 
 			<c:otherwise>
