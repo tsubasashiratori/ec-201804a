@@ -8,7 +8,6 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
-<<<<<<< HEAD
 	<script>
 		$(window).on('load resize', function(){
 	    // navbarの高さを取得する
@@ -19,15 +18,6 @@
 	</script>
 	
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-=======
-<!-- <script type="text/javascript">
-function clearFormAll() {
-    for (var i=0; i<document.forms.length; ++i) {
-        clearForm(document.forms[i]);
-    }
-}
-</script> -->
->>>>>>> feature/file
 <div align="center">
 	<h2>新規利用者登録画面</h2>
 	<br>
