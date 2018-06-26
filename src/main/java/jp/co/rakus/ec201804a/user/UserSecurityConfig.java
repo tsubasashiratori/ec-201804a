@@ -55,6 +55,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/user/ViewAllItemsAndSearchItem/findAllNotDeleted" // : 商品一覧画面
 				,"/user/viewDetail**" // : 商品詳細の表示
 				,"/user/toViewShoppingCart" //　:　ショッピングカート一覧画面
+				,"/user/systemError" // :500エラー画面
 				
 				//ログインしていなくても可能な操作
 				,"/user/login" // : 利用者のログイン処理
