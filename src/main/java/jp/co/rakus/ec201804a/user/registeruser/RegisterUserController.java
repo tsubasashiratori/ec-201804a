@@ -64,7 +64,10 @@ public class RegisterUserController {
 			}
 		}
 		
-		if(!form.getZipCode().matches("^\\d{3}\\-?\\d{4}$") && !form.getZipCode().equals("")) {
+		if(!form.getZipCode().equals("")) {
+			result.rejectValue("zipCode","","郵便番号が不正です");
+		}
+		if(!form.getZipCode().matches("^\\d{3}\\-?\\d{4}$") || !form.getZipCode().matches("^\\d{7}$")) {
 			result.rejectValue("zipCode","","郵便番号が不正です");
 		}
 		
