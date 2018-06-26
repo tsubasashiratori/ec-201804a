@@ -1,7 +1,6 @@
 package jp.co.rakus.ec201804a.admin.editItem;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class EditItemForm {
@@ -10,12 +9,11 @@ public class EditItemForm {
 	private Long id;
 	
 	/** 名前 */
-	@Size(min=1, max=20, message="1文字以上20文字以内でキーワードを入力してください")
+	@Size(min=1, max=20, message="1文字以上20文字以内で商品名を入力してください")
 	private String name;
 	
 	/** 価格 */
-	@NotNull(message="価格を入力してください")
-	private Integer price;
+	private String price;
 	
 	/** 商品説明 */
 	@NotBlank(message="商品説明を入力してください")
@@ -44,11 +42,15 @@ public class EditItemForm {
 		this.name = name;
 	}
 
-	public Integer getPrice() {
+	public String getPrice() {
 		return price;
 	}
+	
+	public int getIntPrice() {
+		return Integer.parseInt(price);
+	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
