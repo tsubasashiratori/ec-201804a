@@ -68,10 +68,9 @@ public class UpdateUserController {
 	@RequestMapping(value = "/update")
 	public String updateUser(@Validated UpdateUserForm form, BindingResult result) {
 		if(!form.getZipCode().equals("")) {
+			if(!form.getZipCode().matches("^\\d{3}\\-?\\d{4}|\\d{7}$")){
 			result.rejectValue("zipCode","","郵便番号が不正です");
-		}
-		if(!form.getZipCode().matches("^\\d{3}\\-?\\d{4}$") || !form.getZipCode().matches("^\\d{7}$")) {
-			result.rejectValue("zipCode","","郵便番号が不正です");
+			}
 		}
 		String telephone = ""+ form.getTelHead() +"-"+ form.getTelBody() +"-"+ form.getTelTeil();
 		if(telephone.equals("--")) {
@@ -85,6 +84,14 @@ public class UpdateUserController {
 		
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
+		user.setTelephone(telephone);
+		String[] zipcodeArray = form.getZipCode().split("-");
+		String sumZipCode = "";
+		for (String string : zipcodeArray) {
+			sumZipCode += string;
+		}
+		user.setZipCode(sumZipCode);
+		
 		userRepository.update(user);
 		
 		return "redirect:/user/updateForm";

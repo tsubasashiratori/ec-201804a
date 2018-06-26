@@ -68,7 +68,8 @@ public class UserRepository {
 	 * @param user　利用者情報
 	 */
 	public void update(User user) {
-		String sql = "UPDATE SET users(name, zipcode, address, telephone) values(:name, :zipCode, :address, :telephone) WHERE id=:id;";
+		System.out.println(user);
+		String sql = "UPDATE users SET name=:name, zipcode=:zipCode, address=:address, telephone=:telephone WHERE id=:id;";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 		template.update(sql, param);
 	}
