@@ -45,7 +45,7 @@ public class ItemRepository {
 	 * @return 検索された商品
 	 */
 	public Item load(Long id) {
-		String sql = "SELECT id, name, description, price, imagepath, deleted FROM "+TABLE_NAME+" WHERE id=:id";
+		String sql = "SELECT id, name, description, price, imagepath, deleted, count FROM "+TABLE_NAME+" WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		
 		try {
@@ -90,7 +90,7 @@ public class ItemRepository {
 	public List<Item> findByNameNotDeleted(String name) {
 
 		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
-				+ " where deleted = false and name LIKE :name order by price";
+				+ " where deleted = false and name ILIKE :name order by price";
 
 		String nameLike = "%" + name + "%";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike);
@@ -144,7 +144,7 @@ public class ItemRepository {
 	 * @return 検索結果の入ったリストを返す
 	 */
 	public List<Item> adminItemFindByName(String name) {
-		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME + " WHERE name LIKE :name ORDER BY id;";
+		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME + " WHERE name ILIKE :name ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
 		try {
 			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
@@ -165,18 +165,18 @@ public class ItemRepository {
 		}
 	}
 	
-	/**
-	 * 削除情報を更新する.
-	 * 
-	 * @param item 削除情報を変更した商品情報
-	 */
-	public void saveDelete(Item item) {
-		String sql = "update " + TABLE_NAME + " set deleted =:deleted where id = :id;";
-		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", item.getId()).addValue("deleted", item.getDeleted());
-		
-		template.update(sql, param);
-	}
+//	/**
+//	 * 削除情報を更新する.
+//	 * 
+//	 * @param item 削除情報を変更した商品情報
+//	 */
+//	public void saveDelete(Item item) {
+//		String sql = "update " + TABLE_NAME + " set deleted =:deleted where id = :id;";
+//		
+//		SqlParameterSource param = new MapSqlParameterSource().addValue("id", item.getId()).addValue("deleted", item.getDeleted());
+//		
+//		template.update(sql, param);
+//	}
 	
 	public void updateCount(Item item) {
 		String sql = "update " + TABLE_NAME + " set count =:count where id = :id;";
@@ -202,4 +202,20 @@ public class ItemRepository {
 		template.update(sql, param);
 	}
 	
+	
+	public Item findByOneName(String name) {
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("name",name);
+		String sql = "SELECT id, name, description, price, imagePath, deleted "
+				+ "FROM items "
+				+ "WHERE name=:name "
+				+ ";";
+		try {
+			Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
+			return item;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

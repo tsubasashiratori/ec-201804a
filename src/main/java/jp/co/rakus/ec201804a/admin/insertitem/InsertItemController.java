@@ -1,5 +1,6 @@
 package jp.co.rakus.ec201804a.admin.insertitem;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.common.repository.ItemRepository;
@@ -53,10 +55,34 @@ public class InsertItemController {
 	 */
 	@RequestMapping(value="/insert")
 	public String insertItem(@Validated InsertItemForm form, BindingResult result) {
+		
+//		MultipartFile uploadFile = form.getImagePath();
+//		if (!StringUtils.hasLength(uploadFile.getOriginalFilename())) {
+//            result.rejectValue("imagePath","","fileを選択してください");
+//        }
+//		if (uploadAllowableFileSize < uploadFile.getSize())
+//		if (uploadFile.isEmpty()) {
+//            result.rejectValue("imagePath","","画像の中身が空です");
+//        }
+		
+		if(itemRepository.findByOneName(form.getName()) != null){
+			System.out.println("エラー");
+			result.rejectValue("name","","すでに同じ名前で商品が登録されています");
+		}
+		
+		if(!form.getPrice().equals("")) {
+			if(form.getPrice().matches("\\d+")) {
+				result.rejectValue("price","","1～1000000の数字で入力してください");
+			}else if(Integer.parseInt(form.getPrice()) <= 0 || Integer.parseInt(form.getPrice()) >= 1000001) {
+				result.rejectValue("price","","1～1000000の数字で入力してください");
+			}
+		}
+		
 		if (result.hasErrors()) {			
 			return viewInsertItem();
 		}
-		int count=0;
+		 int count=0;		
+//		FileUtils.copyInputStreamToFile(uploadFile.getInputStream(),);
 		Item item = new Item();
 		BeanUtils.copyProperties(form, item);
 		item.setCount(count);

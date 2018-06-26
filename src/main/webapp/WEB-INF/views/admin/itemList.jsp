@@ -14,8 +14,8 @@
 <div align="center">
 	<h2>商品一覧</h2>
 <c:if test="${success!=null}"><c:out value="${success}"/></c:if>
-<%-- <c:if test="${!=null}"><c:out value="${success}"/></c:if>
-<c:if test="${success!=null}"><c:out value="${success}"/></c:if> --%>
+<c:if test="${delete!=null}"><c:out value="${delete}"/></c:if>
+<c:if test="${redisplay!=null}"><c:out value="${redisplay}"/></c:if>
 </div>
 
 <br>

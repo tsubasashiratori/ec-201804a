@@ -64,17 +64,17 @@ html,body{
   margin: 0;
 }
 .bg{
-	width:800px; height:500px;
+
 	margin : auto;
- background: url("../image/Energy_drinks.jpg");
- background-size: cover;
+ background-image: url("../image/Energy_drinks.jpg");
+ background-size: contain;
  position: relative;
  background-size:800px 800px;
 }
  
 .bg::before{
  content: ' ';
- background-color: rgba(0,0,0,0.2);
+ background-color: rgba(0,0,0,0.3);
  position: absolute;
  top: 0;
  right: 0;
