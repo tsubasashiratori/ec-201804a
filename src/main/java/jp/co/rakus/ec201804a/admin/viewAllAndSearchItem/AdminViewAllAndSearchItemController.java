@@ -57,8 +57,13 @@ public class AdminViewAllAndSearchItemController {
 		String name = form.getName();
 		
 		List<Item> itemList = itemRepository.adminItemFindByName(name);
+
 		model.addAttribute("itemList", itemList);
 		
+		if(itemList.size()==0) {
+			result.rejectValue("name",null, "該当する商品がありません");
+		}
+
 		if(result.hasErrors()) {
 			return "/admin/itemList";
 		}
