@@ -7,25 +7,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-materialbtn.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/arange.css">
-<meta http-equiv="content-type" charset="utf-8">
-<title>Bootstrap Sample1aaaaaa</title>
-<!-- jQuery読み込み -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- BootstrapのCSS読み込み -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- jQuery読み込み -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- BootstrapのJS読み込み -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 
 <title>商品一覧</title>
 </head>
@@ -37,9 +19,9 @@
 		<form
 			action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted"
 			method="get">
-			<div class="square_btn">
+			
 			<input type="submit" value="全件表示" >
-			</div>
+			
 		</form>
 		<br>
 		<form:form modelAttribute="viewAllItemsAndSearchItemForm"
@@ -59,7 +41,7 @@
 
 			<c:otherwise>
 		
-				<table border="1" align="center"  >
+				<table align="center"  class="table-striped" style=WIDTH:600px >
 					<tr>
 						<th colspan="2" width="150">商品名</th>
 						<th width="150">価格</th>
@@ -80,6 +62,37 @@
 
 				</table>
 				
+			</c:otherwise>
+
+		</c:choose>
+		<br><br>
+				<c:choose>
+			<c:when test="${itemListTop5Count==null}">
+				<p align="center"></p>
+			</c:when>
+
+			<c:otherwise>
+			観覧数ランキングTOP5
+				<table border="1" align="center">
+					<tr>
+						<th colspan="2" width="150">商品名</th>
+						<th width="150">価格</th>
+					</tr>
+
+					<c:forEach var="itemTop5Count" items="${itemListTop5Count}">
+						<tr>
+							<td><img
+								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
+								width="150" height="125"></td>
+							<td><a
+								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
+								<c:out value="${itemTop5Count.name}"/>
+								</a></td>
+							<td><fmt:formatNumber value="${itemTop5Count.price}" pattern="￥###,###" />
+						</tr>
+					</c:forEach>
+
+				</table>
 			</c:otherwise>
 
 		</c:choose>

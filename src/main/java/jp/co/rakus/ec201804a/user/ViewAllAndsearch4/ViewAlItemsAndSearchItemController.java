@@ -40,8 +40,10 @@ public class ViewAlItemsAndSearchItemController {
 	public String findAllNotDeleted(Model model) {
 
 		List<Item> itemList = itemRepository.findAllNotDeleted();
-
 		model.addAttribute("itemList", itemList);
+		
+		List<Item> itemListTop5Count=itemRepository.findHighCountItem();
+		model.addAttribute("itemListTop5Count",itemListTop5Count);
 
 		return "/user/viewShoppingList";
 

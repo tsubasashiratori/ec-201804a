@@ -40,9 +40,9 @@ public class ViewDetailController {
 	 */
 	@RequestMapping("/viewDetail")
 	public String ViewDetail(@RequestParam ("id") String id, HttpServletRequest request) {
+		//System.out.println("a");
 		long idLong = Long.parseLong(id);
 		Item item = itemRepository.findDetailByIdNotDeleted(idLong);
-		
 		Map<Integer, Integer> quantityMap = new LinkedHashMap<>();
 		quantityMap.put(1, 1);
 		quantityMap.put(2, 2);
@@ -57,6 +57,14 @@ public class ViewDetailController {
 		
 		if(item == null) {
 			return "user/errorDirectWritingURL";
+		}
+		
+		try {
+			//System.out.println(item.getCount());
+		item.setCount(item.getCount()+1);
+		itemRepository.updateCount(item);
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		request.setAttribute("item", item);
 		return "/user/viewDetail";

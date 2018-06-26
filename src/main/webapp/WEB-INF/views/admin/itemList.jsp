@@ -13,6 +13,9 @@
 
 <div align="center">
 	<h2>商品一覧</h2>
+<c:if test="${success!=null}"><c:out value="${success}"/></c:if>
+<%-- <c:if test="${!=null}"><c:out value="${success}"/></c:if>
+<c:if test="${success!=null}"><c:out value="${success}"/></c:if> --%>
 </div>
 
 <br>
@@ -53,8 +56,7 @@
 						<td><form
 								action="${pageContext.request.contextPath}/admin/viewEditItem"
 								method="get" align="center">
-								<button type="submit" name="itemId" value="${item.id}">編
-									集</button>
+								<button type="submit" name="itemId" value="${item.id}">編　集</button>
 							</form> <br> <c:choose>
 								<c:when test="${item.deleted}">
 									<form
@@ -67,8 +69,7 @@
 									<form
 										action="${pageContext.request.contextPath}/admin/deleteItem"
 										method="get" align="center">
-										<button type="submit" name="id" value="${item.id}">削
-											除</button>
+										<button type="submit" name="id" value="${item.id}">削　除</button>
 									</form>
 								</c:otherwise>
 							</c:choose></td>
@@ -78,48 +79,5 @@
 		</c:otherwise>
 	</c:choose>
 	
-		<%-- </tr>
-	
-		<tr>
-			<th>画像</th>
-			<td><img src="../img/${item.imagePath}" width="200"/></td>
-		</tr>
-		<tr>
-			<th>商品名</th>
-			<td><c:out value="${item.name}"/></td>
-		</tr>
-		<tr>
-			<th>値段</th>
-			<td><fmt:formatNumber value="${item.price}" pattern="￥###,###"/></td>
-		</tr>
-		<tr>
-			<th>説明</th>
-				<td><c:out value="${item.description}"/></td>
-			</tr>
-			<tr>
-				<th>操作</th>
-				<td>
-	<form action="${pageContext.request.contextPath}/admin/viewEditItem" method="get">
-					<button type="submit" name="itemId" value="${item.id}" >編集</button>
-	</form>
-	<c:choose>
-		<c:when test="${item.deleted}">
-			<form action="${pageContext.request.contextPath}/admin/deleteItem" method="get">
-				<button type="submit" name="id" value="${item.id}" >再表示</button>
-			</form>
-		</c:when>
-		<c:otherwise>
-			<form action="${pageContext.request.contextPath}/admin/deleteItem" method="get">
-				<button type="submit" name="id" value="${item.id}">削除</button>
-			</form>
-		</c:otherwise>
-	</c:choose>
-					
-				</td>
-			</tr>
-		</table>
-		<br>
-</c:forEach> --%>
-
 </body>
 </html>

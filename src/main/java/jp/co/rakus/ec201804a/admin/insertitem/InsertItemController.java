@@ -56,8 +56,10 @@ public class InsertItemController {
 		if (result.hasErrors()) {			
 			return viewInsertItem();
 		}
+		int count=0;
 		Item item = new Item();
 		BeanUtils.copyProperties(form, item);
+		item.setCount(count);
 		System.out.println(item);
 		itemRepository.insertItem(item);
 		return "redirect:/admin/adminFindAll";

@@ -12,8 +12,8 @@
 	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/bootstrap-material-button-color-master/dist/cb-materialbtn.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css2/arange.css">
+<!--<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css2/arange.css">-->
 <meta http-equiv="content-type" charset="utf-8">
 <title>ユーザログイン</title>
 <!-- jQuery読み込み -->
@@ -34,9 +34,7 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
-
-
-<div class="bg">
+<div class ="bg">
 <div class="whole">
 	<div align="center">
 	<h2>ログイン</h2><br>
@@ -46,8 +44,8 @@
 	<form:form class="form-inline" modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/user/login">
 	
 	<table>
-	<tr><td><div class="div">メールアドレス：</div></td><td><form:input class="form-control" id="InputEmail" path="email" placeholder="メール・アドレス"/></td></tr>
-	<tr><td>パスワード：</td><td><form:password class="form-control" path="password" placeholder="パスワード"/></td></tr>
+	<tr><td><div class="div"><p class="message">メールアドレス：</p></div></td><td><form:input class="form-control" id="InputEmail" path="email" placeholder="メール・アドレス"/></td></tr>
+	<tr><td><p class="message">パスワード：</p></td><td><form:password class="form-control" path="password" placeholder="パスワード"/></td></tr>
 	</table>
 		<!-- 丸みのあるボタン -->
 		<br>
@@ -56,10 +54,15 @@
 				</div>
 				<br>
 	</form:form>
-	<br>
-	<a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a>
+	<div class="word" >
+	<p class="message">-------- Energy de cafeの新しいお客様ですか？--------</p>
+	<form action="${pageContext.request.contextPath}/user/form" method="get">
+	<input type="submit" value="新規登録はこちら"  style=WIDTH:300px>
+	</form>
+	</div>
 	</div>
 </div>
 </div>
+
 </body>
 </html>

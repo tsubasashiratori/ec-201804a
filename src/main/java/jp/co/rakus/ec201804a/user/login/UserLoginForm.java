@@ -1,7 +1,7 @@
 package jp.co.rakus.ec201804a.user.login;
 
 /**
- * 利用者ログインのフォームクラス.
+ * 利用者ログイン画面のフォーム.
  * 
  * @author yuta.kitazawa
  */

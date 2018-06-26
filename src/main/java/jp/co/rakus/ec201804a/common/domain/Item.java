@@ -31,6 +31,17 @@ public class Item {
 	 */
 	private Boolean deleted;
 	
+	/**
+	 * 観覧数
+	 */
+	private Integer count;
+	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public Long getId() {
 		return id;
 	}

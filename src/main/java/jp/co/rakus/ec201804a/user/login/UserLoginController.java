@@ -21,7 +21,7 @@ import jp.co.rakus.ec201804a.common.domain.User;
 @RequestMapping(value = "/user")
 public class UserLoginController {	
 	/**
-	 * ログインフォームを初期化する
+	 * ログインフォームを初期化する.
 	 * 
 	 * @return UserLoginForm
 	 */
@@ -30,10 +30,15 @@ public class UserLoginController {
 		return new UserLoginForm();
 	}
 	
+
 	/**
-	 * ログイン画面を表示する.
+	 * 利用者ログイン画面を表示する.
 	 * 
-	 * @return ログイン画面
+	 * @param form　フォーム
+	 * @param result　リザルト
+	 * @param model　モデル
+	 * @param error　エラー
+	 * @return　利用者ログイン画面
 	 */
 	@RequestMapping(value = "/")
 	public String index(UserLoginForm form, BindingResult result
