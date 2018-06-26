@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 
-
 table { background-color: #bde9ba; }
 img {
   
@@ -15,7 +14,7 @@ td {
     border:0;
 }
 .word{
-	margin: 5px, 5px, 5px, 5px;
+	margin-top: 10px;
 }
 p.message{
 	color: white;
@@ -67,18 +66,18 @@ html,body{
   margin: 0;
 }
 .bg{
-	width:800px; height:500px;
+	width:100%; height:100%;
 	margin : auto;
  background: url("../image/Energy_drinks.jpg");
- background-size: contain;
+
  position: relative;
- background-size:800px 800px;
+
 }
 
  
 .bg::before{
  content: ' ';
- background-color: rgba(0,0,0,0.3);
+ background-color: rgba(0,0,0,0.5);
  position: absolute;
  top: 0;
  right: 0;
@@ -87,6 +86,8 @@ html,body{
 }
 
 .whole{
+ padding-top : 100px ;
+ margin : 0;
  position: absolute;
  width: 100%;
  text-align: center;

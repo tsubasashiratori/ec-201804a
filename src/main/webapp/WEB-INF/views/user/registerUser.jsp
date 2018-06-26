@@ -19,7 +19,7 @@
 	
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <div align="center">
-	<h1>新規利用者登録画面</h1>
+	<h2>新規利用者登録画面</h2>
 	<br>
 	<br> お客様の情報を入力し、「お客様情報を登録する」ボタンをクリックしてください。
 	<br>

@@ -22,8 +22,8 @@
 	</script>
 <div class ="bg">
 <div class="whole">
-	<div align="center">
 	<h2  style="color:#ffffff;">ログイン</h2><br>
+	<div align="center">
 	<span class="text-danger"><form:errors path="userLoginForm.*"/></span>
 	
 	

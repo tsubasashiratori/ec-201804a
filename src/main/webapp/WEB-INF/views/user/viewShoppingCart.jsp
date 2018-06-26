@@ -19,7 +19,7 @@
 	</script>
 	
 	<center>
-		<h1>ショッピングカート一覧</h1>
+		<h2>ショッピングカート一覧</h2>
 		<c:if test="${damyOrder.id==-1}">ショッピングカートに商品がありません</c:if>
 		<c:forEach var="orders" items="${orderList}">
 			<c:choose>
@@ -27,7 +27,7 @@
 					<p>ショッピングカートに商品がありません</p>
 				</c:when>
 				<c:otherwise>
-					<table border=1>
+					<table class="table" border="1">
 						<tr>
 							<th colspan="2">商品名</th>
 							<th>価格</th>
