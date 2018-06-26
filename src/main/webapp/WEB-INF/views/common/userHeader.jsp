@@ -32,6 +32,9 @@
 <head>
 </head>
 <body>
+	<sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
+				<sec:authentication var="user" property="principal.user" />
+			</sec:authorize>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
