@@ -202,4 +202,20 @@ public class ItemRepository {
 		template.update(sql, param);
 	}
 	
+	
+	public Item findByOneName(String name) {
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("name",name);
+		String sql = "SELECT id, name, description, price, imagePath, deleted "
+				+ "FROM items "
+				+ "WHERE name=:name "
+				+ ";";
+		try {
+			Item item = template.queryForObject(sql, param, ITEM_ROWMAPPER);
+			return item;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
