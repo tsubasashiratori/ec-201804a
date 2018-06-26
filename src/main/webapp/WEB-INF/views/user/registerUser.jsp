@@ -8,6 +8,7 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
+<<<<<<< HEAD
 	<script>
 		$(window).on('load resize', function(){
 	    // navbarの高さを取得する
@@ -18,6 +19,15 @@
 	</script>
 	
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+=======
+<!-- <script type="text/javascript">
+function clearFormAll() {
+    for (var i=0; i<document.forms.length; ++i) {
+        clearForm(document.forms[i]);
+    }
+}
+</script> -->
+>>>>>>> feature/file
 <div align="center">
 	<h2>新規利用者登録画面</h2>
 	<br>
@@ -80,9 +90,12 @@
 			</tr>
 		</table>
 
-		<br> <br><input type="submit" value="お客様情報を登録する">   <input type="reset" value="入力内容をクリアする">
+		<br> <br><input type="submit" value="お客様情報を登録する"><br><br>
 	</form:form>
-	
+	<form action="${pageContext.request.contextPath}/user/form"  onsubmit="return confirm('入力内容を削除してもよろしいですか？')">
+	<input type="submit" value="入力内容をクリアする">
+	</form>
+<br><br>
 </div>
 </body>
 </html>

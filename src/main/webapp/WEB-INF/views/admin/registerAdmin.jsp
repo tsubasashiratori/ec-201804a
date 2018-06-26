@@ -17,7 +17,7 @@
 
 <form:errors path="AdminUserForm.*" />
 	<form:form modelAttribute="registerAdminForm" action="${pageContext.request.contextPath}/admin/register" 
-	method="post" onreset="return confirm('入力内容を削除してもよろしいですか？')">
+	method="post">
 		<br>
 		<table border="">
 			<tr>
@@ -49,8 +49,11 @@
 			</tr>
 		</table>
 
-		<br> <br><input type="submit" value="管理者情報を登録する">   <input type="reset" value="入力内容をクリアする">
+		<br> <br><input type="submit" value="管理者情報を登録する"><br><br>
 	</form:form>
+	<form action="${pageContext.request.contextPath}/admin/form" onsubmit="return confirm('入力内容を削除してもよろしいですか？')">
+	<input type="submit" value="入力内容をクリアする">
+	</form>
 </div>
 </body>
 </html>
