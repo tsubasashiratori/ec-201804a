@@ -17,7 +17,7 @@
 	<div align="center">
 		<h2 align="center">商品詳細</h2>
 
-		<table border="1" align="center">
+		<table border="1" align="center" class="table" style=WIDTH:500px>
 			<tr>
 				<td colspan="2" rowspan="3"><img src="../img/${item.imagePath}"
 					width="150" height="150" alt="商品画像"></td>
