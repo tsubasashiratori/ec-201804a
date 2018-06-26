@@ -10,12 +10,12 @@
 <div align ="center">
     <h2>管理者メニュー画面</h2>
 
-        <a href="/admin/insertItem">商品を登録</a><br><br>
-        <a href="/admin/adminFindAll">商品一覧</a><br><br>
-        <a href="/admin/viewOrderList">注文一覧</a><br><br>
-        <a href="/admin/form">管理者登録</a><br><br>
+        <a href="${pageContext.request.contextPath}/admin/insertItem">商品を登録</a><br><br>
+        <a href="${pageContext.request.contextPath}/admin/adminFindAll">商品一覧</a><br><br>
+        <a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧</a><br><br>
+        <a href="${pageContext.request.contextPath}/admin/form">管理者登録</a><br><br>
         <br>
-        <a href="/admin/logout">ログアウト</a>
+        <a href="${pageContext.request.contextPath}/admin/logout">ログアウト</a>
 </div>
 </body>
 </html>
