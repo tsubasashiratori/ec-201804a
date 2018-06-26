@@ -18,6 +18,7 @@
 					<p>
 						<a href="${pageContext.request.contextPath}/user/">ログイン</a>
 					</p>
+					
 				</c:when>
 				<c:otherwise>
 					<p>

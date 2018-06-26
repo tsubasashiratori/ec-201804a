@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../common/userHeader.jsp"%>
+<%@ include file="../common/ECheaderBS.jsp"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,7 +30,6 @@
 <title>商品一覧</title>
 </head>
 <body>
-
 
 	<div align="center">
 		<h2>商品一覧</h2>
