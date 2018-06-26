@@ -64,10 +64,10 @@ html,body{
   margin: 0;
 }
 .bg{
-	width:800px; height:500px;
+
 	margin : auto;
- background: url("../image/Energy_drinks.jpg");
- background-size: cover;
+ background-image: url("../image/Energy_drinks.jpg");
+ background-size: contain;
  position: relative;
  background-size:800px 800px;
 }
