@@ -60,6 +60,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/user/login" // : 利用者のログイン処理
 				,"/user/register" // : 利用者登録処理
 				,"/user/ViewAllItemsAndSearchItem/findByNameNotDeleted" // : 商品の検索
+				,"/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum" // : 商品の検索				
 				,"/user/toInsertShoppingCart**" // : ショッピングカートに追加する
 				,"/user/toDeleteShoppingCart" // : ショッピングカートの要素を削除する
 				).permitAll() //このパスは全てのユーザに許可

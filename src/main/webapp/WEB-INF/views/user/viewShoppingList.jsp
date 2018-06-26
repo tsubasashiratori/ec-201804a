@@ -76,12 +76,14 @@
 			観覧数ランキングTOP5
 				<table border="1" align="center">
 					<tr>
+						<th>順位</th>
 						<th colspan="2" width="150">商品名</th>
 						<th width="150">価格</th>
 					</tr>
 
-					<c:forEach var="itemTop5Count" items="${itemListTop5Count}">
+					<c:forEach begin="0" end="4" step="1" varStatus="status" var="itemTop5Count" items="${itemListTop5Count}">
 						<tr>
+							<td><c:out value="${status.index+1}"/></td>
 							<td><img
 								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
 								width="150" height="125"></td>
@@ -97,6 +99,22 @@
 			</c:otherwise>
 
 		</c:choose>
+		<br><br>
+		<c:if test="${pageNum>1}">
+		<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
+		前へ
+		</a>
+		</c:if>
+		<c:forEach begin="0" end="${page}" step="1" varStatus="status">
+		<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
+		<c:out value="${status.index+1}"/>
+		</a>
+		</c:forEach>
+		<c:if test="${pageNum<=page}">
+		<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
+		次へ
+		</a>
+		</c:if>
 	</div>
 </body>
 </html>
