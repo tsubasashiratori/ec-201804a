@@ -54,5 +54,7 @@
 		</form:form>
 		<br> <a
 			href="${pageContext.request.contextPath}/user/">商品一覧に戻る</a>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
+			
 </body>
 </html>

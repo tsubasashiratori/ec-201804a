@@ -140,5 +140,7 @@
  --%>
      <a href="${pageContext.request.contextPath}/user/orderList">注文一覧に戻る</a>
  </div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
+ 
 </body>
 </html>

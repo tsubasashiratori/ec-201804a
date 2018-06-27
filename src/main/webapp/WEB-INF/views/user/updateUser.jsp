@@ -63,5 +63,7 @@
 	</form:form>
 	<a href="${pageContext.request.contextPath}/user/myPage">マイページに戻る</a>
 </div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
+
 </body>
 </html>

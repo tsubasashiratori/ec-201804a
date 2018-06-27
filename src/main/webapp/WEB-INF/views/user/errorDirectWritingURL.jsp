@@ -23,5 +23,6 @@
 	<a href="${pageContext.request.contextPath}/user//">商品一覧へ戻る</a><br>
 	<a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a>
 	</div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
 </body>
 </html>

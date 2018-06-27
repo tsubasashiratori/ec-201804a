@@ -146,5 +146,7 @@
 <br><br>
 		</div>
 	</div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
+	
 </body>
 </html>
