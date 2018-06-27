@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+input.search{
+	width: 200px;
+	
+}
+
+input.submit{
+	
+}
 mypage.td{
 	width : 200px;
 }
@@ -22,9 +30,7 @@ img {
     border:2px solid;
 }
 
-.word{
-	margin-top: 10px;
-}
+
 p.message{
 	color: white;
 }
@@ -41,6 +47,24 @@ position: absolute;
 content: " ";
 display: block;
 border-bottom: solid 3px #ffc778;
+bottom: -3px;
+width: 30%;
+}
+<!---->
+
+h3{
+	color: white;
+}
+h3 {
+border-bottom: solid 3px  #ffc778;
+position: relative;
+}
+
+h3:after {
+position: absolute;
+content: " ";
+display: block;
+border-bottom: solid 3px skyblue;
 bottom: -3px;
 width: 30%;
 }

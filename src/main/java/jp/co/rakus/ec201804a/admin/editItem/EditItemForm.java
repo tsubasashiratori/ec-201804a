@@ -3,6 +3,8 @@ package jp.co.rakus.ec201804a.admin.editItem;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EditItemForm {
 
 	/** id */
@@ -20,8 +22,8 @@ public class EditItemForm {
 	private String description;
 	
 	/** 画像までのパス */
-	@NotBlank(message="画像を選択してください")
-	private String imagePath;
+//	@NotBlank(message="画像を選択してください")
+	private MultipartFile imagePath;
 	
 	/** 削除フラグ */
 	private Boolean deleted;
@@ -50,10 +52,10 @@ public class EditItemForm {
 		return Integer.parseInt(price);
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public MultipartFile getImagePath() {
+		return imagePath;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
@@ -62,12 +64,12 @@ public class EditItemForm {
 		this.description = description;
 	}
 
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
+	public void setImagePath(MultipartFile imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 	public Boolean getDeleted() {

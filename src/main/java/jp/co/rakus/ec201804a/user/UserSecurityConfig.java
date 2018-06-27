@@ -53,6 +53,8 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				"/user/loginForm"// : 利用者のログインページ
 				,"/user/form" //: 利用者の登録画面
 				,"/user/" // : 商品一覧画面(トップページ)
+				,"/user/findAllNotDeletedByPageNum**" // : 商品の検索			
+				,"/user/findByNameNotDeletedPageNum**"	
 				,"/user/viewDetail**" // : 商品詳細の表示
 				,"/user/toViewShoppingCart" //　:　ショッピングカート一覧画面
 				,"/user/systemError" // :500エラー画面
@@ -61,7 +63,6 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				,"/user/login" // : 利用者のログイン処理
 				,"/user/register" // : 利用者登録処理
 				,"/user/findByNameNotDeleted**" // : 商品の検索
-				,"/user/findAllNotDeletedByPageNum**" // : 商品の検索				
 				,"/user/toInsertShoppingCart**" // : ショッピングカートに追加する
 				,"/user/toDeleteShoppingCart" // : ショッピングカートの要素を削除する
 				).permitAll() //このパスは全てのユーザに許可

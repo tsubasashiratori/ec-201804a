@@ -93,10 +93,10 @@
 			</tr>
 		</table>
 
-		<br> <br><input type="submit" value="お客様情報を登録する"><br><br>
+		<br> <br><input type="submit" value="お客様情報を登録する" class="btn btn-default"><br><br>
 	</form:form>
 	<form action="${pageContext.request.contextPath}/user/form"  onsubmit="return confirm('入力内容を削除してもよろしいですか？')">
-	<input type="submit" value="入力内容をクリアする">
+	<input type="submit" value="入力内容をクリアする" class="btn btn-default">
 	</form>
 <br><br>
 </div>

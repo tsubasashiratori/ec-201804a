@@ -23,7 +23,7 @@
 		<div>編集したい商品の情報を入力してください。</div>
 		<br>
 
-<form:form modelAttribute="editItemForm" action="${pageContext.request.contextPath}/admin/editItem" align="center">
+<form:form modelAttribute="editItemForm" action="${pageContext.request.contextPath}/admin/editItem" align="center" enctype="multipart/form-data">
 	<form:hidden path="id"/>
 	<!-- idをhiddenで埋め込んでいる -->
 	
@@ -43,10 +43,12 @@
 			<br>
 			
 			<form:errors path="imagePath" element="div" cssStyle="color:red" align="center"></form:errors>
-			画像：<input type="file" name="imagePath" accept="コンテンツタイプ(Content-Type)">
+			画像：<input type="file" name="imagePath" accept="image/jpeg">
 			<p><small></small></p>
 			<br>
-			
+			現在の画像<br>
+			<img src="${pageContext.request.contextPath}/img/${imagePath}"
+							width="200" height="125" /><br>
 			削除:<form:checkbox path="deleted" value="${form.deleted}"/><br>
 			<p><small></small></p>
 	         <input type="submit" value="編集" align="center">
