@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.ViewAllAndsearch4;
+package jp.co.rakus.ec201804a.user.viewAllAndsearch4;
 
 import java.util.List;
 
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.common.repository.ItemRepository;
-import jp.co.rakus.ec201804a.user.ViewAllAndsearch4.form.ViewAllItemsAndSearchItemForm;
 
 /**
  * ４．商品一覧の表示と検索を行うコントローラー.

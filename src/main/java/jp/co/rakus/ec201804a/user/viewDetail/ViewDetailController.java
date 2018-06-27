@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.viewDetail.controller;
+package jp.co.rakus.ec201804a.user.viewDetail;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

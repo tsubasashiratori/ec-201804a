@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.user.ViewAllAndsearch4.form;
+package jp.co.rakus.ec201804a.user.viewAllAndsearch4;
 
 import javax.validation.constraints.Size;
 
