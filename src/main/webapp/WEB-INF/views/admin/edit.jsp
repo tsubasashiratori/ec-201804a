@@ -9,6 +9,15 @@
 </head>
 <%@ include file="../common/adminHeader.jsp"%>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
+	
 <div align="center">
 		<h2>商品編集画面</h2>
 		<div>編集したい商品の情報を入力してください。</div>
