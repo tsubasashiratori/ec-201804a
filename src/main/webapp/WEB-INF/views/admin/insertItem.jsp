@@ -24,7 +24,7 @@
 	<form:errors path="ItemForm*."/>
 		<form:form modelAttribute="insertItemForm" action="${pageContext.request.contextPath}/admin/insert" method="post" enctype="multipart/form-data">
 		
-			 <table class="table" style=WIDTH:700px>
+			<table class="table" style=WIDTH:700px>
 			<tr><td>商品名：<br><p><small><form:errors path="name" cssStyle="color:red" /></small></p></td>
 			<td><form:input path="name" class="form-control register"/></td></tr><br>
 			
