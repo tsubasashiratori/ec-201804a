@@ -8,6 +8,15 @@
 </head>
 <%@ include file="../common/adminHeader.jsp" %>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
+	
 <div align="center">
 	<h1>新規管理者登録画面</h1>
 	<br>
