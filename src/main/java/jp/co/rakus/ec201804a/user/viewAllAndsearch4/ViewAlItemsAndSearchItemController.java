@@ -20,7 +20,7 @@ import jp.co.rakus.ec201804a.common.repository.ItemRepository;
  *
  */
 @Controller
-@RequestMapping("/user/ViewAllItemsAndSearchItem")
+@RequestMapping("/user")
 public class ViewAlItemsAndSearchItemController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class ViewAlItemsAndSearchItemController {
 	 * @param model
 	 * @return 商品一覧にページを遷移する
 	 */
-	@RequestMapping("/findAllNotDeleted")
+	@RequestMapping("/")
 	public String findAllNotDeleted(Model model) {
 		
 		int limit=2;

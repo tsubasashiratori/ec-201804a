@@ -53,6 +53,6 @@
 			<input type="submit" value="追加">
 		</form:form>
 		<br> <a
-			href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">商品一覧に戻る</a>
+			href="${pageContext.request.contextPath}/user/">商品一覧に戻る</a>
 </body>
 </html>

@@ -40,7 +40,7 @@ public class UserLoginController {
 	 * @param error　エラー
 	 * @return　利用者ログイン画面
 	 */
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/loginForm")
 	public String index(UserLoginForm form, BindingResult result
 			,Model model, @RequestParam(required = false) String error) {
 		System.err.println("login error:" + error);
