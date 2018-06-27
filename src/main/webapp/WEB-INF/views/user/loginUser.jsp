@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:600i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 <meta charset="UTF-8">
 <%@ include file="../common/userHeader.jsp"%>
 <title>ユーザログイン</title>
@@ -22,10 +25,13 @@
 	</script>
 	<div class="bg">
 		<div class="whole">
-			<h2 style="color: #ffffff;">ログイン</h2>
+			<h2 style="color: #ffffff;" class="login">login</h2>
 			<br>
 			<div align="center">
-				<span class="text-danger"><form:errors path="userLoginForm.*" style="color: #ffffff;" /><br>	</span>
+				<span class="text-danger">
+				<form:errors path="userLoginForm.*" style="color: #ffffff;">
+				
+				</form:errors><br>	</span>
 
 
 				<form:form class="form-inline" modelAttribute="userLoginForm"
@@ -34,25 +40,25 @@
 					<table >
 						<tr>
 							<td align="center"><div class="div">
-									<p class="message">メールアドレス</p>
+									<p class="message login2">mail-address</p>
 								</div></td>
 						</tr>
 						<tr>
-							<td align="center"><form:input class="form-control"
-									id="InputEmail" path="email" placeholder="メール・アドレス" /></td>
+							<td align="center"><form:input class="form-control login4"
+									id="InputEmail" path="email" placeholder="mail-address" /></td>
 						</tr>
 						<tr>
-							<td align="center" style=height:50px valign="bottom"><p class="message" >パスワード</p></td>
+							<td align="center" style=height:50px valign="bottom"><p class="message login2" >password</p></td>
 						</tr>
 						<tr>
-							<td><form:password class="form-control" path="password"
-									placeholder="パスワード" align="center" valign="top"/></td>
+							<td><form:password class="form-control login4" path="password"
+									placeholder="password" align="center" valign="top"/></td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<!-- 丸みのあるボタン --> <br>
 								<div class="col-lg-12 text-center">
-									<input type="submit" class="btn_circle_arange" value="ログイン"><br>
+									<input type="submit" class="btn_circle_arange login3" value="push"><br>
 								</div> <br>
 							</td>
 						</tr>
