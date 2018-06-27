@@ -1,5 +1,6 @@
 package jp.co.rakus.ec201804a.user.buyLog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,17 @@ public class OrderLogController {
 		LoginUser loginUser = (LoginUser) principal;
 		Long userId = loginUser.getUser().getId();
 		
-		List<Order> orderList = orderRepository.findByUserIdAndStatusForView(userId, 1);
+	
+		List<Order> orderList1 = orderRepository.findByUserIdAndStatusForView(userId, 1);
+		List<Order> orderList2 = orderRepository.findByUserIdAndStatusForView(userId, 2);
+		List<Order> orderList3 = orderRepository.findByUserIdAndStatusForView(userId, 3);
+
+		List<Order> orderList =new ArrayList<>();
+
+		orderList.addAll(orderList1);
+		orderList.addAll(orderList2);
+		orderList.addAll(orderList3);
+	
 		
 		if (orderList.isEmpty() == true) {
 			model.addAttribute("orderListEmptyChecker", true);

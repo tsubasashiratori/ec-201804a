@@ -53,7 +53,9 @@
 				<c:when test="${itemList.size()==0}">
 					<p align="center">商品がありません</p>
 				</c:when>
-
+				<c:when test="${notDisplay==true}">
+					<p align="center">商品がありません</p>
+				</c:when>
 				<c:otherwise>
 
 					<table class="table-striped" style="WIDTH: 800px">
@@ -82,8 +84,7 @@
 				</c:otherwise>
 
 			</c:choose>
-			<br>
-			<br>
+			<br> <br>
 
 			<c:choose>
 				<c:when test="${itemListTop5Count==null}">
@@ -125,25 +126,65 @@
 
 			</c:choose>
 
-<br><br>
-<hr>
-		<c:if test="${pageNum>1}">
-			<a
-				href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
-				前へ </a>
-		</c:if>
-		<c:forEach begin="0" end="${page}" step="1" varStatus="status">
-			<a
-				href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
-				<c:out value="${status.index+1}" />
-			</a>
-		</c:forEach>
-		<c:if test="${pageNum<=page}">
-			<a
-				href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
-				次へ </a>
-		</c:if>
-<br><br>
+			<br>
+			<br>
+			<hr>
+			<c:choose>
+				<c:when test="${Item==true}">
+
+					<c:if test="${pageNum>1}">
+						<a
+							href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
+							前へ </a>
+					</c:if>
+					<c:forEach begin="0" end="${page-1}" step="1" varStatus="status">
+						<c:choose>
+							<c:when test="${status.index+1 != pageNum }">
+								<a
+									href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
+									<c:out value="${status.index+1}" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${status.index+1}" />
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${pageNum<page}">
+						<a
+							href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
+							次へ </a>
+					</c:if>
+				</c:when>
+				<c:when test="${searchItem==true}">
+
+					<c:if test="${pageNum>1}">
+						<a
+							href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeletedPageNum?pageNum=${pageNum-1}&name=${name}">
+							前へ </a>
+					</c:if>
+					<c:forEach begin="0" end="${page-1}" step="1" varStatus="status">
+						<c:choose>
+							<c:when test="${status.index+1 != pageNum }">
+								<a
+									href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeletedPageNum?pageNum=${status.index+1}&name=${name}">
+									<c:out value="${status.index+1}" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${status.index+1}" />
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${pageNum<page}">
+						<a
+							href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeletedPageNum?pageNum=${pageNum+1}&name=${name}">
+							次へ </a>
+					</c:if>
+				</c:when>
+			</c:choose>
+			<br>
+			<br>
 		</div>
 	</div>
 </body>

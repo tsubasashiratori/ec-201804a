@@ -104,24 +104,38 @@ public class ItemRepository {
 		return itemList;
 	}
 
-	
-	/**
-	 * 名前から検索をするメソッド.
-	 * @param name 名前
-	 * @return 検索の対象となったオブジェクトのリストを返すか、もしくは、空のリストを返す
+	/**検索結果で何件あるか検索する
+	 * @param name
+	 * @return
 	 */
-	public List<Item> findByNameNotDeleted(String name) {
 
-		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
-				+ " where deleted = false and name ILIKE :name order by price";
+	public Integer pageCountSearch(String name) {
+
+		String sql = "select COUNT(*) from " + TABLE_NAME
+				+ " where deleted = false and name ILIKE :name";
 
 		String nameLike = "%" + name + "%";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike);
+		return template.queryForObject(sql, param, Integer.class);
+	}
+	
+	/**
+	 * 名前から検索をするメソッド(指定された場所から検索).
+	 * @param name 名前
+	 * @return 検索の対象となったオブジェクトのリストを返すか、もしくは、空のリストを返す
+	 */
+	public List<Item> findByNameNotDeleted(Integer thisfind,Integer limit,String name) {
+		String sql = "select id, name, description, price, imagePath, deleted,count from " + TABLE_NAME
+				+ " where deleted = false and name ILIKE :name order by id offset :thisfind limit :limit";
+
+		String nameLike = "%" + name + "%";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", nameLike).addValue("thisfind", thisfind).addValue("limit", limit);
 		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
 		return itemList;
-
 	}
 
+	
+	
 	/**
 	 * 商品の詳細情報を検索するメソッド.
 	 * @param id

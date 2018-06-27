@@ -11,7 +11,7 @@
 <%@ include file="../common/userHeader.jsp" %>
 <body>
 	<div align="center">
-
+<br><br><br><br><br>
 <h1>注文一覧</h1>
 
 	<c:choose>
@@ -38,9 +38,7 @@
         <td>
        
         <c:choose>
-        	<c:when test="${order.status == 0}">
-        		購入前
-        	</c:when>
+
         	<c:when test="${order.status == 1}">
         		未入金
         	</c:when>
@@ -50,9 +48,7 @@
         	<c:when test="${order.status == 3}">
         		発送済み
         	</c:when>
-        	<c:when test="${order.status == 9}">
-        		キャンセル
-        	</c:when>	
+
         </c:choose>
         </td>
         <td><fmt:formatNumber value="${order.totalPrice}" pattern="###,###円"/></td>
@@ -62,6 +58,9 @@
     <br>
     </c:when>
     </c:choose>
+    
+    
+    
     <a href="${pageContext.request.contextPath}/user/myPage">マイページに戻る</a>
     </div>
 	
