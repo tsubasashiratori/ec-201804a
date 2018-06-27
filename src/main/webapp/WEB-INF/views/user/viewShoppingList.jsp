@@ -41,7 +41,7 @@
 			</div>
 		</form>
 		<form:form modelAttribute="viewAllItemsAndSearchItemForm"
-			action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeleted"
+			action="${pageContext.request.contextPath}/user/findByNameNotDeleted"
 			method="post" align="center">
 			<form:errors path="name" element="div" cssStyle="color:red" />
 			
@@ -163,6 +163,7 @@
 							href="${pageContext.request.contextPath}/user/findByNameNotDeletedPageNum?pageNum=${pageNum-1}&name=${name}">
 							前へ </a>
 					</c:if>
+					<c:if test="${page>1}">
 					<c:forEach begin="0" end="${page-1}" step="1" varStatus="status">
 						<c:choose>
 							<c:when test="${status.index+1 != pageNum }">
@@ -176,6 +177,7 @@
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
+					</c:if>
 					<c:if test="${pageNum<page}">
 						<a
 							href="${pageContext.request.contextPath}/user/findByNameNotDeletedPageNum?pageNum=${pageNum+1}&name=${name}">
