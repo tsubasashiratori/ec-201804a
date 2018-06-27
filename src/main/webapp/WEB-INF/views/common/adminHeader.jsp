@@ -11,7 +11,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css2/arange.css">
 <meta http-equiv="content-type" charset="utf-8">
-<title>ユーザログイン</title>
 <!-- jQuery読み込み -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
