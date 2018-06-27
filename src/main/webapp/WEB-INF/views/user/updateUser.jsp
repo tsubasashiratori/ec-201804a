@@ -8,6 +8,15 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
+	<script>
+		$(window).on('load resize', function(){
+	    // navbarの高さを取得する
+	    	var height = $('.navbar').height();
+	    // bodyのpaddingにnavbarんぼ高さを設定する
+	    	$('body').css('padding-top',height); 
+		});
+	</script>
+	
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <div align="center">
 	<h1>利用者情報変更</h1>
@@ -20,7 +29,8 @@
 	<form:form modelAttribute="updateUserForm" action="${pageContext.request.contextPath}/user/update" method="post">
 		<form:hidden path="id"/>
 		<br>
-		<table border="">
+		<div class="table-recponsive">
+		<table class="table table-bordered table-striped">
 			<tr>
 				<td><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前</td>
@@ -46,9 +56,9 @@
 				- <form:input path="telBody" size="4" maxlength="4"/>
 				- <form:input path="telTeil" size="4" maxlength="4"/>
 				</td>
-
 			</tr>
 		</table>
+		</div>
 		<br> <br><input type="submit" value="お客様情報を変更する">   <input type="reset" value="入力内容をクリアする">
 	</form:form>
 	<a href="${pageContext.request.contextPath}/user/myPage">マイページに戻る</a>
