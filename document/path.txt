@@ -1,0 +1,5 @@
+ユーザー用トップページURL
+http://localhost:8080/ec-201804a/user/
+
+管理者用ログインページURL
+http://localhost:8080/ec-201804a/admin/

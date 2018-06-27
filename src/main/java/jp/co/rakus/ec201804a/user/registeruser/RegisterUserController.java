@@ -100,7 +100,7 @@ public class RegisterUserController {
 
 		userRepository.registerUser(user);
 		
-		return "redirect:/user/";
+		return "redirect:/user/loginForm";
 	}
 	
 

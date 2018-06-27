@@ -12,7 +12,7 @@
  
 以下のリンクからお戻りください。<br>
  
-<a href="${pageContext.request.contextPath}/user/">ログイン画面</a>
+<a href="${pageContext.request.contextPath}/user/loginForm">ログイン画面</a>
 </div>
 </body>
 </html>

@@ -50,7 +50,7 @@ public class PaymentController {
 		}
 		
 		if (user == null) {
-			return "redirect:/user/";
+			return "redirect:/user/loginForm";
 		}
 //		ユーザーログインチェックここまで================================================================
 		

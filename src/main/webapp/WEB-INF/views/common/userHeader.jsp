@@ -41,7 +41,7 @@
 			<div class="navbar-header">
 				<!--  logoimg -->
 				<a class="navbar-brand" href="${pageContext.request.contextPath}
-					/user/ViewAllItemsAndSearchItem/findAllNotDeleted">
+					/user/">
 					<img src="${pageContext.request.contextPath}/img/rakus.jpg" 
 					id="logo-img">
 				</a>
@@ -61,12 +61,12 @@
 				<!-- main navbar -->
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">
+						<a href="${pageContext.request.contextPath}/user/">
 							トップページ
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">
+						<a href="${pageContext.request.contextPath}/user/">
 							商品一覧
 						</a>
 					</li>
@@ -86,7 +86,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/user/">
+								<a href="${pageContext.request.contextPath}/user/loginForm">
 									<span class="glyphicon glyphicon-log-in"></span>
 									ログイン
 								</a>
