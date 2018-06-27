@@ -1,7 +1,18 @@
 @charset "UTF-8";
 
+mypage.td{
+	width : 200px;
+}
+input.register{
+	width : 200px;
+	height : 30px;
+}
+input.register2{
+	width : 56px;
+	height : 30px;
+}
 
-table { background-color: #bde9ba; }
+
 img {
   
     max-width:100%;
@@ -10,9 +21,7 @@ img {
 .table-striped　{
     border:2px solid;
 }
-td {
-    border:0;
-}
+
 .word{
 	margin-top: 10px;
 }
