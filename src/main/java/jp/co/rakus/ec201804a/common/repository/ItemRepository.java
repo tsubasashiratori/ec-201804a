@@ -206,7 +206,7 @@ public class ItemRepository {
 	public Item findByOneName(String name) {
 		SqlParameterSource param = new MapSqlParameterSource()
 				.addValue("name",name);
-		String sql = "SELECT id, name, description, price, imagePath, deleted "
+		String sql = "SELECT id, name, description, price, imagePath, deleted, count "
 				+ "FROM items "
 				+ "WHERE name=:name "
 				+ ";";
