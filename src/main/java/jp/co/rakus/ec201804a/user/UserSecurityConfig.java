@@ -50,9 +50,9 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers(
 				//ログインしていなくても表示可能な画面
-				"/user/"// : 利用者のログインページ
+				"/user/loginForm"// : 利用者のログインページ
 				,"/user/form" //: 利用者の登録画面
-				,"/user/ViewAllItemsAndSearchItem/findAllNotDeleted" // : 商品一覧画面
+				,"/user/" // : 商品一覧画面(トップページ)
 				,"/user/viewDetail**" // : 商品詳細の表示
 				,"/user/toViewShoppingCart" //　:　ショッピングカート一覧画面
 				,"/user/systemError" // :500エラー画面
@@ -60,8 +60,8 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 				//ログインしていなくても可能な操作
 				,"/user/login" // : 利用者のログイン処理
 				,"/user/register" // : 利用者登録処理
-				,"/user/ViewAllItemsAndSearchItem/findByNameNotDeleted" // : 商品の検索
-				,"/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum" // : 商品の検索				
+				,"/user/findByNameNotDeleted**" // : 商品の検索
+				,"/user/findAllNotDeletedByPageNum**" // : 商品の検索				
 				,"/user/toInsertShoppingCart**" // : ショッピングカートに追加する
 				,"/user/toDeleteShoppingCart" // : ショッピングカートの要素を削除する
 				).permitAll() //このパスは全てのユーザに許可
@@ -73,10 +73,10 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		//「/login」は不要になる
 		//例外がスローされると失敗とみなす
 		http.formLogin()
-		.loginPage("/user/")//ログイン画面のパス
+		.loginPage("/user/loginForm")//ログイン画面のパス
 		.loginProcessingUrl("/user/login")//ログインボタンを押したときのパス
 		.failureUrl("/user/?error=true")//ログイン失敗画面のパス
-		.defaultSuccessUrl("/user/ViewAllItemsAndSearchItem/findAllNotDeleted", false)
+		.defaultSuccessUrl("/user/", false)
 		// 第1引数:デフォルトでログイン成功時に遷移させるパス
         // 第2引数: true :認証後常に第1引数のパスに遷移 
         //         false:認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
@@ -87,7 +87,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		//ログアウトに関する設定
 		http.logout()
 		.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout**"))//ログアウトさせる際に遷移させるパス
-		.logoutSuccessUrl("/user/ViewAllItemsAndSearchItem/findAllNotDeleted")//ログアウト後に遷移させるパス
+		.logoutSuccessUrl("/user/")//ログアウト後に遷移させるパス
 		.deleteCookies("JESESIONID")// ログアウト後、Cookieに保存されているセッションIDを削除
 		.invalidateHttpSession(true)// true:ログアウト後、セッションを無効にする false:セッションを無効にしない	
 		;

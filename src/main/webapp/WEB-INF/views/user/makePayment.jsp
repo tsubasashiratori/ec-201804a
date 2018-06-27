@@ -25,7 +25,7 @@
 		<font color="red"><c:out value="${nullError}"/></font>
 		<hr>
 		<p align="center">
-		<a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted ">商品一覧画面へ戻る</a>
+		<a href="${pageContext.request.contextPath}/user/ ">商品一覧画面へ戻る</a>
 		</p>
 		</c:when>
 	<c:when test="${cartNullChecker == false}">

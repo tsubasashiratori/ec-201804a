@@ -32,7 +32,7 @@
 			<h2>商品一覧</h2>
 
 			<form
-				action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted"
+				action="${pageContext.request.contextPath}/user/"
 				method="get">
 
 				<input type="submit" value="全件表示">
@@ -40,7 +40,7 @@
 			</form>
 			<br>
 			<form:form modelAttribute="viewAllItemsAndSearchItemForm"
-				action="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findByNameNotDeleted"
+				action="${pageContext.request.contextPath}/user/findByNameNotDeleted"
 				method="post" align="center">
 				<form:errors path="name" element="div" cssStyle="color:red" />
 				<form:input path="name" />
@@ -129,18 +129,18 @@
 <hr>
 		<c:if test="${pageNum>1}">
 			<a
-				href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
+				href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
 				前へ </a>
 		</c:if>
 		<c:forEach begin="0" end="${page}" step="1" varStatus="status">
 			<a
-				href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
+				href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
 				<c:out value="${status.index+1}" />
 			</a>
 		</c:forEach>
 		<c:if test="${pageNum<=page}">
 			<a
-				href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
+				href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
 				次へ </a>
 		</c:if>
 <br><br>

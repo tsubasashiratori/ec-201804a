@@ -21,7 +21,7 @@
     <a href="${pageContext.request.contextPath}/user/updateForm">ユーザ登録情報を変更する</a><br><br>
     <a href="${pageContext.request.contextPath}/user/orderList">注文履歴を確認する</a><br><br>
     <br>
-    <a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">トップページに戻る</a>
+    <a href="${pageContext.request.contextPath}/user/">トップページに戻る</a>
     <h2 align="center">アカウント情報</h2><br>
     <div align="center"><strong><c:out value="${user.name}"></c:out></strong>&nbsp;さんのアカウント情報</div><br>
     <table border="1" align="center" class="table table-hover" style=WIDTH:800px>
