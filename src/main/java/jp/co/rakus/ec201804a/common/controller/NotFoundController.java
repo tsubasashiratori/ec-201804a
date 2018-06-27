@@ -1,4 +1,4 @@
-package jp.co.rakus.ec201804a.common;
+package jp.co.rakus.ec201804a.common.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
