@@ -33,11 +33,12 @@
 			説明 ：<form:textarea path="description" cols="40" rows="5"/><br>
 			<p><small><form:errors path="description" cssStyle="color:red" /></small></p>
 			<br>
+			
 			画像 ：<input type="file" name="imagePath" accept="image/jpeg"/><br>
+			<p><small><form:errors path="imagePath" cssStyle="color:red" /></small></p>
 			<div>
 				<font size="2" color="red">※ファイルはjpegファイルを指定してください</font>
 			</div>
-			<p><small><form:errors path="imagePath" cssStyle="color:red" /></small></p>
 			<br>
 			<form:checkbox path="deleted"/>利用者商品一覧に表示しない<br>
 			<input type="submit" value="登録"><br>

@@ -81,6 +81,8 @@ public class InsertItemController {
 			result.rejectValue("imagePath","","ファイルを選択してください");
 	  	}else if(uploadFile.isEmpty()) {
 		    result.rejectValue("imagePath","","画像の中身が空です");
+		}else if(!uploadFile.getOriginalFilename().endsWith(".jpg")) {
+			result.rejectValue("imagePath", null, "jpg画像を選択してください");
 		}
 		if (uploadFile.getSize() >= 512000){
 			result.rejectValue("imagePath","","画像が大きすぎます");
