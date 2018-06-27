@@ -22,7 +22,8 @@
 <div align="center">
 
 <h1>注文詳細画面</h1>
-<table border="1">
+<div class="table-responsive">
+<table class="table table-striped">
 				  <tr>
 				    <th nowrap>注文NO</th>
 				    <td><c:out value="${order.orderNumber}"></c:out>
@@ -45,9 +46,10 @@
 				    <th nowrap>TEL</th>
 				    <td><c:out value="${order.deliveryTel}"/></td>
 				  </tr>
-				  </table><br>
+				  </table></div><br>
 				  
-	<table border="1">
+<div class="table-responsive">
+<table class="table table-striped">
       <tr>
         <th nowrap>商品</th>
         <th nowrap>価格</th>
@@ -64,10 +66,11 @@
         <td><fmt:formatNumber value="${orderItem.itemTotalPriceExcludeTax}" pattern="###,###円"/></td>
       </tr>
       </c:forEach>
-    </table><br>
+    </table></div><br>
     
     
-    <table border="1">
+<div class="table-responsive">
+<table class="table table-striped">
 				  <tr>
 				    <th nowrap>小計</th>
 				    <td><fmt:formatNumber value="${order.totalPriceExcludeTax}" pattern="###,###円"/></td>
@@ -88,10 +91,11 @@
 				    <th nowrap> 総計</th>
 				    <td><fmt:formatNumber value="${order.totalPriceIncludeTaxAndPostage}" pattern="###,###円"/></td>
 				  </tr>
-				  </table><br>
+				  </table></div><br>
 
 
-	<table border="1">
+<div class="table-responsive">
+<table class="table table-striped">
       <tr>
         <th nowrap>現在のステータス</th>
         <th nowrap>ステータス変更</th>
@@ -175,7 +179,7 @@
 
 </form></td>
       </tr>
-    </table><br>
+    </table></div><br>
 <font color="red"><c:out value="${updateMessage}"/></font>
 
 <br>
