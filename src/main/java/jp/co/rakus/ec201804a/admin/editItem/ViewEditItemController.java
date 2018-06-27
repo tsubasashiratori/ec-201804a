@@ -19,22 +19,20 @@ public class ViewEditItemController {
 	private ItemRepository itemRepository;
 
 	@ModelAttribute
-	public EditItemForm setUpForm(@RequestParam long itemId) {
+	public EditItemForm setUpForm(@RequestParam long itemId, Model model) {
 		Item item = itemRepository.load(itemId);
 		EditItemForm form = new EditItemForm();
 		BeanUtils.copyProperties(item, form);
-		System.out.println(form.getId());
+		form.setPrice(""+item.getPrice());
+		model.addAttribute("imagePath", item.getImagePath());
 		return form;
 	}
 
 	
 	@RequestMapping(value = "/viewEditItem")
 	public String viewEditItemPage(Model model, @RequestParam long itemId) {
-		System.out.println(itemId);
-		System.out.println(itemRepository.load(itemId));
 		Item item = itemRepository.load(itemId);
 		model.addAttribute("item", item);
-		System.out.println(model);
 		return "/admin/edit";
 	}
 	
