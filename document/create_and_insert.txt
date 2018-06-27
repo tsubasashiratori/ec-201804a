@@ -1,0 +1,111 @@
+﻿DROP TABLE IF EXISTS items;
+create table items (
+  id bigserial not null
+  , name text not null unique
+  , description text not null
+  , price integer not null
+  , imagePath text not null
+  , deleted boolean default false not null
+  , count integer
+  , constraint items_PKC primary key (id)
+) ;
+-- 注文詳細
+DROP TABLE IF EXISTS order_items;
+create table order_items (
+  id bigserial not null
+  , item_id bigint not null
+  , order_id bigint not null
+  , quantity integer not null
+  , constraint order_items_PKC primary key (id)
+) ;
+-- 注文
+DROP TABLE IF EXISTS orders;
+create table orders (
+id bigserial not null
+, order_number text not null
+, user_id bigint not null
+, status integer not null
+, total_price integer not null
+, order_date date not null
+, delivery_name varchar(100)
+, delivery_email varchar(100)
+, delivery_zip_code varchar(7)
+, delivery_address varchar(200)
+, delivery_tel varchar(15)
+, constraint orders_PKC primary key (id)
+) ;
+-- 管理者
+DROP TABLE IF EXISTS admin_users;
+create table admin_users (
+  id bigserial not null
+  , name text not null
+  , email text not null unique
+  , password text not null
+  , constraint admin_users_PKC primary key (id)
+) ;
+-- 利用者
+DROP TABLE IF EXISTS users;
+create table users (
+  id bigserial not null
+  , name text not null
+  , email text not null unique
+  , password text not null
+  , zipcode text not null
+  , address text not null
+  , telephone text not null
+  , constraint users_PKC primary key (id)
+) ;
+INSERT 
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('パソコン', '最新型のパソコンです', 50000, 'pc.jpg', false, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('マウス', '在庫処分のマウスです', 500, 'mouse.jpg', true, 0) 
+;
+INSERT 
+INTO users(name, email, password, zipcode, address, telephone)
+VALUES('abc', 'abc@abc', '$2a$10$pkw.5e7ztIUkSULX0Jr/zuqjQA9T1tN.C2vBezQKBy74l6ITI9sy6', '1234567', 'abc-abc', '012-345-6789')
+;
+-- パスワードはrakus2018です
+INSERT 
+INTO admin_users(name, email, password) 
+VALUES('adminabc', 'admin@abc', '$2a$10$pkw.5e7ztIUkSULX0Jr/zuqjQA9T1tN.C2vBezQKBy74l6ITI9sy6')
+;
+-- パスワードはrakus2018です
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('アルパカ', 'イケてるアルパカです', 2000000, 'alpaca.jpg', false, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('イグアナ', '一般的なイグアナです', 10000, 'iguana.jpg', false, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('シーズー', '少し個性的なシーザーです', 130000, 'shih-tzu.jpg', false, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('ティーカッププードル', '非常にかわいい', 580000, 'teacup-poodle.jpg', true, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('トイプードル', '4兄弟の末っ子甘えん坊', 270000, 'teacup-poodle.jpg', true, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('象', '4兄弟の末っ子甘えん坊', 30000000, 'elephant.jpg', true, 0) 
+;
+INSERT
+INTO items(name, description, price, imagePath, deleted, count) 
+VALUES('ゴリラ', '気性が穏やかなゴリラ', 100000000, 'gorira.jpg', false, 0) 
+;
+INSERT 
+INTO orders(order_number, user_id, status, total_price, order_date, delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel) 
+VALUES('2', '2', '3', 800000, '2018_06_19', '山田', 'yamada@yamada', '0000000', 'yamada-yamada', '000-000-0000') 
+;
+INSERT 
+INTO order_items(item_id, order_id, quantity)
+VALUES('1', '1', '1')
+;

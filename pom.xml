@@ -7,7 +7,7 @@
 	<groupId>jp.co.rakus</groupId>
 	<artifactId>ec-201804a</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>ec-201804a</name>
 	<description>Demo project for Spring Boot</description>
@@ -84,6 +84,11 @@
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
 
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -93,6 +98,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>ec-201804a</finalName>
 	</build>
 
 
