@@ -33,7 +33,7 @@
 			説明 ：<form:textarea path="description" cols="40" rows="5"/><br>
 			<p><small><form:errors path="description" cssStyle="color:red" /></small></p>
 			<br>
-			画像 ：<form:input type="file" path="imagePath" accept="image/jpeg"/><br>
+			画像 ：<input type="file" name="imagePath" accept="image/jpeg"/><br>
 			<div>
 				<font size="2" color="red">※ファイルはjpegファイルを指定してください</font>
 			</div>
