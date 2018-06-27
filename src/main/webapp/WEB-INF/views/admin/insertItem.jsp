@@ -14,7 +14,7 @@
 		<br>
 	<form:errors path="ItemForm*."/>
 		<form:form modelAttribute="insertItemForm" action="${pageContext.request.contextPath}/admin/insert"
-			 method="post">
+			 method="post" enctype="multipart/form-data">
 			商品名：<form:input path="name"/><br>
 			<p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 			<br>
@@ -24,9 +24,7 @@
 			説明 ：<form:textarea path="description" cols="40" rows="5"/><br>
 			<p><small><form:errors path="description" cssStyle="color:red" /></small></p>
 			<br>
-			画像 ：<input type="file" name="imagePath" accept="jpeg">
-			<%-- <form:input type="file" path="imagePath" accept="jpeg"/> 
-			 enctype="multipart/form-data" --%><br>
+			画像 ：<form:input type="file" path="imagePath" accept="image/jpeg"/><br>
 			<div>
 				<font size="2" color="red">※ファイルはjpegファイルを指定してください</font>
 			</div>

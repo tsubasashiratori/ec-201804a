@@ -1,7 +1,8 @@
 package jp.co.rakus.ec201804a.admin.insertitem;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 商品情報が入るフォーム.
@@ -22,17 +23,17 @@ public class InsertItemForm {
 	/**
 	 * 値段
 	 */
-	@NotNull(message = "値段を入力してください")
+	@NotBlank(message = "値段を入力してください")
 	private String price;
 	/**
-	 * 
+	 * 値段の数値
 	 */
 	private int intPrice;
 	/**
 	 * 画像の保存先
 	 */
 	@NotBlank(message = "画像を選択してください")
-	private String imagePath;
+	private MultipartFile imagePath;
 	/**
 	 * 削除したか
 	 */
@@ -62,10 +63,10 @@ public class InsertItemForm {
 	public void setIntPrice(int intPrice) {
 		this.intPrice = intPrice;
 	}
-	public String getImagePath() {
+	public MultipartFile getImagePath() {
 		return imagePath;
 	}
-	public void setImagePath(String imagePath) {
+	public void setImagePath(MultipartFile imagePath) {
 		this.imagePath = imagePath;
 	}
 	public Boolean getDeleted() {
