@@ -47,10 +47,21 @@
 		<form:form modelAttribute="insertShoppingCartForm"
 			action="${pageContext.request.contextPath}/user/toInsertShoppingCart"> 
 			<input type="hidden" name="id" value="${item.id}">
-			個数:<form:select path="quantity">
-				<form:options items="${quantityMap}" />
+			<table>
+			<tr><td>個数：</td>
+			    <td>
+			<div style=WIDTH:60px >
+			<form:select path="quantity" class= "form-control input-sm" >
+				<form:options items="${quantityMap}"/>
 			</form:select>
-			<input type="submit" value="追加">
+			</div>
+			</td>
+			</tr>
+			<tr><td colspan="2" align="center">
+			<br>
+			<input type="submit" value="追加" class="form-control" style=WIDTH:60px>
+			</td></tr>
+			</table>
 		</form:form>
 		<br> <a
 			href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">商品一覧に戻る</a>
