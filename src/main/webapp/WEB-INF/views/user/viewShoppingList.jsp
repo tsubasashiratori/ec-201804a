@@ -61,7 +61,7 @@
 
 			<c:otherwise>
 		
-				<table  class="table-striped" style=WIDTH:800px >
+				<table  class="table-striped view" style=WIDTH:800px >
 					<tr>
 						<th width="150">画像</th>
 						<th width="150">商品名</th>
@@ -98,7 +98,7 @@
 
 			<c:otherwise>
 			<h3>観覧数ランキングTOP5</h3><br>		
-				<table border="1" align="center"  class="table table-bordered" style=WIDTH:800px >
+				<table border="1" align="center"  class="table table-striped lank" style=WIDTH:800px >
 					<tr>
 						<th align="center">順位</th>
 						<th width="150" align="center">画像</th>
