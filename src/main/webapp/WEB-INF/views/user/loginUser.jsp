@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css2/arange.css">
 <meta charset="UTF-8">
 <%@ include file="../common/userHeader.jsp"%>
 <title>ユーザログイン</title>

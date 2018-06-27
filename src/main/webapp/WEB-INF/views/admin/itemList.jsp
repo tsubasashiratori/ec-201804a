@@ -58,7 +58,7 @@
 					<tr>
 						<td><img
 							src="${pageContext.request.contextPath}/img/${item.imagePath}"
-							width="200" height="125" /></td>
+							width="75" height="200" /></td>
 						<td width="100"><c:out value="${item.name}" /></td>
 						<td><fmt:formatNumber value="${item.price}"
 								pattern="￥###,###" /></td>

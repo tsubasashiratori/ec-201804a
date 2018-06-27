@@ -39,7 +39,7 @@
 							<tr>
 								<td><img
 									src="${pageContext.request.contextPath}/img/${orderItem.item.imagePath}"
-									width="150" height="125"></td>
+									width="75" height="200"></td>
 								<td><a
 									href="${pageContext.request.contextPath}/user/viewDetail?id=${orderItem.item.id}">
 										<c:out value="${orderItem.item.name}" />

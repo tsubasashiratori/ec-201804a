@@ -29,7 +29,7 @@
 		<table border="1" align="center" class="table" style=WIDTH:500px>
 			<tr>
 				<td colspan="2" rowspan="3"><img src="../img/${item.imagePath}"
-					width="150" height="150" alt="商品画像"></td>
+					width="75" height="200" alt="商品画像"></td>
 				<th>商品名：</th>
 				<td align="center"><c:out value="${item.name }" /></td>
 			</tr>

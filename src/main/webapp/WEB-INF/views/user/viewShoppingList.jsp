@@ -15,7 +15,6 @@
 <title>商品一覧</title>
 </head>
 <body>
-
 	<script>
 		$(window).on('load resize', function(){
 	    // navbarの高さを取得する
@@ -26,7 +25,7 @@
 	</script>
 
 
-<div class="bg2">
+
 
 	<div align="center">
 		<h2>商品一覧</h2>
@@ -74,7 +73,7 @@
 						<tr>
 							<td><img
 								src="${pageContext.request.contextPath}/img/${item.imagePath}"
-								width="150" height="125"></td>
+								width="75" height="200" ></td>
 							<td><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
 								<c:out value="${item.name}"/>
@@ -112,7 +111,7 @@
 							<td style=WIDTH:50px><c:out value="${status.count}"/></td>
 							<td style=WIDTH:150px><img
 								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
-								width="150" height="125"></td>
+								width="75" height="200"></td>
 							<td><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
 								<c:out value="${itemTop5Count.name}"/>
@@ -187,8 +186,7 @@
 			<br>
 
 		</div>
-	</div>
 <%@ include file="../common/userFooterForPresentation.jsp" %>
-	
+
 </body>
 </html>

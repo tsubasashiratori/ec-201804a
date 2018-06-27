@@ -33,6 +33,5 @@
     </table>
     
 <%@ include file="../common/userFooterForPresentation.jsp" %>
- 
 </body>
 </html>
