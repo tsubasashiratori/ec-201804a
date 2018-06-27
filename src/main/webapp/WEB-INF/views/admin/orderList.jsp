@@ -31,7 +31,8 @@
 		</p>
 		</c:when>
 		<c:when test="${orderListEmptyChecker == false}">
-		<table border="1">
+<div class="table-responsive">
+<table class="table table-striped">
       	<tr>
         <th nowrap>注文番号</th>
         <th nowrap>日付</th>
@@ -68,6 +69,7 @@
       </tr>
       </c:forEach>
     </table>
+    </div>
     <br>
     </c:when>
     </c:choose>

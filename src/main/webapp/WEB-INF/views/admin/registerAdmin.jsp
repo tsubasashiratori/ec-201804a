@@ -28,7 +28,8 @@
 	<form:form modelAttribute="registerAdminForm" action="${pageContext.request.contextPath}/admin/register" 
 	method="post">
 		<br>
-		<table border="">
+		<div class="table-responsive">
+		<table class="table">
 			<tr>
 				<td><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前</td>
@@ -57,6 +58,7 @@
 
 			</tr>
 		</table>
+		</div>
 
 		<br> <br><input type="submit" value="管理者情報を登録する"><br><br>
 	</form:form>

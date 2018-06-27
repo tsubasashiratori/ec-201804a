@@ -45,7 +45,8 @@
 			<p align="center">商品がありません</p>
 		</c:when>
 		<c:otherwise>
-			<table border="1" align="center">
+		<div class="table-responsive">
+			<table class="table table-striped">
 				<tr>
 					<th colspan="2" width="300">商品名</th>
 					<th width="100">価格</th>
@@ -84,6 +85,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
 		</c:otherwise>
 	</c:choose>
 	
