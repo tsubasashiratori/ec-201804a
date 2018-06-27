@@ -25,6 +25,8 @@
 <!-- BootstrapのJS読み込み -->
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
+<head>
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/adminHeader.css" />
 	

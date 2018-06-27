@@ -6,6 +6,7 @@
 <title>マイページ</title>
 </head>
 <%@ include file="../common/userHeader.jsp" %>
+
 <body>
 	<script>
 		$(window).on('load resize', function(){
@@ -21,5 +22,16 @@
     <a href="${pageContext.request.contextPath}/user/orderList">注文履歴を確認する</a><br><br>
     <br>
     <a href="${pageContext.request.contextPath}/user/ViewAllItemsAndSearchItem/findAllNotDeleted">トップページに戻る</a>
+    <h2 align="center">アカウント情報</h2><br>
+    <div align="center"><strong><c:out value="${user.name}"></c:out></strong>&nbsp;さんのアカウント情報</div><br>
+    <table border="1" align="center" class="table table-hover" style=WIDTH:800px>
+    <tr><td align="center" valign="top">名前</td><td align="center" valign="top"><c:out value="${user.name}"/></td></tr>
+    <tr><td align="center" valign="top">メールアドレス</td><td align="center" valign="top"><c:out value="${user.email}"/></td></tr>
+    <tr><td align="center" valign="top">郵便番号</td><td align="center" valign="top"><c:out value="${user.zipCode}"/></td></tr>
+    <tr><td align="center" valign="top">住所</td><td align="center" valign="top"><c:out value="${user.address}"/></td></tr>
+    <tr><td align="center" valign="top">電話番号</td><td align="center" valign="top"><c:out value="${user.telephone}"/></td></tr>
+    </table>
+    
+ 
 </body>
 </html>
