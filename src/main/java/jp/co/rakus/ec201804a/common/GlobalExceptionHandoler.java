@@ -15,7 +15,7 @@ public class GlobalExceptionHandoler implements HandlerExceptionResolver {
 			Exception ex) {
 		
 		ModelAndView mav = new ModelAndView("redirect:/user/systemError");
-		
+		ex.printStackTrace();
 		return mav;
 	}
 }

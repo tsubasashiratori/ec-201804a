@@ -32,7 +32,6 @@ public class InsertItemForm {
 	/**
 	 * 画像の保存先
 	 */
-	@NotBlank(message = "画像を選択してください")
 	private MultipartFile imagePath;
 	/**
 	 * 削除したか
