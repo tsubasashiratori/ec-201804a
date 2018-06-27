@@ -17,13 +17,9 @@ import jp.co.rakus.ec201804a.common.domain.OrderItem;
 import jp.co.rakus.ec201804a.common.login.LoginUser;
 import jp.co.rakus.ec201804a.common.repository.OrderItemRepository;
 import jp.co.rakus.ec201804a.common.repository.OrderRepository;
-import jp.co.rakus.ec201804a.common.repository.UserRepository;
 
 @Component
 public class CreateOrder {
-	@Autowired
-	private UserRepository userRepository;
-
 	@Autowired
 	private HttpSession session;
 

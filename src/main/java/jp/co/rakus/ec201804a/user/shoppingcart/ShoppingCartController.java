@@ -44,10 +44,12 @@ public class ShoppingCartController {
 	public InsertShoppingCartForm setUpInsert() {
 		return new InsertShoppingCartForm();
 	}
+
 	@ModelAttribute
 	public DeleteShoppingCartForm setUpDelete() {
 		return new DeleteShoppingCartForm();
 	}
+
 	/**
 	 * ショッピングカートに商品を追加するメソッド.
 	 * 
@@ -56,30 +58,34 @@ public class ShoppingCartController {
 	 * @return
 	 */
 	@RequestMapping(value = "/toInsertShoppingCart")
-	public String insert(/* @RequestParam Integer price, */InsertShoppingCartForm form,
-			 @RequestParam Long id,Model model,HttpSession session) {
-			Long itemId=id;
-		//セッションIDを15桁で取得
-		String sessionId = session.getId();
-		String a=sessionId.replaceAll("[^0-9]","");
-		String b=a.substring(0, 15);
-		session.setAttribute("sessionId", b);
-		//Long userId=Long.parseLong(b);
-		
-		//user情報を取得.
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Long userId=(long)0;
-		if (principal instanceof LoginUser) {
-				LoginUser loginUser = (LoginUser)principal;
-				userId = loginUser.getUser().getId();
-			}
-		//useridが取得できなければsessionIDを代入.
-		if(userId==0) {
-			userId=Long.parseLong(b);
+	public String insert(/* @RequestParam Integer price, */InsertShoppingCartForm form, @RequestParam Long id,
+			Model model, HttpSession session) {
+		Long itemId = id;
+		// セッションIDを10桁で取得
+		String sessionId = (String) session.getAttribute("sessionId");
+		if (sessionId == null) {
+			sessionId = session.getId();
+			String a = sessionId.replaceAll("[^0-9]", "");
+			String b = a.substring(0, 10);
+			session.setAttribute("sessionId", b);
+			sessionId = b;
 		}
-		int status=0;
-		Order order1 = orderRepository.findByUserIdAndStatusForInsert(userId,status);
-		
+		// Long userId=Long.parseLong(b);
+
+		// user情報を取得.
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long userId = (long) 0;
+		if (principal instanceof LoginUser) {
+			LoginUser loginUser = (LoginUser) principal;
+			userId = loginUser.getUser().getId();
+		}
+		// useridが取得できなければsessionIDを代入.
+		if (userId == 0) {
+			userId = Long.parseLong(sessionId);
+		}
+		int status = 0;
+		Order order1 = orderRepository.findByUserIdAndStatusForInsert(userId, status);
+
 		if (order1 == null) {
 			// orderが取れなかったら新しいidを発行
 			Order order = new Order();
@@ -100,19 +106,19 @@ public class ShoppingCartController {
 			orderRepository.insert(order);
 		}
 
-		Order order2=orderRepository.findByUserIdAndStatusForInsert(userId,status);
-		Long orderId=order2.getId();
-		OrderItem orderItem2=orderItemRepository.findByOrderIdAndItemId(orderId, itemId);
-		if(orderItem2==null) {
+		Order order2 = orderRepository.findByUserIdAndStatusForInsert(userId, status);
+		Long orderId = order2.getId();
+		OrderItem orderItem2 = orderItemRepository.findByOrderIdAndItemId(orderId, itemId);
+		if (orderItem2 == null) {
 			OrderItem orderItem = new OrderItem();
 			orderItem.setItemId((long) itemId);
 			orderItem.setOrderId(order2.getId());
 			orderItem.setQuantity(form.getIntQuantiy());
-			orderItemRepository.insert(orderItem);			
-		}else {
-			int quantity=orderItem2.getQuantity()+form.getIntQuantiy();
-			Long orderId2=orderItem2.getOrderId();
-			Long itemId2=orderItem2.getItemId();
+			orderItemRepository.insert(orderItem);
+		} else {
+			int quantity = orderItem2.getQuantity() + form.getIntQuantiy();
+			Long orderId2 = orderItem2.getOrderId();
+			Long itemId2 = orderItem2.getItemId();
 			orderItemRepository.updateQuantity(quantity, orderId2, itemId2);
 		}
 		return "redirect:/user/toViewShoppingCart";
@@ -121,58 +127,59 @@ public class ShoppingCartController {
 	public static Date localDate2Date(final LocalDate localDate) {
 		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
+
 	/**
 	 * ショッピングカートを表示するメソッド.
+	 * 
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/toViewShoppingCart")
-	
-	public String viewShoppingCart(Model model,HttpSession session) {
-		//セッションIDが取れなければ新しいセッションIDを作成する
-		try {
-			String sessionId=(String) session.getAttribute("sessionId");
-			Long userId=Long.parseLong(sessionId);
-		}catch(Exception e){
-			e.printStackTrace();
-			String sessionId = session.getId();
-			String a=sessionId.replaceAll("[^0-9]","");
-			String b=a.substring(0, 15);
+	@RequestMapping(value = "/toViewShoppingCart")
+
+	public String viewShoppingCart(Model model, HttpSession session) {
+		// セッションIDが取れなければ新しいセッションIDを作成する
+		String sessionId = (String) session.getAttribute("sessionId");
+		if (sessionId == null) {
+			sessionId = session.getId();
+			String a = sessionId.replaceAll("[^0-9]", "");
+			String b = a.substring(0, 10);
 			session.setAttribute("sessionId", b);
+			sessionId = b;
 		}
-		//user情報を取得.
+		// user情報を取得.
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Long userId=(long)0;
+		Long userId = (long) 0;
 		if (principal instanceof LoginUser) {
-				LoginUser loginUser = (LoginUser)principal;
-				userId = loginUser.getUser().getId();
-			}
-		//useridが取得できなければsessionIDを代入.
-		if(userId==0) {
-			String sessionId=(String) session.getAttribute("sessionId");
-			userId=Long.parseLong(sessionId);
+			LoginUser loginUser = (LoginUser) principal;
+			userId = loginUser.getUser().getId();
 		}
-		int status=0;
-		List<Order> orderList=orderRepository.findByUserIdAndStatusForView(userId, status);
-		//オーダーリストの中身がなければダミーオブジェクトを作成する→ショッピングカートに中身がないときの対策
-		if(orderList.size()==0) {
-			Order damyOrder=new Order();
-			damyOrder.setId((long)-1);
-			model.addAttribute("damyOrder",damyOrder);
+		// useridが取得できなければsessionIDを代入.
+		if (userId == 0) {
+			userId = Long.parseLong(sessionId);
 		}
-		model.addAttribute("orderList",orderList);
+		int status = 0;
+		List<Order> orderList = orderRepository.findByUserIdAndStatusForView(userId, status);
+		// オーダーリストの中身がなければダミーオブジェクトを作成する→ショッピングカートに中身がないときの対策
+		if (orderList.size() == 0) {
+			Order damyOrder = new Order();
+			damyOrder.setId((long) -1);
+			model.addAttribute("damyOrder", damyOrder);
+		}
+		model.addAttribute("orderList", orderList);
 		return "/user/viewShoppingCart";
 	}
+
 	/**
 	 * ショッピングカートの名前を削除するメソッド.
+	 * 
 	 * @param form
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/toDeleteShoppingCart")
-	public String deleteShoppingCart(DeleteShoppingCartForm form,Model model,HttpSession session) {
-		Long orderItemId=(long)form.getIntOrderItemId();
+	@RequestMapping(value = "/toDeleteShoppingCart")
+	public String deleteShoppingCart(DeleteShoppingCartForm form, Model model, HttpSession session) {
+		Long orderItemId = (long) form.getIntOrderItemId();
 		orderItemRepository.delete(orderItemId);
-		return viewShoppingCart(model,session);
+		return viewShoppingCart(model, session);
 	}
 }
