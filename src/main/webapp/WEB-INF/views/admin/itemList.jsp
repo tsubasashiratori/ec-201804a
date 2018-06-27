@@ -33,10 +33,12 @@
 </form><br>
 <form:form modelAttribute="adminViewAllAndSearchItemForm" action="${pageContext.request.contextPath}/admin/adminFindByName" method="post" align="center">
 	<form:errors path="name" element="div" cssStyle="color:red" align="center"/>
-	
-	<form:input path="name"/>
+	<table align="center">
+	<tr><td><div style=WIDTH:200px>
+	<form:input path="name" class="form-control" />
+	</div></td><td>
 	<input type="submit" value="検索する" class="btn btn-default">
-	
+	</td></tr></table>
 </form:form>
 
 <br>
