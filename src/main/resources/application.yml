@@ -11,4 +11,4 @@ spring:
       suffix: .jsp
 server:  
   servlet:
-    context-path: ec-201804a
+    context-path: /ec-201804a
