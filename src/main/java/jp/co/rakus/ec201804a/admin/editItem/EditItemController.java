@@ -80,7 +80,7 @@ public class EditItemController {
 		if(uploadFile.isEmpty() && StringUtils.hasLength(uploadFile.getOriginalFilename())) {
 			result.rejectValue("imagePath", null, "ファイルが空です");
 		}
-		if(!uploadFile.getOriginalFilename().endsWith(".jpg")) {
+		if(!uploadFile.getOriginalFilename().endsWith(".jpg") && StringUtils.hasLength(uploadFile.getOriginalFilename())) {
 			result.rejectValue("imagePath", null, "jpg画像を選択してください");
 		}
 		if (result.hasErrors()) {
