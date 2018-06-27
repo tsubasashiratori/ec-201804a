@@ -29,24 +29,24 @@
 	method="post">
 		<br>
 		<div class="table-responsive">
-		<table class="table">
+		<table class="table" style=WIDTH:600px >
 			<tr>
 				<td><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前</td>
-				<td><form:input path="name" /></td>
+				<td><form:input path="name" class="form-control"/></td>
 
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="email" cssStyle="color:red"/></small></p>
 				メールアドレス</td>
-				<td><form:input path="email"/></td>
+				<td><form:input path="email" class="form-control"/></td>
 
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="password" cssStyle="color:red"/></small></p>
 				パスワード<br>
 				<font color="grey"><small>※8桁以上16桁以下で設定してください</small></font></td>
-				<td><form:password path="password"/></td>
+				<td><form:password path="password" class="form-control"/></td>
 
 			</tr>
 			<tr>
@@ -54,16 +54,16 @@
 				確認用パスワード<br>
 				<font color="grey"><small>※設定したパスワードを再度入力してください</small></font>
 				</td>
-				<td><form:password path="checkPassword"/></td>
+				<td><form:password path="checkPassword" class="form-control"/></td>
 
 			</tr>
 		</table>
 		</div>
 
-		<br> <br><input type="submit" value="管理者情報を登録する"><br><br>
+		<br> <br><input type="submit" value="管理者情報を登録する" class="form-control" style=WIDTH:200px><br><br>
 	</form:form>
 	<form action="${pageContext.request.contextPath}/admin/form" onsubmit="return confirm('入力内容を削除してもよろしいですか？')">
-	<input type="submit" value="入力内容をクリアする">
+	<input type="submit" value="入力内容をクリアする" class="form-control" style=WIDTH:200px>
 	</form>
 </div>
 </body>

@@ -76,7 +76,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.formLogin()
 		.loginPage("/user/loginForm")//ログイン画面のパス
 		.loginProcessingUrl("/user/login")//ログインボタンを押したときのパス
-		.failureUrl("/user/?error=true")//ログイン失敗画面のパス
+		.failureUrl("/user/loginForm?error=true")//ログイン失敗画面のパス
 		.defaultSuccessUrl("/user/", false)
 		// 第1引数:デフォルトでログイン成功時に遷移させるパス
         // 第2引数: true :認証後常に第1引数のパスに遷移 
