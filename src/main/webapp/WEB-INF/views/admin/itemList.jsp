@@ -43,7 +43,7 @@
 
 <br>
 	<c:choose>
-		<c:when test="${itemList.size()==0}">
+		<c:when test="${itemList==null}">
 			<p align="center">商品がありません</p>
 		</c:when>
 		<c:otherwise>
@@ -88,7 +88,6 @@
 					</tr>
 				</c:forEach>
 			</table>
-			</div>
 		</c:otherwise>
 	</c:choose>
 	

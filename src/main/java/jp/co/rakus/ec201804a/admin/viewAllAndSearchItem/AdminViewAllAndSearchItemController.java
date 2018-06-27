@@ -57,6 +57,11 @@ public class AdminViewAllAndSearchItemController {
 		
 		String name = form.getName();
 		
+		if(1 > name.length() || name.length() > 20) {
+			result.rejectValue("name",null, "1文字以上20文字以内でキーワードを入力してください");
+			return "/admin/itemList";
+		}
+		
 		List<Item> itemList = itemRepository.adminItemFindByName(name);
 
 		model.addAttribute("itemList", itemList);
