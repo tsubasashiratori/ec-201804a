@@ -32,6 +32,7 @@
     <tr><td align="center" valign="top">電話番号</td><td align="center" valign="top"><c:out value="${user.telephone}"/></td></tr>
     </table>
     
+<%@ include file="../common/userFooterForPresentation.jsp" %>
  
 </body>
 </html>

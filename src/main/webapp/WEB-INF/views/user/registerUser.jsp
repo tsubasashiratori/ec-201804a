@@ -100,5 +100,7 @@
 	</form>
 <br><br>
 </div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
+
 </body>
 </html>

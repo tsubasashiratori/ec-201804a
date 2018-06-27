@@ -66,6 +66,7 @@
 				</c:when>
 			</c:choose>
 		</c:forEach>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
 
 </body>
 </html>
