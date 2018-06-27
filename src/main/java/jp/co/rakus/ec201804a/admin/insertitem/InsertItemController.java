@@ -1,5 +1,7 @@
 package jp.co.rakus.ec201804a.admin.insertitem;
 
+import javax.servlet.ServletContext;
+
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import ch.qos.logback.core.Context;
 import jp.co.rakus.ec201804a.common.domain.Item;
 import jp.co.rakus.ec201804a.common.repository.ItemRepository;
 
@@ -56,7 +59,9 @@ public class InsertItemController {
 	@RequestMapping(value="/insert")
 	public String insertItem(@Validated InsertItemForm form, BindingResult result) {
 		
-//		MultipartFile uploadFile = form.getImagePath();
+		MultipartFile uploadFile = form.getImagePath();
+//		uploadFile.transferTo(ServletContext.getRealPath("./image"));
+		
 //		if (!StringUtils.hasLength(uploadFile.getOriginalFilename())) {
 //            result.rejectValue("imagePath","","fileを選択してください");
 //        }
