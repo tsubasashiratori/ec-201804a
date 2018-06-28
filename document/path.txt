@@ -3,6 +3,6 @@ http://localhost:8080/ec-201804a/user/
 
 管理者用ログインページURL
 http://localhost:8080/ec-201804a/admin/
-email:admin@abc
+email:admin@rakus.co.jp
 pass :rakus2018
 '
