@@ -23,7 +23,7 @@
 
 <h1>注文詳細画面</h1>
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" style="WIDTH: 500px">
 				  <tr>
 				    <th nowrap>注文NO</th>
 				    <td><c:out value="${order.orderNumber}"></c:out>
@@ -49,11 +49,11 @@
 				  </table></div><br>
 				  
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" style="WIDTH: 500px">
       <tr>
         <th nowrap>商品</th>
         <th nowrap>価格</th>
-        <th nowrap>×</th>
+        <th nowrap>&nbsp;</th>
         <th nowrap>個数</th>
        <th nowrap>金額</th>
       </tr>
@@ -70,7 +70,7 @@
     
     
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" style="WIDTH: 500px">
 				  <tr>
 				    <th nowrap>小計</th>
 				    <td><fmt:formatNumber value="${order.totalPriceExcludeTax}" pattern="###,###円"/></td>
@@ -95,7 +95,7 @@
 
 
 <div class="table-responsive">
-<table class="table table-striped">
+<table class="table table-striped" style="WIDTH: 500px">
       <tr>
         <th nowrap>現在のステータス</th>
         <th nowrap>ステータス変更</th>
