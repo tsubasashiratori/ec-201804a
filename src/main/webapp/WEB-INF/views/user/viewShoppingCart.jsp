@@ -63,7 +63,7 @@
 		<c:forEach var="orders" items="${orderList}">
 			<c:choose>
 				<c:when test="${orders.orderItemList.size()!=0}">
-					<a
+					<a class="btn btn-danger"
 						href="${pageContext.request.contextPath }/user/viewPaymentDetail">決済へ</a>
 				</c:when>
 			</c:choose>

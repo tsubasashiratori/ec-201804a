@@ -39,13 +39,11 @@
 	<sec:authentication var="adminUser" property="principal.user" />
 	</sec:authorize>
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="navbar-header">
 				<!--  logoimg -->
 				<a class="navbar-brand" href="${pageContext.request.contextPath}
 					/admin/menu">
-					<img src="${pageContext.request.contextPath}/img/rakus.jpg" 
-					id="logo-img">
 				</a>
 				
 				<!-- toggle -->
