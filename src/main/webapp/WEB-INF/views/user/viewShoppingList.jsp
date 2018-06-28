@@ -76,10 +76,10 @@
 								width="80" height="200" ></td>
 							<td style=WIDTH:360px align="center"><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
-								<font size="5"><c:out value="${item.name}"/></font>
+								<font size="4"><c:out value="${item.name}"/></font>
 								</a></td>
 
-								<td style=WIDTH:360px align="center"><font size="5"><fmt:formatNumber value="${item.price}"
+								<td style=WIDTH:360px align="center"><font size="4"><fmt:formatNumber value="${item.price}"
 										pattern="￥###,###" /></font></td>
 							</tr>
 						</c:forEach>
@@ -111,7 +111,7 @@
 						varStatus="status">
 						<tr>
 
-							<td style=WIDTH:50px><font size="5" ><c:out value="${status.count}"/></font></td>
+							<td style=WIDTH:50px><font size="4" ><c:out value="${status.count}"/></font></td>
 							<td style=WIDTH:150px><img
 
 								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
@@ -119,9 +119,9 @@
 							<td align="center" valign="middle"><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
 
-								<font size="5" ><c:out value="${itemTop5Count.name}"/></font>
+								<font size="4" ><c:out value="${itemTop5Count.name}"/></font>
 								</a></td>
-							<td align="center" valign="middle"><font size="5" ><fmt:formatNumber value="${itemTop5Count.price}" pattern="￥###,###" /></font>
+							<td align="center" valign="middle"><font size="4" ><fmt:formatNumber value="${itemTop5Count.price}" pattern="￥###,###" /></font>
 							</td>
 
 						</tr>
