@@ -37,6 +37,10 @@ input.register2 {
 	width: 56px;
 	height: 30px;
 }
+input.register3{
+	width: 65px;
+	height: 30px;
+}
 
 img {
 	max-width: 100%;

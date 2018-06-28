@@ -25,6 +25,8 @@
 			action="${pageContext.request.contextPath}/admin/login">
 			
 		<table>
+		<tr><p>テストログイン用メールアドレスは「admin@rakus.co.jp」です。</p></tr>
+		<tr><p>テストログイン用パスワードは「rakus2018」です。</p></tr>
 	<tr><td><div class="div"><p>メールアドレス：</p></div></td><td><form:input class="form-control" id="InputEmail" path="email" placeholder="メール・アドレス"/></td></tr>
 	<tr><td><p>パスワード：</p></td><td><form:password class="form-control" path="password" placeholder="パスワード"/></td></tr>
 	</table>

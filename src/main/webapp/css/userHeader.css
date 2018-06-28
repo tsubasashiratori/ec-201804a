@@ -6,9 +6,12 @@
 	background-color: orange;
 }
 
-#logo-img{
-	height: 25px;
-	width: 25px;
+.navbar-brand{
+	background:url("../img/1_Primary_logo_on_transparent_139x74.png") no-repeat left center;
+	background-size: contain;
+	margin:5px;
+	height: 40px;
+	width: 80px;
 }
 
 .navbar-default .navbar-nav >li >a{

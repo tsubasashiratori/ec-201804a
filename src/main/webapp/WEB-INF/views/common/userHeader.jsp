@@ -37,13 +37,10 @@
 				<sec:authentication var="user" property="principal.user" />
 			</sec:authorize>
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="navbar-header">
 				<!--  logoimg -->
-				<a class="navbar-brand" href="${pageContext.request.contextPath}
-					/user/">
-					<img src="${pageContext.request.contextPath}/img/rakus.jpg" 
-					id="logo-img">
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/user/">
 				</a>
 				
 				<!-- toggle -->
