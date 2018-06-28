@@ -29,7 +29,7 @@
 	<form:form modelAttribute="registerUserForm" action="${pageContext.request.contextPath}/user/register" method="post">
 		<br>
 		
-		<table class="table-striped"style=WIDTH:600px>
+		<table class="table-striped" style=WIDTH:600px>
 			<tr >
 				<td class="p-3"><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前<br>

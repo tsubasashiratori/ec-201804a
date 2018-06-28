@@ -63,9 +63,9 @@
 		
 				<table  class="table-striped view" style=WIDTH:800px >
 					<tr>
-						<th width="150">画像</th>
-						<th width="150">商品名</th>
-						<th width="150">価格</th>
+						<th width="150"><font size="5" >画像</font></th>
+						<th width="150"><font size="5">商品名</font></th>
+						<th width="150"><font size="5">価格</font><th>
 					</tr>
 
 					<c:forEach var="item" items="${itemList}">
@@ -73,14 +73,14 @@
 						<tr>
 							<td><img
 								src="${pageContext.request.contextPath}/img/${item.imagePath}"
-								width="75" height="200" ></td>
-							<td><a
+								width="80" height="200" ></td>
+							<td style=WIDTH:360px align="center"><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
-								<c:out value="${item.name}"/>
+								<font size="5"><c:out value="${item.name}"/></font>
 								</a></td>
 
-								<td><fmt:formatNumber value="${item.price}"
-										pattern="￥###,###" />
+								<td style=WIDTH:360px align="center"><font size="5"><fmt:formatNumber value="${item.price}"
+										pattern="￥###,###" /></font></td>
 							</tr>
 						</c:forEach>
 
@@ -98,25 +98,26 @@
 
 			<c:otherwise>
 			<h3>観覧数ランキングTOP5</h3><br>		
-				<table border="1" align="center"  class="table table-striped lank" style=WIDTH:800px >
+				<table border="1" align="center"  class="table-striped lank" style=WIDTH:800px >
 					<tr>
 						<th align="center">順位</th>
-						<th width="150" align="center">画像</th>
-						<th width="150" align="center">商品名</th>
-						<th width="150" align="center">価格</th>
+						<th width="150" align="center"><font size="5" >画像</font></th>
+						<th width="150" align="center"><font size="5" >商品名</font></th>
+						<th width="150" align="center"><font size="5" >価格</font></th>
 					</tr>
 					
 					<c:forEach var="itemTop5Count" items="${itemListTop5Count}"  varStatus="status">
 						<tr>
-							<td style=WIDTH:50px><c:out value="${status.count}"/></td>
+							<td style=WIDTH:50px><font size="5" ><c:out value="${status.count}"/></font></td>
 							<td style=WIDTH:150px><img
 								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
 								width="75" height="200"></td>
-							<td><a
+							<td align="center" valign="middle"><a
 								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
-								<c:out value="${itemTop5Count.name}"/>
+								<font size="5" ><c:out value="${itemTop5Count.name}"/></font>
 								</a></td>
-							<td><fmt:formatNumber value="${itemTop5Count.price}" pattern="￥###,###" />
+							<td align="center" valign="middle"><font size="5" ><fmt:formatNumber value="${itemTop5Count.price}" pattern="￥###,###" /></font>
+							</td>
 						</tr>
 					</c:forEach>
 
