@@ -94,6 +94,6 @@ public class UpdateUserController {
 		
 		userRepository.update(user);
 		
-		return "redirect:/user/updateForm";
+		return "redirect:/user/logout";
 	}
 }
