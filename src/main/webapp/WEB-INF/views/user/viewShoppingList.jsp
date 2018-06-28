@@ -50,85 +50,7 @@
 			</table>
 		</form:form>
 		<br>
-
-		<c:choose>
-			<c:when test="${itemList.size()==0}">
-				<p align="center">商品がありません</p>
-			</c:when>
-			<c:when test="${notDisplay==true}">
-				<p align="center">商品がありません</p>
-			</c:when>
-			<c:otherwise>
-
-				<table class="table-striped view" style="WIDTH: 800px">
-					<tr>
-						<th width="150">画像</th>
-						<th width="150">商品名</th>
-						<th width="150">価格</th>
-					</tr>
-
-					<c:forEach var="item" items="${itemList}">
-
-						<tr>
-							<td><img
-								src="${pageContext.request.contextPath}/img/${item.imagePath}"
-								width="75" height="200"></td>
-							<td><a
-								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
-									<c:out value="${item.name}" />
-							</a></td>
-
-							<td><fmt:formatNumber value="${item.price}"
-									pattern="￥###,###" />
-						</tr>
-					</c:forEach>
-
-				</table>
-
-			</c:otherwise>
-
-		</c:choose>
-		<br> <br>
-
-		<c:choose>
-			<c:when test="${itemListTop5Count==null}">
-				<p align="center"></p>
-			</c:when>
-
-			<c:otherwise>
-				<h3>観覧数ランキングTOP5</h3>
-				<br>
-				<table border="1" align="center" class="table table-striped lank"
-					style="WIDTH: 800px">
-					<tr>
-						<th align="center">順位</th>
-						<th width="150" align="center">画像</th>
-						<th width="150" align="center">商品名</th>
-						<th width="150" align="center">価格</th>
-					</tr>
-
-					<c:forEach var="itemTop5Count" items="${itemListTop5Count}"
-						varStatus="status">
-						<tr>
-							<td style="WIDTH: 50px"><c:out value="${status.count}" /></td>
-							<td style="WIDTH: 150px"><img
-								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
-								width="75" height="200"></td>
-							<td><a
-								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
-									<c:out value="${itemTop5Count.name}" />
-							</a></td>
-							<td><fmt:formatNumber value="${itemTop5Count.price}"
-									pattern="￥###,###" />
-						</tr>
-					</c:forEach>
-
-				</table>
-			</c:otherwise>
-
-		</c:choose>
-
-		<br> <br>
+				<br> 
 		<hr>
 		<c:choose>
 			<c:when test="${Item==true}">
@@ -187,6 +109,147 @@
 			</c:when>
 		</c:choose>
 		<br> <br>
+		
+
+		<c:choose>
+			<c:when test="${itemList.size()==0}">
+				<p align="center">商品がありません</p>
+			</c:when>
+			<c:when test="${notDisplay==true}">
+				<p align="center">商品がありません</p>
+			</c:when>
+			<c:otherwise>
+
+				<table class="table-striped view" style="WIDTH: 800px">
+					<tr>
+						<th width="150">画像</th>
+						<th width="150">商品名</th>
+						<th width="150">価格</th>
+					</tr>
+
+					<c:forEach var="item" items="${itemList}">
+
+						<tr>
+							<td><img
+								src="${pageContext.request.contextPath}/img/${item.imagePath}"
+								width="75" height="200"></td>
+							<td><a
+								href="${pageContext.request.contextPath}/user/viewDetail?id=${item.id}">
+									<c:out value="${item.name}" />
+							</a></td>
+
+							<td><fmt:formatNumber value="${item.price}"
+									pattern="￥###,###" />
+						</tr>
+					</c:forEach>
+
+				</table>
+
+			</c:otherwise>
+
+		</c:choose>
+		<br><br>
+
+		<hr>
+		<c:choose>
+			<c:when test="${Item==true}">
+
+				<c:if test="${pageNum>1}">
+					<a
+						href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
+						前へ </a>
+				</c:if>
+				<c:forEach begin="0" end="${page-1}" step="1" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index+1 != pageNum }">
+							<a
+								href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
+								<c:out value="${status.index+1}" />
+							</a>
+						</c:when>
+						<c:otherwise>
+							<c:out value="${status.index+1}" />
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${pageNum<page}">
+					<a
+						href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
+						次へ </a>
+				</c:if>
+			</c:when>
+			<c:when test="${searchItem==true}">
+
+				<c:if test="${pageNum>1}">
+					<a
+						href="${pageContext.request.contextPath}/user/findByNameNotDeletedPageNum?pageNum=${pageNum-1}&name=${name}">
+						前へ </a>
+				</c:if>
+				<c:if test="${page>1}">
+					<c:forEach begin="0" end="${page-1}" step="1" varStatus="status">
+						<c:choose>
+							<c:when test="${status.index+1 != pageNum }">
+								<a
+									href="${pageContext.request.contextPath}/user/findByNameNotDeletedPageNum?pageNum=${status.index+1}&name=${name}">
+									<c:out value="${status.index+1}" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${status.index+1}" />
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</c:if>
+				<c:if test="${pageNum<page}">
+					<a
+						href="${pageContext.request.contextPath}/user/findByNameNotDeletedPageNum?pageNum=${pageNum+1}&name=${name}">
+						次へ </a>
+				</c:if>
+			</c:when>
+		</c:choose>
+		<br> <br>
+
+
+
+		<c:choose>
+			<c:when test="${itemListTop5Count==null}">
+				<p align="center"></p>
+			</c:when>
+
+			<c:otherwise>
+				<h3>観覧数ランキングTOP5</h3>
+				<br>
+				<table border="1" align="center" class="table table-striped lank"
+					style="WIDTH: 800px">
+					<tr>
+						<th align="center">順位</th>
+						<th width="150" align="center">画像</th>
+						<th width="150" align="center">商品名</th>
+						<th width="150" align="center">価格</th>
+					</tr>
+
+					<c:forEach var="itemTop5Count" items="${itemListTop5Count}"
+						varStatus="status">
+						<tr>
+							<td style="WIDTH: 50px"><c:out value="${status.count}" /></td>
+							<td style="WIDTH: 150px"><img
+								src="${pageContext.request.contextPath}/img/${itemTop5Count.imagePath}"
+								width="75" height="200"></td>
+							<td><a
+								href="${pageContext.request.contextPath}/user/viewDetail?id=${itemTop5Count.id}">
+									<c:out value="${itemTop5Count.name}" />
+							</a></td>
+							<td><fmt:formatNumber value="${itemTop5Count.price}"
+									pattern="￥###,###" />
+						</tr>
+					</c:forEach>
+
+				</table>
+			</c:otherwise>
+
+		</c:choose>
+
+
 
 	</div>
 	<%@ include file="../common/userFooterForPresentation.jsp"%>
