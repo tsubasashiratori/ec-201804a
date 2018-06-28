@@ -8,6 +8,7 @@
 </head>
 <%@ include file="../common/userHeader.jsp" %>
 <body>
+<div class="bg2">
 	<script>
 		$(window).on('load resize', function(){
 	    // navbarの高さを取得する
@@ -23,5 +24,7 @@
 	<a href="${pageContext.request.contextPath}/user//">商品一覧へ戻る</a><br>
 	<a href="${pageContext.request.contextPath}/user/form">新規登録はこちら</a>
 	</div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
+</div>
 </body>
 </html>

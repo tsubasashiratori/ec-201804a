@@ -23,13 +23,20 @@
 		<form:errors path="adminUserLoginForm.*" cssStyle="color:red" element="div"/>
 		<form:form modelAttribute="adminUserLoginForm"
 			action="${pageContext.request.contextPath}/admin/login">
-		メールアドレス：<form:input path="email" />
-			<br>
-		パスワード：<form:password path="password" />
-			<br>
-			<input type="submit" value="ログイン">
-			<br>
+			
+		<table>
+	<tr><td><div class="div"><p>メールアドレス：</p></div></td><td><form:input class="form-control" id="InputEmail" path="email" placeholder="メール・アドレス"/></td></tr>
+	<tr><td><p>パスワード：</p></td><td><form:password class="form-control" path="password" placeholder="パスワード"/></td></tr>
+	</table>
+		<!-- 丸みのあるボタン -->
+		<br>
+				<div class="col-lg-12 text-center">
+					<input type="submit" class="btn_circle_arange" value="ログイン"><br>
+				</div>
+				<br>
+			
 		</form:form>
+	
 	</div>
 </body>
 </html>

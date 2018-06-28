@@ -34,11 +34,11 @@ public class OrderLogController {
 	 *            注文id
 	 * @return 注文履歴の詳細表示画面
 	 */
-	@RequestMapping(value = "/orderDetail")
+	@RequestMapping(value = "/orderLogDetail")
 	public String buyLog(Model model, @RequestParam long orderId) {
 		Order order = orderRepository.findByOrderId(orderId);
 		model.addAttribute("order", order);
-		return "user/orderDetail";
+		return "user/orderLogDetail";
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class OrderLogController {
 	 *            モデル
 	 * @return 注文履歴のリスト表示画面
 	 */
-	@RequestMapping(value = "/orderList")
+	@RequestMapping(value = "/orderLogList")
 	public String orderList(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		LoginUser loginUser = (LoginUser) principal;
@@ -69,12 +69,12 @@ public class OrderLogController {
 		if (orderList.isEmpty() == true) {
 			model.addAttribute("orderListEmptyChecker", true);
 			model.addAttribute("EmptyError", "注文がありません");
-			return "/admin/orderList";
+			return "/user/orderLogList";
 		}
 		
 		model.addAttribute("orderListEmptyChecker", false);
 		model.addAttribute("orderList", orderList);
 
-		return "user/orderList";
+		return "user/orderLogList";
 	}
 }

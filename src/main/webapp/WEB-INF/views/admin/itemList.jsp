@@ -29,24 +29,27 @@
 <br>
 <form action="${pageContext.request.contextPath}/admin/adminFindAll" method="get" align="center">
 	
-	<input type="submit" value="全件表示" align="center">
+	<input type="submit" value="全件表示" align="center" class="btn btn-default">
 </form><br>
 <form:form modelAttribute="adminViewAllAndSearchItemForm" action="${pageContext.request.contextPath}/admin/adminFindByName" method="post" align="center">
 	<form:errors path="name" element="div" cssStyle="color:red" align="center"/>
-	
-	<form:input path="name"/>
-	<input type="submit" value="検索する">
-	
+	<table align="center">
+	<tr><td><div style=WIDTH:200px>
+	<form:input path="name" class="form-control" />
+	</div></td><td>
+	<input type="submit" value="検索する" class="btn btn-default">
+	</td></tr></table>
 </form:form>
 
 <br>
 	<c:choose>
-		<c:when test="${itemList.size()==0}">
+		<c:when test="${itemList==null}">
 			<p align="center">商品がありません</p>
 		</c:when>
 		<c:otherwise>
-		<div class="table-responsive">
-			<table class="table table-striped">
+
+			<table border="1" align="center" class="table itemList" style=WIDTH:800px>
+
 				<tr>
 					<th colspan="2" width="300">商品名</th>
 					<th width="100">価格</th>
@@ -57,7 +60,7 @@
 					<tr>
 						<td><img
 							src="${pageContext.request.contextPath}/img/${item.imagePath}"
-							width="200" height="125" /></td>
+							width="75" height="200" /></td>
 						<td width="100"><c:out value="${item.name}" /></td>
 						<td><fmt:formatNumber value="${item.price}"
 								pattern="￥###,###" /></td>
@@ -65,27 +68,26 @@
 						<td><form
 								action="${pageContext.request.contextPath}/admin/viewEditItem"
 								method="get" align="center">
-								<button type="submit" name="itemId" value="${item.id}">編　集</button>
+								<button type="submit" name="itemId" value="${item.id}" class="btn btn-default">編集</button>
 							</form> <br> <c:choose>
 								<c:when test="${item.deleted}">
 									<form
 										action="${pageContext.request.contextPath}/admin/deleteItem"
 										method="get" align="center">
-										<button type="submit" name="id" value="${item.id}">再表示</button>
+										<button type="submit" name="id" value="${item.id}" class="btn btn-default">再表示</button>
 									</form>
 								</c:when>
 								<c:otherwise>
 									<form
 										action="${pageContext.request.contextPath}/admin/deleteItem"
 										method="get" align="center">
-										<button type="submit" name="id" value="${item.id}">削　除</button>
+										<button type="submit" name="id" value="${item.id}" class="btn btn-default">削除</button>
 									</form>
 								</c:otherwise>
 							</c:choose></td>
 					</tr>
 				</c:forEach>
 			</table>
-			</div>
 		</c:otherwise>
 	</c:choose>
 	

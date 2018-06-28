@@ -7,9 +7,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 500エラーを検知したときに呼ばれるハンドラクラス.
+ * 
+ * @author tatsuro.okazaki
+ */
 @Component
 public class GlobalExceptionHandoler implements HandlerExceptionResolver {
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.web.servlet.HandlerExceptionResolver#resolveException(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
+	 */
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {

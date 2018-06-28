@@ -88,57 +88,8 @@
 				    <td><fmt:formatNumber value="${order.totalPriceIncludeTaxAndPostage}" pattern="###,###円"/></td>
 				  </tr>
 				  </table><br>
-
-
-	<%-- <table border="1">
-      <tr>
-        <th nowrap>現在のステータス</th>
-        <th nowrap>ステータス変更</th>
-      </tr>
-      <tr>
-        <td>
-        <c:choose>
-        	<c:when test="${order.status == 0}">
-        		購入前
-        	</c:when>
-        	<c:when test="${order.status == 1}">
-        		未入金
-        	</c:when>
-        	<c:when test="${order.status == 2}">
-        		入金済み
-        	</c:when>
-        	<c:when test="${order.status == 3}">
-        		発送済み
-        	</c:when>
-        	<c:when test="${order.status == 9}">
-        		キャンセル
-        	</c:when>	
-        </c:choose>
-        </td>
-        <td><form action="${pageContext.request.contextPath}/admin/updateStatus" name="statusSubmit" method="GET" onsubmit="return check()" onreset="return kakunin()">
-<select name="status">
-<option value="0">購入前(変更非推奨)</option>
-<option value="1">未入金</option>
-<option value="2" selected>入金済み</option>
-<option value="3">発送済み</option>
-<option value="9">キャンセル</option>
-</select>
-
-<input type="hidden" name="orderId" value="${order.id}">
-<input class="btn" type="submit" value="更新">
-
-</form></td>
-      </tr>
-    </table> --%>
-    <br>
-    
-<%-- <font color="red"><c:out value="${updateMessage}"/></font>
-
-<br>
-<br>
-    <a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧に戻る</a>
- --%>
-     <a href="${pageContext.request.contextPath}/user/orderList">注文一覧に戻る</a>
+     <a href="${pageContext.request.contextPath}/user/orderLogList">注文一覧に戻る</a>
  </div>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
 </body>
 </html>

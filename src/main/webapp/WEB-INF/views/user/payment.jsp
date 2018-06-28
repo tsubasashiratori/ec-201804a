@@ -20,6 +20,6 @@
 	<h2 align="center">この度はご注文ありがとうございます。<br>
 	お支払い先は、お送りしたメールに記載してありますのでご確認ください。</h2>
 	<p align="center"><a href="${pageContext.request.contextPath}/user/ ">商品一覧画面へ戻る</a></p>
-</body>
+<%@ include file="../common/userFooterForPresentation.jsp" %>
 </body>
 </html>

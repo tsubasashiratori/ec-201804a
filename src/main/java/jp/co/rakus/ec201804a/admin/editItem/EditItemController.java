@@ -79,7 +79,10 @@ public class EditItemController {
 		}
 		if(uploadFile.isEmpty() && StringUtils.hasLength(uploadFile.getOriginalFilename())) {
 			result.rejectValue("imagePath", null, "ファイルが空です");
-		} 
+		}
+		if(!uploadFile.getOriginalFilename().endsWith(".jpg") && StringUtils.hasLength(uploadFile.getOriginalFilename())) {
+			result.rejectValue("imagePath", null, "jpg画像を選択してください");
+		}
 		if (result.hasErrors()) {
 			model.addAttribute("imagePath", itemRepository.load(form.getId()).getImagePath());
 			return "/admin/edit";
@@ -106,7 +109,8 @@ public class EditItemController {
 		//ファイルが選択されなかったら元の画像で登録
 		if(!StringUtils.hasLength(uploadFile.getOriginalFilename())) {
 			item.setImagePath(beforeItem.getImagePath());
-		//選択されたら新しい画像で登録
+			
+		//ファイルが選択されたら新しい画像で登録
 		}else {
 			item.setImagePath(form.getImagePath().getOriginalFilename());
 		}

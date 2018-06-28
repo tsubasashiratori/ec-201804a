@@ -11,14 +11,14 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css2/arange.css">
 <meta http-equiv="content-type" charset="utf-8">
-<title>ユーザログイン</title>
 <!-- jQuery読み込み -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- BootstrapのCSS読み込み -->
 <link href="${pageContext.request.contextPath}/css2/bootstrap.min.css"
 	rel="stylesheet"> 
-	 
+	 <link href="${pageContext.request.contextPath}/css2/bootstrap.css"
+	rel="stylesheet"> 
 <!-- jQuery読み込み -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -80,6 +80,12 @@
 								こんにちはゲストさん
 							</p>
 							<li>
+								<a href="${pageContext.request.contextPath}/user/toViewShoppingCart">
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+									ショッピングカートを見る
+								</a>
+							</li>
+							<li>
 								<a href="${pageContext.request.contextPath}/user/loginForm">
 									<span class="glyphicon glyphicon-log-in"></span>
 									ログイン
@@ -93,6 +99,18 @@
 								さん
 							</p>
 							<li>
+								<a href="${pageContext.request.contextPath}/user/toViewShoppingCart">
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+									ショッピングカートを見る
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/user/myPage">
+									<span class="glyphicon glyphicon-user"></span>
+									マイページ
+								</a>
+							</li>
+							<li>
 								<a href="${pageContext.request.contextPath}/user/logout">
 									<span class="glyphicon glyphicon-log-out"></span>
 									ログアウト
@@ -100,13 +118,6 @@
 							</li>
 						</c:otherwise>
 					</c:choose>
-					
-					<li>
-						<a href="${pageContext.request.contextPath}/user/toViewShoppingCart">
-							<span class="glyphicon glyphicon-shopping-cart"></span>
-							ショッピングカートを見る
-						</a>
-					</li>
 				</ul>
 				
 			</div>
