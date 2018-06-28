@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.navbar{
+	border-radius: 0;
+	border: none;
+	background-color: orange;
+}
+
+.navbar-brand{
+	background:url("../img/1_Primary_logo_on_transparent_139x74.png") no-repeat left center;
+	background-size: contain;
+	margin:5px;
+	height: 40px;
+	width: 80px;
+}
+
+.navbar-default .navbar-nav >li >a{
+	color: #fff
+}
+
+.navbar-default .navbar-nav >li > a:hover{
+	color: #aaa
+}
+
+.navbar-default .navbar-text{
+	color: #fff
+}

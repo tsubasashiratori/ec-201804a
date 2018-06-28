@@ -41,12 +41,9 @@
 			<p><small><form:errors path="imagePath" cssStyle="color:red" /></small></p></td>
 			<td><input type="file" name="imagePath" accept="image/jpeg"></td>
 			
-			
 			</tr>
 			</table>
-					
 			
-			<p><small><form:errors path="imagePath" cssStyle="color:red" /></small></p>
 			<br>
 			<label class="checkbox-inline">
 			<form:checkbox path="deleted" />利用者商品一覧に表示しない<br>
