@@ -56,23 +56,20 @@ public class AdminViewAllAndSearchItemController {
 	public String adminItemFindByName(@Validated AdminViewAllAndSearchItemForm form ,BindingResult result, Model model) {
 		
 		String name = form.getName();
+		List<Item> itemList = itemRepository.adminItemFindByName(name);
 		
 		if(1 > name.length() || name.length() > 20) {
 			result.rejectValue("name",null, "1文字以上20文字以内でキーワードを入力してください");
-			return "/admin/itemList";
 		}
-		
-		List<Item> itemList = itemRepository.adminItemFindByName(name);
-
-		model.addAttribute("itemList", itemList);
-		
 		if(itemList.size()==0) {
-			result.rejectValue("name",null, "該当する商品がありません");
+			result.rejectValue("name",null, "");
 		}
-
 		if(result.hasErrors()) {
 			return "/admin/itemList";
 		}
+		
+		model.addAttribute("itemList", itemList);
+
 		return "/admin/itemList";
 	}
 }

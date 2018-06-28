@@ -165,13 +165,8 @@ public class ItemRepository {
 	public List<Item> adminItemFindAll() {
 		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME+" ORDER BY id;";
 		
-		try {
-			List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
-			return itemList;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		List<Item> itemList = template.query(sql, ITEM_ROWMAPPER);
+		return itemList;
 	}
 	
 	/**
@@ -183,13 +178,8 @@ public class ItemRepository {
 	public List<Item> adminItemFindByName(String name) {
 		String sql = "SELECT id, name, description, price, imagepath, deleted,count FROM " + TABLE_NAME + " WHERE name ILIKE :name ORDER BY id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
-		try {
-			List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
-			return itemList;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		List<Item> itemList = template.query(sql, param, ITEM_ROWMAPPER);
+		return itemList;
 	}
 	
 	public void save(Item item) {

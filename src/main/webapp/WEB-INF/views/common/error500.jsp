@@ -9,8 +9,9 @@
 <div align="center">
 <h1>しすてむえらー</h1>
 
-<pre><strong>何らかの問題が発生しました。</strong>
+<pre><strong>申し訳ありません、商品一覧に戻ってください</strong>
 </pre>
+<a href="${pageContext.request.contextPath}/user/">商品一覧へ</a>
 
 </div>
 </body>
