@@ -10,9 +10,7 @@
 <body>
     <footer class="footer">
       <div class="container">
-        <p class="text-primary">
         <a href="${pageContext.request.contextPath}/admin/">管理者用ログインページはこちら</a>
-        </p>
       </div>
     </footer>
 </body>
