@@ -126,27 +126,6 @@
 
 			</c:choose>
 
-<%-- <<<<<<< HEAD
-<br><br>
-<hr>
-		<c:if test="${pageNum>1}">
-			<a
-				href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${pageNum-1}">
-				前へ </a>
-		</c:if>
-		<c:forEach begin="0" end="${page}" step="1" varStatus="status">
-			<a
-				href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${status.index+1}">
-				<c:out value="${status.index+1}" />
-			</a>
-		</c:forEach>
-		<c:if test="${pageNum<=page}">
-			<a
-				href="${pageContext.request.contextPath}/user/findAllNotDeletedByPageNum?pageNum=${pageNum+1}">
-				次へ </a>
-		</c:if>
-<br><br>
-======= --%>
 			<br>
 			<br>
 			<hr>
