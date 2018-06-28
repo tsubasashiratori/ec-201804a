@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
 <meta charset="UTF-8">
 
 
@@ -28,6 +29,7 @@
 
 
 	<div align="center">
+	<h1 class="titleEnergy"><font size="15" >Energy de cafe</font></h1>
 		<h2>商品一覧</h2>
 
 

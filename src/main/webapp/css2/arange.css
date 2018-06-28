@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.titleEnergy{
+	font-family: 'Galada', cursive;
+}
+
 .login{
 	font-family: 'Lobster', cursive;
 	font-size: 50px; 
