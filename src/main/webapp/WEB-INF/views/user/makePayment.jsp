@@ -76,7 +76,8 @@
 	住所：<c:out value="${order.deliveryAddress}"/><br>
 	電話番号：<c:out value="${order.deliveryTel}"/><br><br>
 	<input type="hidden" name="userId" value="${order.userId}">
-	<input type="submit" value="確定">
+	<input type="submit" value="確定" class="btn btn-danger" style=WIDTH:100px>
+	&nbsp;<br>
 	</form:form>
 	</c:when>
 	</c:choose>

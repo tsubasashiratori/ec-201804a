@@ -60,7 +60,7 @@
 			</tr>
 			<tr><td colspan="2" align="center">
 			<br>
-			<input type="submit" value="追加" class="form-control" style=WIDTH:60px>
+			<input type="submit" value="追加" class="form-control btn btn-warning" style=WIDTH:60px>
 			</td></tr>
 			</table>
 		</form:form>
