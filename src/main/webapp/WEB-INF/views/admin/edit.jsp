@@ -47,7 +47,7 @@
 			<td><div align="center"><input type="file" name="imagePath" accept="image/jpeg"></div></td>
 			</table>
 			現在の画像<br>
-			<img src="${pageContext.request.contextPath}/img/${imagePath}" width="200" height="125" /><br>
+			<img src="${pageContext.request.contextPath}/img/${imagePath}" width="75" height="200" /><br>
 			<br>
 			<label>削除:<form:checkbox path="deleted" value="${form.deleted}"/></label><br><br>
 			
