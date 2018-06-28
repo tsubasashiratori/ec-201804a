@@ -21,7 +21,10 @@
 <div align="center">
 	<h1>利用者情報変更</h1>
 	<br>
-	<br> お客様の情報を入力し、「お客様情報を変更する」ボタンをクリックしてください。
+	<br>お客様の情報を入力し、「お客様情報を変更する」ボタンをクリックしてください。
+	<br>
+	<font color="blue">※情報を変更した場合は一度ログアウトされます。<br>
+	　　　情報を確認したい場合は再度ログインしてください。</font>
 	<br>
 	<br>
 
@@ -30,7 +33,7 @@
 		<form:hidden path="id"/>
 		<br>
 		<div class="table-recponsive">
-		<table class="table table-bordered table-striped">
+		<table class="table table-bordered table-striped" style=WIDTH:600px>
 			<tr>
 				<td><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前</td>
@@ -59,8 +62,10 @@
 			</tr>
 		</table>
 		</div>
-		<br> <br><input type="submit" value="お客様情報を変更する">   <input type="reset" value="入力内容をクリアする">
-	</form:form>
+		<br> <br><input type="submit" value="お客様情報を変更する">
+	</form:form><br>
+	<form action="${pageContext.request.contextPath}/user/updateForm">
+	<input type="submit" value="入力内容をクリアする"></form><br>
 	<a href="${pageContext.request.contextPath}/user/myPage">マイページに戻る</a>
 </div>
 <%@ include file="../common/userFooterForPresentation.jsp" %>
