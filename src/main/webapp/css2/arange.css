@@ -129,26 +129,9 @@ html,body{
  position: relative;
 
 }
-.bg2{
-	width:100%; height:100%;
-	margin : auto;
- background: url("../image/ChaosBackgroundOnFilter.jpg");
 
- position: relative;
-
-}
  
 .bg::before{
- content: ' ';
- background-color: rgba(0,0,0,0.5);
- position: absolute;
- top: 0;
- right: 0;
- bottom: 0;
- left: 0;
-}
-
-.bg2::before{
  content: ' ';
  background-color: rgba(0,0,0,0.5);
  position: absolute;
@@ -219,13 +202,7 @@ html, body {
 	background-color: #ffc778;
 }
 
-.bg2 {
-	
-	
-	margin: auto;
-	background-color: #f0d958;
-	position: relative;
-}
+
 
 .bg {
 	width: 100%;

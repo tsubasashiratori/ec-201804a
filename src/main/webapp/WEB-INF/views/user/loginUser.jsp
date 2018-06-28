@@ -11,6 +11,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css2/arange.css">
 
+
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:600i" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
