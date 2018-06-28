@@ -33,39 +33,51 @@
 		<form:hidden path="id"/>
 		<br>
 		<div class="table-recponsive">
-		<table class="table table-bordered table-striped" style=WIDTH:600px>
+
+		<table class="table table-bordered table-striped" style=WIDTH:400px>
+
 			<tr>
 				<td><p><small><form:errors path="name" cssStyle="color:red" /></small></p>
 				名前</td>
-				<td><form:input path="name" /></td>
+				<td><form:input path="name" class="form-control"/></td>
 
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="zipCode" cssStyle="color:red"/></small></p>
 				郵便番号</td>
-				<td>〒<form:input path="zipCode" size="8" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/></td>
+				<td>〒<form:input path="zipCode" size="8" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="address" cssStyle="color:red"/></small></p>
 				住所</td>
-				<td><form:input path="address"/></td>
+				<td><form:input path="address" class="form-control"/></td>
 
 			</tr>
 			<tr>
 				<td><p><small><form:errors path="telHead" cssStyle="color:red"/></small></p>
 				電話番号
 				</td>
-				<td><form:input path="telHead" size="4" maxlength="4"/>
-				- <form:input path="telBody" size="4" maxlength="4"/>
-				- <form:input path="telTeil" size="4" maxlength="4"/>
+				<td>
+				<table>
+				<tr><td><form:input path="telHead" size="4" maxlength="4" class="form-control register3" /></td>
+				<td>-</td>
+				<td><form:input path="telBody" size="4" maxlength="4" class="form-control register3" /></td>
+				<td>-</td>
+				<td><form:input path="telTeil" size="4" maxlength="4" class="form-control register3" /></td>
+				
+				</table>
 				</td>
 			</tr>
 		</table>
 		</div>
-		<br> <br><input type="submit" value="お客様情報を変更する">
-	</form:form><br>
+
+		<br> <br>
+		<table><tr><td>
+		<input type="submit"  value="お客様情報を変更する" class="btn btn-default">&nbsp;</td>
+	</form:form>
 	<form action="${pageContext.request.contextPath}/user/updateForm">
-	<input type="submit" value="入力内容をクリアする"></form><br>
+	<td><input type="submit"  value="変更内容を元に戻す" class="btn btn-default"></td></tr></table></form><br>
+
 	<a href="${pageContext.request.contextPath}/user/myPage">マイページに戻る</a>
 </div>
 <%@ include file="../common/userFooterForPresentation.jsp" %>
