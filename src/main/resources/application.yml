@@ -9,7 +9,7 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
   jmx:
-    default-domain: ec-201804b #複数のアプリを１つのサーバ上で動かす際に必要な設定
+    default-domain: ec-201804a #複数のアプリを１つのサーバ上で動かす際に必要な設定
 server:  
   servlet:
     context-path: /ec-201804a
