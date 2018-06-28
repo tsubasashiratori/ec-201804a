@@ -68,7 +68,7 @@
 						<td><form
 								action="${pageContext.request.contextPath}/admin/viewEditItem"
 								method="get" align="center">
-								<button type="submit" name="itemId" value="${item.id}" class="btn btn-default">編集</button>
+								<button type="submit" name="itemId" value="${item.id}" class="btn btn-default">編　集</button>
 							</form> <br> <c:choose>
 								<c:when test="${item.deleted}">
 									<form
@@ -81,7 +81,7 @@
 									<form
 										action="${pageContext.request.contextPath}/admin/deleteItem"
 										method="get" align="center">
-										<button type="submit" name="id" value="${item.id}" class="btn btn-default">削除</button>
+										<button type="submit" name="id" value="${item.id}" class="btn btn-default">削　除</button>
 									</form>
 								</c:otherwise>
 							</c:choose></td>
