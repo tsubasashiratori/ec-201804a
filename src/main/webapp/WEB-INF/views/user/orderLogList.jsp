@@ -30,7 +30,7 @@
 		</p>
 		</c:when>
 		<c:when test="${orderListEmptyChecker == false}">
-		<table border="1">
+		<table border="1" class="table" >
       	<tr>
         <th nowrap>注文番号</th>
         <th nowrap>日付</th>

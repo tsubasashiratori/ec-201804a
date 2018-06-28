@@ -20,8 +20,9 @@
 	</script>
 <div align="center">
 
-<h1>注文詳細画面</h1>
-<table border="1">
+<h2>注文詳細画面</h2><br>
+<h4>注文情報</h4>
+<table border="1" class="table"  style="WIDTH: 500px">
 				  <tr>
 				    <th nowrap>注文NO</th>
 				    <td><c:out value="${order.orderNumber}"></c:out>
@@ -46,11 +47,12 @@
 				  </tr>
 				  </table><br>
 				  
-	<table border="1">
+				  <h4>決算情報</h4>
+	<table border="1" class="table"  style="WIDTH: 500px"> 
       <tr>
         <th nowrap>商品</th>
         <th nowrap>価格</th>
-        <th nowrap>×</th>
+        <th nowrap>&nbsp;</th>
         <th nowrap>個数</th>
        <th nowrap>金額</th>
       </tr>
@@ -66,7 +68,7 @@
     </table><br>
     
     
-    <table border="1">
+    <table border="1" class="table"  style="WIDTH: 500px">
 				  <tr>
 				    <th nowrap>小計</th>
 				    <td><fmt:formatNumber value="${order.totalPriceExcludeTax}" pattern="###,###円"/></td>
